@@ -4,12 +4,17 @@ import { list } from '../helper/api'
 import axios from 'axios'
 
 export default class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-      offset: 0,
-    };
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     data: [],
+  //     offset: 0,
+  //   };
+  // }
+
+  state = {
+    data: [],
+    offset:0,
   }
 
   componentWillMount() {
@@ -20,7 +25,7 @@ export default class Header extends Component {
     window.removeEventListener("scroll", this.loadMore);
   }
 
-  getData() {
+   getData=()=> {
     axios
       .get(
         `https://api.mukify.com/graphiql/?query=query{localizedFlatItem(id:%20%22%22searchString: "", offset: ${this.state.offset}, first:20){edges{node{id
@@ -57,7 +62,7 @@ export default class Header extends Component {
       });
   }
 
-  loadMore() {
+  loadMore = ()=> {
     console.log(window.innerHeight + document.documentElement.scrollTop);
     console.log(document.scrollingElement.scrollHeight);
     if (
@@ -90,7 +95,7 @@ export default class Header extends Component {
         }}}}}`
         )
         .then((res) => {
-          let data = this.state.data;
+          let data = this.state.data
           let newData = res.data.data.localizedFlatItem.edges;
           let totalData = data.concat(newData);
           this.setState({
