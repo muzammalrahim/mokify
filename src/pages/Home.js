@@ -48,29 +48,6 @@ export default class Home extends Component {
               {/* <Products /> */}
               <Homes />
             </div>
-            <div className="products-offers container mt-5 mb-5 col-sm-12">
-              <div className="row">
-                <div className="left-offer mt-5 mb-5 pt-5 pb-5 pl-5 col-sm-6">
-                  <h5 style={{ fontWeight: "800" }}>Tulossa!</h5>
-                  <h2 style={{ fontWeight: "400" }}>
-                    Tunnista muumimukit suoraan valokuvasta!
-                  </h2>
-                  <h5 className="pb-3" style={{ fontWeight: "600" }}>
-                    Aloita kokoelmasi kerääminen valokuvaamalla olemassa olevat
-                    aarteesi.
-                  </h5>
-                  <button>Kokeile</button>
-                </div>
-                <div
-                  className="right-offer mt-5 mb-5 col-sm-5"
-                  style={{ backgroundImage: `url(${rightOffer})` }}
-                ></div>
-              </div>
-            </div>
-            <div className="products container mt-5 col-sm-12">
-              {/* <Products /> */}
-              <Homes />
-            </div>
             <div className="loading mt-5 mb-5 container">
               <img className="mt-5 mb-4" src={loading} alt="loading"></img>
               <p>Scrollaa ladataksesi lisää</p>

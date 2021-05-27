@@ -8,7 +8,8 @@ export default class Header extends Component {
 
   state = {
     data: [],
-    offset:0,
+    offset: 0,
+    moreData:[]
   }
 
   componentWillMount() {
@@ -48,6 +49,7 @@ export default class Header extends Component {
       .then((res) => {
         this.setState({
           data: res.data.data.localizedFlatItem.edges,
+          moreData: res.data.data.localizedFlatItem.edges,
           offset: this.state.offset + 1,
         });
       })
@@ -87,11 +89,11 @@ export default class Header extends Component {
         }}}}}`
         )
         .then((res) => {
-          let data = this.state.data
+          let data = this.state.moreData;
           let newData = res.data.data.localizedFlatItem.edges;
           let totalData = data.concat(newData);
           this.setState({
-            data: totalData,
+            moreData: totalData,
             offset: this.state.offset + 1,
           });
         })
@@ -107,8 +109,7 @@ export default class Header extends Component {
   }
 
   render() {
-    const { data, offset } = this.state;
-    console.log(data, offset);
+    const { data, moreData } = this.state;
     return (
       <>
         <Row>
@@ -129,29 +130,45 @@ export default class Header extends Component {
               </Col>
             );
           })}
-          <div className="load" onScroll={() => this.handleScroll()}></div>
         </Row>
-        {/* {data.length >= 8 && (
-          <div className="products-offers container mt-5 mb-5 col-sm-12">
-            <div className="row">
-              <div className="left-offer mt-5 mb-5 pt-5 pb-5 pl-5 col-sm-6">
-                <h5 style={{ fontWeight: "800" }}>Tulossa!</h5>
-                <h2 style={{ fontWeight: "400" }}>
-                  Tunnista muumimukit suoraan valokuvasta!
-                </h2>
-                <h5 className="pb-3" style={{ fontWeight: "600" }}>
-                  Aloita kokoelmasi kerääminen valokuvaamalla olemassa olevat
-                  aarteesi.
-                </h5>
-                <button>Kokeile</button>
-              </div>
-              <div
-                className="right-offer mt-5 mb-5 col-sm-5"
-                style={{ backgroundImage: `url(${rightOffer})` }}
-              ></div>
+        <div className="products-offers container mt-5 mb-5 col-sm-12">
+          <div className="row">
+            <div className="left-offer mt-5 mb-5 pt-5 pb-5 pl-5 col-sm-6">
+              <h5 style={{ fontWeight: "800" }}>Tulossa!</h5>
+              <h2 style={{ fontWeight: "400" }}>
+                Tunnista muumimukit suoraan valokuvasta!
+              </h2>
+              <h5 className="pb-3" style={{ fontWeight: "600" }}>
+                Aloita kokoelmasi kerääminen valokuvaamalla olemassa olevat
+                aarteesi.
+              </h5>
+              <button>Kokeile</button>
             </div>
+            <div
+              className="right-offer mt-5 mb-5 col-sm-5"
+              style={{ backgroundImage: `url(${rightOffer})` }}
+            ></div>
           </div>
-        )} */}
+        </div>
+        <Row>
+          {moreData.map((nod) => {
+            return (
+              <Col xs={12} lg={3} md={3} sm={6} key={nod.node.id}>
+                <Image
+                  className="product-image"
+                  src={nod?.node?.itemImagesSet[0]?.mediumThumbUrl}
+                />
+                <p className="product-text">
+                  {nod?.node?.basicInfo?.shortDescription}
+                </p>
+                <p className="product-subtext ">{nod?.node?.basicInfo?.name}</p>
+                <p className="product-price">
+                  {nod.node.additionalInfo[0].rows[0].columns[0]}
+                </p>
+              </Col>
+            );
+          })}
+        </Row>
       </>
     );
   }
