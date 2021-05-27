@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import { list } from '../helper/api'
 import axios from 'axios'
 

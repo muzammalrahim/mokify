@@ -1,10 +1,15 @@
-import Home from './component/Home'
+import React from 'react'
+import './App.css';
+import Home from './pages/Home';
+import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 function App() {
   return (
-    <div className="container">
-      <h1>Mukify project</h1>
-      <Home />
-    </div>
+    <Router>
+    <Switch>
+    <Route exact path="/" component={Home} />
+      <Redirect from='/home' to='/' />      
+    </Switch>
+    </Router>
   );
 }
 
