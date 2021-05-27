@@ -2,15 +2,15 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import rightOffer from "../assets/right-offer.png";
 import { Row, Col, Image } from "react-bootstrap";
+import loading from "../assets/loading.png";
 
 export default class Header extends Component {
-  
-
   state = {
     data: [],
     offset: 0,
-    moreData:[]
-  }
+    moreData: [],
+    apiLength:0,
+  };
 
   componentWillMount() {
     window.addEventListener("scroll", this.loadMore);
@@ -19,11 +19,7 @@ export default class Header extends Component {
   componentWillUnmount() {
     window.removeEventListener("scroll", this.loadMore);
   }
-
-   getData=()=> {
-    axios
-      .get(
-        `https://api.mukify.com/graphiql/?query=query{localizedFlatItem(id:%20%22%22searchString: "", offset: ${this.state.offset}, first:8){edges{node{id
+  url =()=> `${process.env.REACT_APP_BACKEND_URL}?query=query{localizedFlatItem(id:%20%22%22searchString: "", offset: ${this.state.offset}, first:8){edges{node{id
         basicInfo {
           name
           shortDescription
@@ -44,50 +40,32 @@ export default class Header extends Component {
           smallThumbUrl
           mediumThumbUrl
           fullsizeUrl
-        }}}}}`
-      )
+        }}}}}`;
+  getData = () => {
+    let url = this.url()
+    this.setState({apiLength : url.length})
+    axios
+      .get(url)
       .then((res) => {
         this.setState({
           data: res.data.data.localizedFlatItem.edges,
-          moreData: res.data.data.localizedFlatItem.edges,
           offset: this.state.offset + 1,
+          apiLength: this.state.apiLength - 8,
         });
       })
       .catch((err) => {
         console.log(err.message);
       });
-  }
+  };
 
-  loadMore = ()=> {
+  loadMore = () => {
+    let url = this.url();
     if (
       Math.ceil(window.innerHeight + document.documentElement.scrollTop) ===
       document.scrollingElement.scrollHeight
     ) {
       axios
-        .get(
-          `https://api.mukify.com/graphiql/?query=query{localizedFlatItem(id:%20%22%22searchString: "", offset: ${this?.state?.offset ? this.state.offset : 1}, first:8){edges{node{id
-        basicInfo {
-          name
-          shortDescription
-          description
-        }
-        additionalInfo {
-          heading
-          numRows
-          numColumns
-          rows {
-            objectType
-            objectId
-            columns
-            id
-          }
-        }
-        itemImagesSet {
-          smallThumbUrl
-          mediumThumbUrl
-          fullsizeUrl
-        }}}}}`
-        )
+        .get(url)
         .then((res) => {
           let data = this.state.moreData;
           let newData = res.data.data.localizedFlatItem.edges;
@@ -95,21 +73,21 @@ export default class Header extends Component {
           this.setState({
             moreData: totalData,
             offset: this.state.offset + 1,
+            apiLength: this.state.apiLength - 8,
           });
         })
         .catch((err) => {
           console.log(err.message);
         });
     }
-    
-  }
-  
+  };
+
   componentDidMount() {
     this.getData();
   }
 
   render() {
-    const { data, moreData } = this.state;
+    const { data, moreData, apiLength } = this.state;
     return (
       <>
         <Row>
@@ -169,6 +147,11 @@ export default class Header extends Component {
             );
           })}
         </Row>
+        <div className="loading mt-5 mb-5 container">
+          <img className="mt-5 mb-4" src={loading} alt="loading"></img>
+          <p>Scrollaa ladataksesi lisää</p>
+          <p>mukeja ({apiLength})</p>
+        </div>
       </>
     );
   }
