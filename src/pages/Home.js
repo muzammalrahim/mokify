@@ -67,7 +67,10 @@ export default class Home extends Component {
                 ></div>
               </div>
             </div>
-            <Homes />
+            <div className="products container mt-5 col-sm-12">
+              {/* <Products /> */}
+              <Homes />
+            </div>
             <div className="loading mt-5 mb-5 container">
               <img className="mt-5 mb-4" src={loading} alt="loading"></img>
               <p>Scrollaa ladataksesi lisää</p>
