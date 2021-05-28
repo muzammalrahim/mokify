@@ -13,7 +13,7 @@ export default class Home extends Component {
     render() {
         return (
           <div className="home-main">
-            <div>
+            <div class="header=section">
               <Topbar />
             </div>
             <div className="heading-home text-center mt-5 mb-5">
@@ -25,7 +25,7 @@ export default class Home extends Component {
             </div>
             <div className="filters container col-sm-12">
               <div className="row">
-                <div className="filters-left col-sm-6">
+                <div className="custom-width filters-left col-sm-6 col-xs-6">
                   <p>
                     Rajaa mukeja
                     <span>
@@ -33,7 +33,7 @@ export default class Home extends Component {
                     </span>
                   </p>
                 </div>
-                <div className="filters-right col-sm-6">
+                <div className="custom-width filters-right col-sm-6 col-xs-6">
                   <p className="text-right">
                     Uusin ensin{" "}
                     <span>
