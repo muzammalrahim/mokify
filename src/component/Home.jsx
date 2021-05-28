@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import rightOffer from "../assets/right-offer.png";
-import { Row, Col, Image } from "react-bootstrap";
+import { Row, Col, Image, Spinner } from "react-bootstrap";
 import loading from "../assets/loading.png";
 
 export default class Header extends Component {
@@ -62,7 +62,7 @@ export default class Header extends Component {
     let url = this.url();
     if (
       Math.ceil(window.innerHeight + document.documentElement.scrollTop) ===
-      document.scrollingElement.scrollHeight
+      document.scrollingElement.scrollHeight && this.state.apiLength > 0
     ) {
       axios
         .get(url)
@@ -147,11 +147,15 @@ export default class Header extends Component {
             );
           })}
         </Row>
-        <div className="loading mt-5 mb-5 container">
-          <img className="mt-5 mb-4" src={loading} alt="loading"></img>
+        {apiLength >0 &&<div className="loading mt-5 mb-5 container">
+          {/* <Spinner animation="grow" role="status">
+            <span className="sr-only">Loading...</span>
+            <img className="mt-5 mb-4" src={loading} alt="loading"></img>
+          </Spinner> */}
+          <img className="mt-5 mb-4 spinner-loader" src={loading} alt="loading"></img>
           <p>Scrollaa ladataksesi lisää</p>
           <p>mukeja ({apiLength})</p>
-        </div>
+        </div>}
       </>
     );
   }
