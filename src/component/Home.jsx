@@ -19,7 +19,7 @@ export default class Header extends Component {
   componentWillUnmount() {
     window.removeEventListener("scroll", this.loadMore);
   }
-  url =()=> `${process.env.REACT_APP_BACKEND_URL}?query=query{localizedFlatItem(id:%20%22%22searchString: "", offset: ${this.state.offset}, first:8){edges{node{id
+  url =()=> `${process.env.REACT_APP_BACKEND_URL}?query=query{localizedFlatItem(id:%20%22%22searchString: "", offset: ${this.state.offset}, first:${this.state.apiLength<=8 && this.state.apiLength >=1 ? this.state.apiLength: 8}){totalCount edges{node{id
         basicInfo {
           name
           shortDescription
@@ -43,14 +43,14 @@ export default class Header extends Component {
         }}}}}`;
   getData = () => {
     let url = this.url()
-    this.setState({apiLength : url.length})
     axios
       .get(url)
       .then((res) => {
+        console.log(res?.data?.data?.localizedFlatItem.totalCount);
         this.setState({
           data: res.data.data.localizedFlatItem.edges,
           offset: this.state.offset + 1,
-          apiLength: this.state.apiLength - 8,
+          apiLength: res.data.data.localizedFlatItem.totalCount - 8,
         });
       })
       .catch((err) => {
