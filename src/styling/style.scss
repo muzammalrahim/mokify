@@ -191,6 +191,41 @@ background-color:$footerGray ;
 .product-image{
     width: 100%;
 }
-.spinner-loader{
+
+.justify{
+    justify-content: flex-end;
+}
+
+@media only screen and (max-width: 991px) {
+    .justify{
+        justify-content: flex-end;
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+    }
+  }
+
+  @media only screen and (max-width: 580px) {
+    .custom-width{
+        width: 50% !important;
+    }
+  }
+
+.right-offer-img{
+    width: 100%;
+    margin-left: -10%;
+    border-radius: 6px;
+}
+
+@media only screen and (max-width: 450px) {
+    .left-offer{
+        display: none;
+    }
+    .right-offer{
+        display: none;
+    }
+  }
+  .spinner-loader{
     animation: App-logo-spin infinite 1s linear;
 }
+
