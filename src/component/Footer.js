@@ -1,6 +1,6 @@
 import React from 'react'
 import '../styling/style.scss'
-import footerLogo from '../assets/footer-logo.png'
+import footerLogo from '../assets/footerLogo.svg'
 import { Row, Col} from "react-bootstrap";
 import {FaArrowCircleRight} from "react-icons/fa";
 import {FaFacebook} from "react-icons/fa";

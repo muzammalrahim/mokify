@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import rightOffer from "../assets/right-offer.png";
+import rightOffer from "../assets/rightOffer.svg";
 import { Row, Col, Image, Spinner } from "react-bootstrap";
 import loading from "../assets/loading.png";
 

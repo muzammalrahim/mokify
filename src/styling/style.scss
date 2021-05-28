@@ -214,6 +214,7 @@ background-color:$footerGray ;
 .right-offer-img{
     width: 100%;
     margin-left: -10%;
+    border-radius: 6px;
 }
 
 @media only screen and (max-width: 450px) {
@@ -227,3 +228,4 @@ background-color:$footerGray ;
   .spinner-loader{
     animation: App-logo-spin infinite 1s linear;
 }
+
