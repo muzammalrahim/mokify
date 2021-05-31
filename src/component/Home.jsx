@@ -10,7 +10,7 @@ export default class Header extends Component {
     offset: 0,
     moreData: [],
     apiLength: 0,
-    start:20,
+    start:8,
   };
 
   componentWillMount() {
@@ -20,7 +20,8 @@ export default class Header extends Component {
   componentWillUnmount() {
     window.removeEventListener("scroll", this.loadMore);
   }
-  url =()=> `${process.env.REACT_APP_BACKEND_URL}?query=query{localizedFlatItem(id:%20%22%22searchString: "", offset: ${this.state.offset}, first:${this.state.apiLength<=20 && this.state.apiLength >=1 ? this.state.apiLength: this.state.start}){totalCount edges{node{id
+  url = () =>
+    `${process.env.REACT_APP_BACKEND_URL}?query=query{localizedFlatItem(id:%20%22%22searchString: "", offset: ${this.state.offset}, first:${this.state.apiLength <= 20 && this.state.apiLength >= 1 ? this.state.apiLength : this.state.start}){totalCount edges{node{id
         basicInfo {
           name
           shortDescription
@@ -49,8 +50,9 @@ export default class Header extends Component {
       .then((res) => {
         this.setState({
           data: res.data.data.localizedFlatItem.edges,
-          offset: this.state.offset + 21,
-          apiLength: res.data.data.localizedFlatItem.totalCount - 20,
+          offset: this.state.offset + 20,
+          start : 20,
+          apiLength: res.data.data.localizedFlatItem.totalCount - 8,
         });
       })
       .catch((err) => {
@@ -73,7 +75,7 @@ export default class Header extends Component {
           let totalData = data.concat(newData);
           this.setState({
             moreData: totalData,
-            offset: this.state.offset +20,
+            offset: this.state.offset + 20,
             apiLength: this.state.apiLength - 20,
           });
         })
