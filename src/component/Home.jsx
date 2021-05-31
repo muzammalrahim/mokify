@@ -60,7 +60,6 @@ export default class Header extends Component {
 
   loadMore = () => {
     const { offset, start } = this.state
-    console.log("offset loadmore ", offset, start)
     let url = this.url();
     if (
       Math.ceil(window.innerHeight + document.documentElement.scrollTop) ===
@@ -90,7 +89,6 @@ export default class Header extends Component {
 
   render() {
     const { data, moreData, apiLength, offset, start } = this.state;
-    console.log(apiLength, offset, start)
     return (
       <>
         <Row>
