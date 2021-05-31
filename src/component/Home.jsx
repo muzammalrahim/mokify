@@ -9,7 +9,8 @@ export default class Header extends Component {
     data: [],
     offset: 0,
     moreData: [],
-    apiLength:0,
+    apiLength: 0,
+    start:20,
   };
 
   componentWillMount() {
@@ -19,7 +20,7 @@ export default class Header extends Component {
   componentWillUnmount() {
     window.removeEventListener("scroll", this.loadMore);
   }
-  url =()=> `${process.env.REACT_APP_BACKEND_URL}?query=query{localizedFlatItem(id:%20%22%22searchString: "", offset: ${this.state.offset}, first:${this.state.apiLength<=8 && this.state.apiLength >=1 ? this.state.apiLength: 8}){totalCount edges{node{id
+  url =()=> `${process.env.REACT_APP_BACKEND_URL}?query=query{localizedFlatItem(id:%20%22%22searchString: "", offset: ${this.state.offset}, first:${this.state.apiLength<=20 && this.state.apiLength >=1 ? this.state.apiLength: this.state.start}){totalCount edges{node{id
         basicInfo {
           name
           shortDescription
@@ -46,11 +47,10 @@ export default class Header extends Component {
     axios
       .get(url)
       .then((res) => {
-        console.log(res?.data?.data?.localizedFlatItem.totalCount);
         this.setState({
           data: res.data.data.localizedFlatItem.edges,
-          offset: this.state.offset + 1,
-          apiLength: res.data.data.localizedFlatItem.totalCount - 8,
+          offset: this.state.offset + 21,
+          apiLength: res.data.data.localizedFlatItem.totalCount - 20,
         });
       })
       .catch((err) => {
@@ -59,6 +59,8 @@ export default class Header extends Component {
   };
 
   loadMore = () => {
+    const { offset, start } = this.state
+    console.log("offset loadmore ", offset, start)
     let url = this.url();
     if (
       Math.ceil(window.innerHeight + document.documentElement.scrollTop) ===
@@ -72,8 +74,8 @@ export default class Header extends Component {
           let totalData = data.concat(newData);
           this.setState({
             moreData: totalData,
-            offset: this.state.offset + 1,
-            apiLength: this.state.apiLength - 8,
+            offset: this.state.offset +20,
+            apiLength: this.state.apiLength - 20,
           });
         })
         .catch((err) => {
@@ -87,7 +89,8 @@ export default class Header extends Component {
   }
 
   render() {
-    const { data, moreData, apiLength } = this.state;
+    const { data, moreData, apiLength, offset, start } = this.state;
+    console.log(apiLength, offset, start)
     return (
       <>
         <Row>
