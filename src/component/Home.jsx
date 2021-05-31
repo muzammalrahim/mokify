@@ -112,7 +112,7 @@ export default class Header extends Component {
             );
           })}
         </Row>
-        <div className="products-offers container mt-5 mb-5 col-sm-12">
+        <div className="products-offers container mt-5 mb-5 col-sm-12 col-lg-12">
           <div className="row">
             <div className="left-offer mt-5 mb-5 pt-5 pb-5 pl-5 col-sm-12 col-xs-12 col-md-12 col-lg-6">
               <h5 style={{ fontWeight: "800" }}>Tulossa!</h5>
@@ -126,7 +126,7 @@ export default class Header extends Component {
               <button>Kokeile</button>
             </div>
             <div
-              className="right-offer mt-5 mb-5 col-md-12 col-sm-12 col-xs-12 col-lg-5">
+              className="right-offer mt-5 mb-5 col-md-12 col-sm-12 col-xs-12 col-lg-6">
                 <img className="right-offer-img" src={rightOffer} alt="right-offer"></img>
               </div>
           </div>

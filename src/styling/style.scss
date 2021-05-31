@@ -60,6 +60,8 @@ body{
 }
 
 .heading-home{
+    margin-top: 8rem !important;
+
     h1{
     font-weight: 700;
     line-height: 64px;
@@ -137,7 +139,7 @@ body{
 
 .right-offer{
     background-repeat: round;
-    margin-left: 40px;
+    // margin-left: 40px;
 }
 
 .loading{
@@ -209,12 +211,24 @@ background-color:$footerGray ;
     .custom-width{
         width: 50% !important;
     }
+
+    .tabs{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tabs a{
+        padding-right: 0px;
+        padding-bottom: 15px;
+    }
+
   }
 
 .right-offer-img{
     width: 100%;
-    margin-left: -10%;
+    // margin-left: -10%;
     border-radius: 6px;
+    height: 100%;
 }
 
 @media only screen and (max-width: 450px) {
