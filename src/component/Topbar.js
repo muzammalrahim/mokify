@@ -21,9 +21,11 @@ export default function Topbar() {
             <Navbar.Toggle className="mr-5" aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse className="justify" id="responsive-navbar-nav">
         <div className="tabs">
+        
         <a href=""><FaSearch /></a>
         <a href="">Etsi tai tunnista valokuvasta</a>
         <a href="">Kirjaudu sisään</a>
+       
         <button className="tab-btn ml-2">Rekisteröidy</button>
         </div>
         </Navbar.Collapse>

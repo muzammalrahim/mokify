@@ -16,7 +16,7 @@ export default class Home extends Component {
             <div class="header=section">
               <Topbar />
             </div>
-            <div className="heading-home text-center mt-5 mb-5">
+            <div className="heading-home text-center mb-5">
               <h1>Mikä on</h1>
               <h1>muumikokoelmani arvo?</h1>
               <button className="heading-home-btn mt-3">
