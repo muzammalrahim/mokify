@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.8cb28ec5.chunk.css",
-    "main.js": "/static/js/main.b781e0ce.chunk.js",
-    "main.js.map": "/static/js/main.b781e0ce.chunk.js.map",
+    "main.css": "/static/css/main.477abddc.chunk.css",
+    "main.js": "/static/js/main.c6b5ce47.chunk.js",
+    "main.js.map": "/static/js/main.c6b5ce47.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.06472da2.js",
     "runtime-main.js.map": "/static/js/runtime-main.06472da2.js.map",
     "static/css/2.7cef8b32.chunk.css": "/static/css/2.7cef8b32.chunk.css",
@@ -11,12 +11,14 @@
     "static/js/3.0abc4c8b.chunk.js": "/static/js/3.0abc4c8b.chunk.js",
     "static/js/3.0abc4c8b.chunk.js.map": "/static/js/3.0abc4c8b.chunk.js.map",
     "index.html": "/index.html",
+    "service-worker.js": "/service-worker.js",
+    "service-worker.js.map": "/service-worker.js.map",
     "static/css/2.7cef8b32.chunk.css.map": "/static/css/2.7cef8b32.chunk.css.map",
-    "static/css/main.8cb28ec5.chunk.css.map": "/static/css/main.8cb28ec5.chunk.css.map",
+    "static/css/main.477abddc.chunk.css.map": "/static/css/main.477abddc.chunk.css.map",
     "static/js/2.daebc57a.chunk.js.LICENSE.txt": "/static/js/2.daebc57a.chunk.js.LICENSE.txt",
-    "static/media/down.8dc4aa02.svg": "/static/media/down.8dc4aa02.svg",
-    "static/media/footerLogo.530e2d23.svg": "/static/media/footerLogo.530e2d23.svg",
-    "static/media/logo.4bca82d1.svg": "/static/media/logo.4bca82d1.svg",
+    "static/media/down.a824983f.svg": "/static/media/down.a824983f.svg",
+    "static/media/footerLogo.fee7443d.svg": "/static/media/footerLogo.fee7443d.svg",
+    "static/media/logo.6be71c2c.svg": "/static/media/logo.6be71c2c.svg",
     "static/media/product1.cd3390bb.png": "/static/media/product1.cd3390bb.png",
     "static/media/product2.eb5b50c0.png": "/static/media/product2.eb5b50c0.png",
     "static/media/product3.02da781f.png": "/static/media/product3.02da781f.png",
@@ -26,14 +28,14 @@
     "static/media/product7.2bd376b1.png": "/static/media/product7.2bd376b1.png",
     "static/media/product8.0133f867.png": "/static/media/product8.0133f867.png",
     "static/media/right-offer.d655b88d.png": "/static/media/right-offer.d655b88d.png",
-    "static/media/rightOffer.8695e218.svg": "/static/media/rightOffer.8695e218.svg",
-    "static/media/settings.e6b75850.svg": "/static/media/settings.e6b75850.svg"
+    "static/media/rightOffer.89e396fb.svg": "/static/media/rightOffer.89e396fb.svg",
+    "static/media/settings.7ff54288.svg": "/static/media/settings.7ff54288.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.06472da2.js",
     "static/css/2.7cef8b32.chunk.css",
     "static/js/2.daebc57a.chunk.js",
-    "static/css/main.8cb28ec5.chunk.css",
-    "static/js/main.b781e0ce.chunk.js"
+    "static/css/main.477abddc.chunk.css",
+    "static/js/main.c6b5ce47.chunk.js"
   ]
 }
