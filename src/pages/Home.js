@@ -13,7 +13,7 @@ export default class Home extends Component {
     render() {
         return (
           <div className="home-main">
-            <div class="header=section">
+            <div className="header=section">
               <Topbar />
             </div>
             <div className="heading-home text-center mb-5">
