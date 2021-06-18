@@ -4,9 +4,6 @@ import Topbar from '../component/Topbar'
 import Footer from '../component/Footer'
 import settings from '../assets/settings.svg'
 import down from '../assets/down.svg'
-import Products from '../component/Products'
-import rightOffer from '../assets/right-offer.png'
-import loading from '../assets/loading.png'
 import Homes from '../component/Home'
 
 export default class Home extends Component {

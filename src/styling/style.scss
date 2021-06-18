@@ -3,6 +3,12 @@
     margin: 0;
     padding: 0;
 }
+.mobile{
+    display: none;
+}
+.mobile-filter{
+    display: none;
+}
 
 // Global Colors
 
@@ -19,9 +25,13 @@ $footerGray: #E0DFDD;
 $footerSearchbar: #EEEEEE;
 $footerSocialicon: #C4C4C4;
 $filtersRow: #E8E8E8;
+$Borders: #D1D1D1;
+
 
 // Global Fonts
-
+.MuiSlider-root {
+    color: $green !important;
+}
 $font-primary: 'Open Sans', sans-serif !important;
 
 // Body
@@ -38,6 +48,18 @@ body{
     min-height: 38px;
     span {
     text-decoration: underline;
+    }
+    
+}
+.search-area{
+    background: $lightGray;
+    border-radius: 7px;
+    padding: 8px 0 8px 17px;
+    .search{
+        padding-right: 150px;
+    }
+    img{
+        padding-left: 20px;
     }
 }
 
@@ -89,6 +111,9 @@ body{
         padding-left: 14px;
     }
 
+}
+.MuiDialog-paperWidthSm {
+    max-width: 308px !important;
 }
 
 .product-text{
@@ -151,6 +176,75 @@ body{
     }
 }
 
+// filter
+.mobile-mod img{
+    width: 30px;
+}
+.bttn{
+    border: none !important;
+}
+.test{
+    .MuiDialog-scrollPaper{
+        display: block;
+    }  
+}
+
+
+// sidebar
+
+.sidebar-inner{
+    width: 100%;
+}
+.side-bar{
+    list-style: none;
+    .options{
+        padding: 2px 9px;
+        border-radius: 11px;
+        border: 1px solid $Borders;
+    }
+    svg{
+        width: 17px;
+    }
+    p{
+        width: 100%;
+    }
+    .options{
+        float: right;
+    }
+}
+.MuiCheckbox-colorSecondary.Mui-checked {
+    color: $green !important;
+}
+// sidebar
+
+// product main page
+.product-info{
+    text-align: left;
+    p{
+        color: $fontmenuBlack;
+        font-size: 12px;
+        font-family: $font-primary;
+    }
+    h5{
+        font-size: 16px;
+        font-weight: 700;
+        color: $fontmenuBlack;
+        font-family: $font-primary;
+    }
+    h6{
+        color: $green;
+        font-size: 16px;
+        font-weight: 700;
+    }
+    img{
+        width: 100%;
+        display: block;
+    }
+}
+// product main page
+
+
+
 .footer-main{
 background-color:$footerGray ;
 }
@@ -198,7 +292,22 @@ background-color:$footerGray ;
     justify-content: flex-end;
 }
 
+
+
+
+// Mobile
+
 @media only screen and (max-width: 991px) {
+    .web{
+        display: none;
+    }
+    
+    .mobile-filter{
+        display: block;
+    }
+    .mobile{
+        display: block;
+    }
     .justify{
         justify-content: flex-end;
         margin-top: 50px;
