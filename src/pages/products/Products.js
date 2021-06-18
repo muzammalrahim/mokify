@@ -48,7 +48,7 @@ export default class Products extends Component {
                     <hr></hr>
                 </div>
                     {/* <Products /> */}
-                    <div className="product-inner container mt-2 col-sm-12 pl-5 pr-5">
+                    <div className="products product-inner container mt-2 col-sm-12 pl-5 pr-5">
                         <div className="row">
                             <div className="col-sm-12 col-md-3">
                                 <div className="mobile-filter">

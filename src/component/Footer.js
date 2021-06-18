@@ -2,16 +2,17 @@ import React from 'react'
 import '../styling/style.scss'
 import footerLogo from '../assets/footerLogo.svg'
 import { Row, Col} from "react-bootstrap";
-import {FaArrowCircleRight} from "react-icons/fa";
-import {FaFacebook} from "react-icons/fa";
-import {FaInstagram} from "react-icons/fa";
+// import {FaArrowCircleRight} from "react-icons/fa";
+import Insta from "../assets/ins.png";
+import Facebook from "../assets/fb.png";
+import RightArrow from '../assets/right.png'
 
 
 
 
 export default function Footer() {
     return (
-        <div className="footer-main mt-5">
+        <div className="footer-main mt-5 pl-5 pr-5">
             <div className="logo container">
                 <Col>
                   <img className="mt-5 mb-5" src={footerLogo} alt="footer-logo"></img>
@@ -50,12 +51,18 @@ export default function Footer() {
                <div className="col-sm-4">
                    <p>Tilaa Kokoelmien uutiskirje</p>
                    <div className="footer-search pl-4 pr-4 pt-1 pb-1">
-                       <p>Anna sähköpostiosoitteesi<span><FaArrowCircleRight /></span></p>
+                       <p className="pt-1">Anna sähköpostiosoitteesi<span>
+                       <img className="mt-2" src={RightArrow} alt=""></img>
+                       </span></p>
                    </div>
+                    <div className="footer-socials mt-5">
+                      <span className="mr-3 fb"><img src={Facebook} alt="fb"></img></span>
+                      <span className="insta"><img src={Insta} alt="insta"></img></span>
+                    </div>
                </div>
                </Row>
                <Row className="ml-2 mt-5">
-               <p className="copyright-text">Copyright Kokoelmat.fi 2021</p>
+               <p className="copyright-text">© 2021 Mukify Oy</p>
                </Row>
             </div>
 

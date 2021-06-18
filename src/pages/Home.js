@@ -20,7 +20,7 @@ export default class Home extends Component {
                 Tee oma kokoelma
               </button>
             </div>
-            <div className="filters container col-sm-12">
+            <div className="filters container col-sm-12 pl-5 pr-5">
               <div className="row">
                 <div className="custom-width filters-left col-sm-6 col-xs-6">
                   <p>

@@ -26,6 +26,7 @@ $footerSearchbar: #EEEEEE;
 $footerSocialicon: #C4C4C4;
 $filtersRow: #E8E8E8;
 $Borders: #D1D1D1;
+$Name: #B1B3B6;
 
 
 // Global Fonts
@@ -115,6 +116,10 @@ body{
 .MuiDialog-paperWidthSm {
     max-width: 308px !important;
 }
+.MuiSlider-thumb {
+    width: 20px;
+    height: 20px;
+}
 
 .product-text{
     font-style: normal;
@@ -201,6 +206,8 @@ body{
         padding: 2px 9px;
         border-radius: 11px;
         border: 1px solid $Borders;
+        color: $Borders;
+        font-size: 12px
     }
     svg{
         width: 17px;
@@ -211,9 +218,40 @@ body{
     .options{
         float: right;
     }
+    .name2{
+        padding-left: 33px;
+        color: $Name;
+        font-size: 14px;
+        text-decoration: underline;
+    }
+}
+.notify {
+    padding:  5px;
+    margin-left: 5px;
+    border-radius: 50%;
+    border: 1px solid $Borders;
+    color: $Borders;
+    font-size: 12px;
 }
 .MuiCheckbox-colorSecondary.Mui-checked {
     color: $green !important;
+}
+.rang-slide{
+    .up{
+        background: #efefef;
+        font-size: 14px;
+        color: #6B7280;
+        padding: 12px 43px;
+    }
+    .down{
+        background: #efefef;
+        font-size: 14px;
+        color: #6B7280;
+        padding: 12px 43px;
+    }
+    .mid{
+        padding: 0 45px;
+    }
 }
 // sidebar
 
@@ -243,7 +281,27 @@ body{
 }
 // product main page
 
+// footer
 
+
+.footer-socials{
+    text-align: right;
+    .fb{
+        img{
+            width: 12px;
+        }
+    }
+    .insta{
+        img{
+            width: 15px;
+        }
+    }
+    span{
+        background: $footerSocialicon;
+        padding: 8px 13px;
+        border-radius: 50%;
+    }
+}
 
 .footer-main{
 background-color:$footerGray ;
@@ -292,7 +350,16 @@ background-color:$footerGray ;
     justify-content: flex-end;
 }
 
-
+.mobile-mod{
+    position: relative;
+    left: -65px;
+    
+}
+.mobile-mod button{
+    background: $filtersRow;
+    padding: 15px 0;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 
 
 // Mobile
@@ -310,9 +377,24 @@ background-color:$footerGray ;
     }
     .justify{
         justify-content: flex-end;
-        margin-top: 50px;
+        margin-top: 20px;
         display: flex;
         flex-direction: column;
+    }
+    .tabs{
+        display: contents;
+        .search-area{
+            margin-bottom: 15px;
+        }
+        .tab-btn{
+            margin-top: 15px;
+        }
+        
+    }
+    div#responsive-navbar-nav{
+        background: $filtersRow;
+        padding: 21px 0;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
   }
 

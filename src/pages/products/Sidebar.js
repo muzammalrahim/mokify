@@ -5,7 +5,10 @@ import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
-import RangeSlider from '../products/RangeSlider'
+import RangeSlider from '../products/RangeSlider';
+// import Arrow from '../../assets/down.png';
+import Line from '../../assets/line.png';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
 
@@ -64,14 +67,14 @@ export default function CustomizedAccordions() {
 
   return (
       <div className="sidebar-main">
-        <div className='web'>
+        <div className='web border-bottom'>
         <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-            <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1d-content" id="panel1d-header">
             <Typography>Hahmot</Typography>
             </AccordionSummary>
             <AccordionDetails>
             <Typography className={'sidebar-inner'}>
-                <ul className="side-bar">
+            <ul className="side-bar">
                     <li>
                         <span className="check">
                             <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
@@ -84,8 +87,24 @@ export default function CustomizedAccordions() {
                         <span className="check">
                             <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
                         </span>
-                        <span className="name">Muumipeikko</span>
+                        <span className="name">Niiskuneiti</span>
                         <span className="options">7</span>
+                        
+                    </li>
+                    <li>
+                        <span className="check">
+                            <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
+                        </span>
+                        <span className="name">Muumipappa</span>
+                        <span className="options">7</span>
+                        
+                    </li>
+                    <li>
+                        <span className="check">
+                            {/* <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/> */}
+                        </span>
+                        <span className="name2">Näytä kaikki</span>
+                        {/* <span className="options">7</span> */}
                         
                     </li>
                 </ul>
@@ -93,8 +112,8 @@ export default function CustomizedAccordions() {
             </AccordionDetails>
         </Accordion>
         <Accordion square expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-            <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-            <Typography>Vari</Typography>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel2d-content" id="panel2d-header">
+            <Typography>Vari <span className="notify">13</span></Typography>
             </AccordionSummary>
             <AccordionDetails>
             <Typography className={'sidebar-inner'}>
@@ -111,8 +130,24 @@ export default function CustomizedAccordions() {
                         <span className="check">
                             <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
                         </span>
-                        <span className="name">Muumipeikko</span>
+                        <span className="name">Niiskuneiti</span>
                         <span className="options">7</span>
+                        
+                    </li>
+                    <li>
+                        <span className="check">
+                            <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
+                        </span>
+                        <span className="name">Muumipappa</span>
+                        <span className="options">7</span>
+                        
+                    </li>
+                    <li>
+                        <span className="check">
+                            {/* <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/> */}
+                        </span>
+                        <span className="name2">Näytä kaikki</span>
+                        {/* <span className="options">7</span> */}
                         
                     </li>
                 </ul>
@@ -120,17 +155,98 @@ export default function CustomizedAccordions() {
             </AccordionDetails>
         </Accordion>
         <Accordion square expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-            <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-            <Typography>Hintaluokka</Typography>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}  aria-controls="panel3d-content" id="panel3d-header">
+            <Typography>Hintaluokka 
+                <span className="notify">01</span>
+                {/* <img src={Arrow} alt="arrow"></img> */}
+            
+            </Typography>
             </AccordionSummary>
             <AccordionDetails>
             <Typography className={'sidebar-inner'}>
-                <ul className="side-bar">
-                    <li>
+                <ul className="side-bar rang-slide">
+                    <li className="mt-5">
+                        <span className="up">27</span>
+                        <span className="mid">
+                            <img src={Line} alt="line"/>
+                        </span>
+                        <span className="down">39</span>
+                    </li>
+                    <li className="mt-4">
                         <RangeSlider/>
                         
                     </li>
                     
+                </ul>
+            </Typography>
+            </AccordionDetails>
+        </Accordion>
+        <Accordion square expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}  aria-controls="panel3d-content" id="panel3d-header">
+            <Typography>Valmistusvuosi
+                <span className="notify">01</span>
+                {/* <img src={Arrow} alt="arrow"></img> */}
+            
+            </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+            <Typography className={'sidebar-inner'}>
+                <ul className="side-bar rang-slide">
+                    <li className="mt-5">
+                        <span className="up">27</span>
+                        <span className="mid">
+                            <img src={Line} alt="line"/>
+                        </span>
+                        <span className="down">39</span>
+                    </li>
+                    <li className="mt-4">
+                        <RangeSlider/>
+                        
+                    </li>
+                    
+                </ul>
+            </Typography>
+            </AccordionDetails>
+        </Accordion>
+        <Accordion square expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1d-content" id="panel1d-header">
+            <Typography>Teema</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+            <Typography className={'sidebar-inner'}>
+            <ul className="side-bar">
+                    <li>
+                        <span className="check">
+                            <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
+                        </span>
+                        <span className="name">Muumipeikko</span>
+                        {/* <span className="options">7</span> */}
+                        
+                    </li>
+                    <li>
+                        <span className="check">
+                            <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
+                        </span>
+                        <span className="name">Niiskuneiti</span>
+                        {/* <span className="options">7</span> */}
+                        
+                    </li>
+                    <li>
+                        <span className="check">
+                            <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
+                        </span>
+                        <span className="name">Muumipappa</span>
+                        {/* <span className="options">7</span> */}
+                        
+                    </li>
+                    <li>
+                        <span className="check">
+                            {/* <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/> */}
+                        </span>
+                        <span className="name2">Näytä kaikki</span>
+                        {/* <span className="options">7</span> */}
+                        
+                    </li>
                 </ul>
             </Typography>
             </AccordionDetails>

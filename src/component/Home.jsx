@@ -3,6 +3,8 @@ import axios from 'axios'
 import rightOffer from "../assets/rightOffer.svg";
 import { Row, Col, Image, Spinner } from "react-bootstrap";
 import loading from "../assets/loading.png";
+import CustomizedAccordions from '../pages/products/Sidebar'
+import SimpleDialog from '../pages/products/MobileSidebar'
 
 export default class Header extends Component {
   state = {
@@ -92,74 +94,93 @@ export default class Header extends Component {
   render() {
     const { data, moreData, apiLength, offset, start } = this.state;
     return (
-      <>
+      <div className="products product-inner container mt-2 col-sm-12 pl-5 pr-5">
         <Row>
-          {data.map((nod) => {
-            return (
-              <Col xs={12} lg={3} md={3} sm={6} key={nod.node.id}>
-                <Image
-                  className="product-image"
-                  src={nod?.node?.itemImagesSet[0]?.mediumThumbUrl}
-                />
-                <p className="product-text">
-                  {nod?.node?.basicInfo?.shortDescription}
-                </p>
-                <p className="product-subtext ">{nod?.node?.basicInfo?.name}</p>
-                <p className="product-price">
-                  {nod.node.additionalInfo[0].rows[0].columns[0]}
-                </p>
-              </Col>
-            );
-          })}
-        </Row>
-        <div className="products-offers container mt-5 mb-5 col-sm-12 col-lg-12">
-          <div className="row">
-            <div className="left-offer mt-5 mb-5 pt-5 pb-5 pl-5 col-sm-12 col-xs-12 col-md-12 col-lg-6">
-              <h5 style={{ fontWeight: "800" }}>Tulossa!</h5>
-              <h2 style={{ fontWeight: "400" }}>
-                Tunnista muumimukit suoraan valokuvasta!
-              </h2>
-              <h5 className="pb-3" style={{ fontWeight: "600" }}>
-                Aloita kokoelmasi kerääminen valokuvaamalla olemassa olevat
-                aarteesi.
-              </h5>
-              <button>Kokeile</button>
+          <Col xs="12" md="3">
+            <div className="">
+                <div className="mobile-filter">
+                    <SimpleDialog/>
+                </div>
+                <CustomizedAccordions/>
             </div>
-            <div
-              className="right-offer mt-5 mb-5 col-md-12 col-sm-12 col-xs-12 col-lg-6">
-                <img className="right-offer-img" src={rightOffer} alt="right-offer"></img>
+          </Col>
+
+
+
+
+          <Col xs="12" md="12" lg="9">
+            <Row>
+              {data.map((nod) => {
+                return (
+                  <Col xs={12} lg={4} md={4} sm={6} key={nod.node.id}>
+                    <Image
+                      className="product-image"
+                      src={nod?.node?.itemImagesSet[0]?.mediumThumbUrl}
+                    />
+                    <p className="product-text">
+                      {nod?.node?.basicInfo?.shortDescription}
+                    </p>
+                    <p className="product-subtext ">{nod?.node?.basicInfo?.name}</p>
+                    <p className="product-price">
+                      {nod.node.additionalInfo[0].rows[0].columns[0]}
+                    </p>
+                  </Col>
+                );
+              })}
+            </Row>
+            <div className="products-offers container mt-5 mb-5 col-sm-12 col-lg-12">
+            <div className="row">
+              <div className="left-offer mt-5 mb-5 pt-5 pb-5 pl-5 col-sm-12 col-xs-12 col-md-12 col-lg-6">
+                <h5 style={{ fontWeight: "800" }}>Tulossa!</h5>
+                <h2 style={{ fontWeight: "400" }}>
+                  Tunnista muumimukit suoraan valokuvasta!
+                </h2>
+                <h5 className="pb-3" style={{ fontWeight: "600" }}>
+                  Aloita kokoelmasi kerääminen valokuvaamalla olemassa olevat
+                  aarteesi.
+                </h5>
+                <button>Kokeile</button>
               </div>
+              <div
+                className="right-offer mt-5 mb-5 col-md-12 col-sm-12 col-xs-12 col-lg-6">
+                  <img className="right-offer-img" src={rightOffer} alt="right-offer"></img>
+                </div>
+            </div>
           </div>
-        </div>
-        <Row>
+          <Row>
           {moreData.map((nod) => {
-            return (
-              <Col xs={12} lg={3} md={3} sm={6} key={nod.node.id}>
-                <Image
-                  className="product-image"
-                  src={nod?.node?.itemImagesSet[0]?.mediumThumbUrl}
-                />
-                <p className="product-text">
-                  {nod?.node?.basicInfo?.shortDescription}
-                </p>
-                <p className="product-subtext ">{nod?.node?.basicInfo?.name}</p>
-                <p className="product-price">
-                  {nod.node.additionalInfo[0].rows[0].columns[0]}
-                </p>
-              </Col>
-            );
-          })}
+              return (
+                <Col xs={12} lg={3} md={3} sm={6} key={nod.node.id}>
+                  <Image
+                    className="product-image"
+                    src={nod?.node?.itemImagesSet[0]?.mediumThumbUrl}
+                  />
+                  <p className="product-text">
+                    {nod?.node?.basicInfo?.shortDescription}
+                  </p>
+                  <p className="product-subtext ">{nod?.node?.basicInfo?.name}</p>
+                  <p className="product-price">
+                    {nod.node.additionalInfo[0].rows[0].columns[0]}
+                  </p>
+                </Col>
+              );
+            })}
+          </Row>
+          {apiLength >0 &&<div className="loading mt-5 mb-5 container">
+            {/* <Spinner animation="grow" role="status">
+              <span className="sr-only">Loading...</span>
+              <img className="mt-5 mb-4" src={loading} alt="loading"></img>
+            </Spinner> */}
+            <img className="mt-5 mb-4 spinner-loader" src={loading} alt="loading"></img>
+            <p>Scrollaa ladataksesi lisää</p>
+            <p>mukeja ({apiLength})</p>
+          </div>}
+          </Col>
         </Row>
-        {apiLength >0 &&<div className="loading mt-5 mb-5 container">
-          {/* <Spinner animation="grow" role="status">
-            <span className="sr-only">Loading...</span>
-            <img className="mt-5 mb-4" src={loading} alt="loading"></img>
-          </Spinner> */}
-          <img className="mt-5 mb-4 spinner-loader" src={loading} alt="loading"></img>
-          <p>Scrollaa ladataksesi lisää</p>
-          <p>mukeja ({apiLength})</p>
-        </div>}
-      </>
+        
+        
+       
+      </div>
     );
   }
 }
