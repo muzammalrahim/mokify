@@ -11,3 +11,162 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.box
+{
+    
+    width: 408px;
+    height: 414px;
+    margin: 0 auto;
+   
+    
+    background: #FFFFFF;
+    border: 4px solid #F6F6F6;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.image-wrap{
+  width: 732px;
+  height: 732px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.image-wrap {
+
+  height: auto;
+  overflow: hidden;
+  position: absolute;
+  top: 28%;
+  left: 0;
+}
+.image-wrap-b{
+
+  height: 305px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 1100px;
+}
+.image-wrap-b {
+  height: auto;
+  overflow: hidden;
+  position: absolute;
+  top: 28%;
+
+}
+
+
+h6{
+
+padding-top: 35%;
+padding-left: 25%;
+margin: 0 auto;
+font-family: Open Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 14px;
+line-height: 32px;
+}
+
+h1
+{
+  margin: 0 auto;
+
+font-family: Open Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 38px;
+
+text-align: center;
+padding-top: 7%;
+padding-bottom: -20px;
+
+color: #343434;
+}
+.mainwrap
+{
+padding-top: 10%
+
+}
+
+body {
+    border-color: #E5E5E5;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  .container {
+    padding: 16px;
+    background-color: white;
+  }
+
+  label
+  {
+      margin-left: 20px;
+      padding-top: 20px;
+  }
+
+
+  
+  input[type=text],input[type=email], input[type=password]{
+    width: 90%;
+    padding: 15px;
+    margin: 5px 0 22px 20px;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+  
+  input[type=text]:focus, input[type=password]:focus{
+
+    background-color: #ddd;
+    outline: none;
+  }
+  
+
+  hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+  }
+  
+
+  .registerbtn {
+    background-color: #A4B96D;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 90%;
+    opacity: 0.9;
+    margin: 5px 0 22px 20px;
+  }
+  
+  .registerbtn:hover {
+    opacity: 1;
+  }
+  
+
+  @media only screen and (max-width: 1180px) {
+
+    .image-wrap {
+      width: 300px;
+      top: 5%;
+      position: fixed;
+  }
+}

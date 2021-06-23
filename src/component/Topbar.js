@@ -9,10 +9,22 @@ import { Link } from 'react-router-dom';
 
 export default function Topbar() {
     const [user, setUser] = useState(false);
+    const [status, setStatus] = useState(false);
 
     const dropDownmenu = (event) => {
       event.preventDefault()
          setUser(!user)
+    }
+
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            setStatus(true)
+        }
+    })
+
+    const handleLogout = () => {
+        localStorage.removeItem('token')
+        setStatus(false)
     }
 
     return (
@@ -70,11 +82,10 @@ export default function Topbar() {
             <a className="search" href=""><FaSearch color="black" /></a>
             <a className="" style={{border:"none"}} href=""><img className="" src={Camera} alt="loading"></img></a>
             </span>
-            <a className="pl-4" href="">Kirjaudu sisään</a>
+           {status === true ? <button className="tab-btnSmall ml-2" onClick={handleLogout}>logout</button> :<><Link className="pl-4" to="/login">Kirjaudu sisään</Link>
 
 
-
-        <button className="tab-btn ml-2">Rekisteröidy</button>
+        <button className="tab-btn ml-2"><Link to="/register">Rekisteröidy</Link></button></>}
         </div>
         </Navbar.Collapse>
         <div>
@@ -92,8 +103,8 @@ export default function Topbar() {
 
         </div>
         <div style={{marginTop:"18px"}} className={`dropdownPosition  ${user ? "openUser" : "closeUser"}`}>
-        <p className="" href="">Kirjaudu sisään</p>
-        <button className="tab-btnSmall ml-2">Rekisteröidy</button>
+        <Link className="" to="/login">Kirjaudu sisään</Link>
+        <button className="tab-btnSmall ml-2"><Link to="/register">Rekisteröidy</Link></button>
         </div>
         {/* mobile topbar */}
         
