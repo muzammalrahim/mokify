@@ -1,5 +1,5 @@
 import axios from 'axios'
-const API_URL = process.env.REACT_APP_API_URL;
+export const API_URL = process.env.REACT_APP_BACKEND_URL;
 const Authorization =
   JSON.parse(localStorage.getItem("persist:v705-demo1-auth")) &&
   JSON.parse(localStorage.getItem("persist:v705-demo1-auth")).token;

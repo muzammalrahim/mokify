@@ -6,13 +6,32 @@ import 'bootstrap/dist/css/bootstrap.css'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  useQuery,
+  gql,
+} from "@apollo/client";
+
+import store from "./store/store";
+import { Provider } from "react-redux";
+
+const client = new ApolloClient({
+  uri: process.env.REACT_APP_BACKEND_URL,
+  cache: new InMemoryCache(),
+});
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </ApolloProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
