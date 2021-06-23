@@ -9,6 +9,9 @@
 .mobile-filter{
     display: none;
 }
+.tabs-mob{
+    display: none;
+}
 
 // Global Colors
 
@@ -57,11 +60,28 @@ body{
     border-radius: 7px;
     padding: 8px 0 8px 17px;
     .search{
-        padding-right: 150px;
+        padding-right: 0px;
+    }
+    .userIcon{
+        margin-left: 20px;
+        padding-right: 10px;
     }
     img{
         padding-left: 20px;
     }
+}
+.closeUser{
+    display: none;
+}
+.openUser{
+    display: block;
+}
+.dropdownPosition{
+    position: absolute;
+    top: 80px;
+    right: 13px;
+    text-align: center;
+
 }
 
 .tabs{
@@ -80,6 +100,14 @@ body{
     min-width: 174px;
     min-height: 47px;
     border:none;
+}
+.tab-btnSmall{
+    color: #FFFFFF;
+    background-color: #A4B96D;
+    border-radius: 35px;
+    min-width: 101px;
+    min-height: 33px;
+    border: none;
 }
 
 .heading-home{
@@ -361,14 +389,34 @@ background-color:$footerGray ;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.headingHomeDisplay{
+
+}
+.filtersContainerDisplay{
+
+}
 
 // Mobile
 
 @media only screen and (max-width: 991px) {
+    .filtersContainerDisplay{
+    display: none;
+    }
+    .headingHomeDisplay{
+    display: none;
+    }
+    .filters container{
+        display: none;
+    }
     .web{
         display: none;
     }
-    
+    .tabs-mob{
+        display: block;
+    }
+    button.mr-5.navbar-toggler.collapsed {
+        display: none;
+    }
     .mobile-filter{
         display: block;
     }
@@ -422,7 +470,39 @@ background-color:$footerGray ;
     height: 100%;
 }
 
+// add by Tk
+
+.footer-main .footerLinks p{
+    font-size: 18px;
+    line-height: 27px;
+    color: #000000;
+
+}
+.footer-main .footerLinks .linkAnna{
+    color: #4B4040;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 9px;
+
+}
+.footer-main .footerLinks a{
+    color: #4B4040;
+    text-decoration: none;
+    font-weight: 600;
+    line-height: 38px;
+}
+
+.FaChevronLeftDisplay{
+    display: none;
+}
+
+
+
 @media only screen and (max-width: 450px) {
+    .FaChevronLeftDisplay{
+        display: inline;
+    }
     .left-offer{
         display: none;
     }
@@ -433,4 +513,19 @@ background-color:$footerGray ;
   .spinner-loader{
     animation: App-logo-spin infinite 1s linear;
 }
+.FaChevronLeftDisplaySmallScreen{
+   display: none;
+}
 
+@media only screen and (max-width: 321px) {
+ .applyOnXsScreen{
+    width: 110px;
+ }
+ .FaChevronLeftDisplayOnLargeScreen{
+    display: none;
+  }
+ .FaChevronLeftDisplaySmallScreen{
+    display: inline;
+ }
+
+}

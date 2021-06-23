@@ -13,14 +13,14 @@ export default class Home extends Component {
             <div className="header=section">
               <Topbar />
             </div>
-            <div className="heading-home text-center mb-5">
+            <div className="heading-home headingHomeDisplay text-center mb-5">
               <h1>Mikä on</h1>
               <h1>muumikokoelmani arvo?</h1>
               <button className="heading-home-btn mt-3">
                 Tee oma kokoelma
               </button>
             </div>
-            <div className="filters container col-sm-12 pl-5 pr-5">
+            <div className="filters container filtersContainerDisplay col-sm-12 pl-5 pr-5">
               <div className="row">
                 <div className="custom-width filters-left col-sm-6 col-xs-6">
                   <p>
@@ -41,7 +41,7 @@ export default class Home extends Component {
               </div>
               <hr></hr>
             </div>
-            <div className="products container mt-5 col-sm-12">
+            <div className="products container mt-5 pt-2 col-sm-12">
               {/* <Products /> */}
               <Homes />
             </div>

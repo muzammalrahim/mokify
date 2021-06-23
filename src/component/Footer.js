@@ -13,45 +13,44 @@ import RightArrow from '../assets/right.png'
 export default function Footer() {
     return (
         <div className="footer-main mt-5 pl-5 pr-5">
-            <div className="logo container">
+            <div className="logo container ml-0">
                 <Col>
                   <img className="mt-5 mb-5" src={footerLogo} alt="footer-logo"></img>
                 </Col>
             </div>
             <div className="links container col-sm-12">
                 <Row className="ml-2">
-               <div className="col-sm-2">
-                 <p>Suosituimmat</p>
-                 <a href="">Etusivu</a>
-                 <a href="">Muumit</a>
-                 <a href="">Merkit</a>
-                 <a href="">Kokoelmat</a>
-                 <a href="">Arabia</a>
+               <div className="col-sm-2 footerLinks">
+                 <p class="font-weight-bold">Sosiaalinen media</p>
+                 <a href="">Instagram</a>
+                 <a href="">Facebook</a>
+                 <a href="">Twitter</a>
+                
                </div>
-               <div className="col-sm-2">
-               <p>Merkit</p>
-                 <a href="">Arabia</a>
-                 <a href="">Iittala</a>
-                 <a href="">Muumimukit</a>
-                 <a href="">Arabia</a>
-                 <a href="">Iittala</a>
-                 <a href="">Muumimukit</a>
-               </div>
-               <div className="col-sm-2">
-               <p>Valitse kieli</p>
-                 <a href="">In english</a>
+               <div className="col-sm-2 footerLinks">
+               <p>Valitse Kieli</p>
+                 <a href="">Suomeksi</a>
+                 <a href="">English</a>
                  <a href="">Svenska</a>
+                
                </div>
-               <div className="col-sm-2">
-               <p>Kokoelmat.fi</p>
+               <div className="col-sm-2 footerLinks">
+               <p>Asiakaspalvelu</p>
+                 <a href="">info@mukify.com</a>
+                 <a href="">Ohjeet</a>
+                 <a href="">Usein esitetyt kysymykset</a>
+               </div>
+               <div className="col-sm-2 footerLinks">
+               <p>Mukify Oy</p>
                  <a href="">Tietoa meistä</a>
-                 <a href="">Tietosuoja ja evästeet</a>
-                 <a href="">Ota yhteyttä</a>
+                 <a href="">Avoimet työpaikat</a>
+                 <a href="">Tietosuojaseloste</a>
+                 <a href="">Yhteystiedot</a>
                </div>
-               <div className="col-sm-4">
-                   <p>Tilaa Kokoelmien uutiskirje</p>
+               <div className="col-sm-4 footerLinks">
+                   <p>Tilaa uutiskirje</p>
                    <div className="footer-search pl-4 pr-4 pt-1 pb-1">
-                       <p className="pt-1">Anna sähköpostiosoitteesi<span>
+                       <p className="pt-1 linkAnna">Anna sähköpostiosoitteesi<span>
                        <img className="mt-2" src={RightArrow} alt=""></img>
                        </span></p>
                    </div>
