@@ -6,6 +6,9 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Login from './auth/login';
 import Register from './auth/register';
 import ProductDetail from './pages/products/productDetail';
+import ForgotPassword from './auth/forgotPassword'
+import ResetPassword from './auth/resetPass';
+import ChangePassword from './auth/changePassword'
 
 
 
@@ -17,6 +20,9 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/products" component={Products} />
+        <Route exact path="/forgetpsw" component={ForgotPassword} />
+        <Route exact path="/password-reset/:id" component={ResetPassword} />
+        <Route exact path="/change-password" component={ChangePassword} />
         <Route exact path="/product/:id" component={ProductDetail} />
         <Redirect from="/home" to="/" />
       </Switch>

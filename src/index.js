@@ -13,6 +13,7 @@ import {
   useQuery,
   gql,
 } from "@apollo/client";
+  import "react-toastify/dist/ReactToastify.css";
 
 import store from "./store/store";
 import { Provider } from "react-redux";

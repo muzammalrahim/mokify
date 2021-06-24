@@ -8,6 +8,8 @@ import { useHistory } from "react-router-dom";
 import Footer from '../component/Footer'
 import FacebookLogin from "react-facebook-login"
 import GoogleLogin from "react-google-login";
+import { Link } from 'react-router-dom'
+import msg from '../helper/notification'
 // import Image from '../../public/image23.png'
 
 const Login = () => {
@@ -82,6 +84,7 @@ const Login = () => {
       )
       .then((res) => {
         localStorage.setItem("token", res.data.data.socialAuthJwt.token)
+        msg.success('you are logged in')
         history.push('/')
       })
       .catch((err) => console.log(err));
@@ -115,7 +118,7 @@ const Login = () => {
 
           <button type="submit" class="registerbtn">Luo tili</button>
 
-          <p className="boxText1"> Unohdin salasanani</p>
+          <Link to='/forgetpsw' className="boxText1" style={{color:"black"}}> Unohdin salasanani</Link>
           <h5 className="boxText">Tai valitse joku seuraavista</h5>
           <button type="submit" class="registerbtnFb"><FacebookLogin
 
@@ -155,65 +158,6 @@ const Login = () => {
     <div className="loginfooter">
     <Footer/>
     </div>
-
-
-
-
-    {/*
-    <div className="loginMain">
-    <div className="container">
-     <div className="mainContent">
-     <div className="row">
-        <div className="topImg">
-          <img src={process.env.PUBLIC_URL + '/authImages/mukify.png'} />
-        </div>
-     </div>
-     <div className="row">
-        <div>
-          <p className="loginTopTitle">Rekisteröidy aloittaaksesi kokoelman luominen</p>
-        </div>
-     </div>
-
-     <div className="row">
-      <div className="col-12">
-      <div className="w-20">
-      <img src={process.env.PUBLIC_URL + '/authImages/mukify.png'} />
-      </div>
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          width: "24%",
-          margin: "0 auto",
-          right: "100%",
-          left: "100%",
-          top: "100%",
-          display: "grid",
-        }}
-      >
-        <label>Email</label>
-        <input
-                type="email"
-                 name="email"
-                 className="fadeIn second"
-                 onChange={(e) => handleChange(e)} />
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          className="fadeIn third"
-          onChange={(e) => handleChange(e)}
-        />
-        <button className="fadeIn fourth">Login</button>
-      </form>
-      <div>
-      <img src={process.env.PUBLIC_URL + '/authImages/mukify.png'} />
-      </div>
-      </div>
-      </div>
-      </div>
-      </div>
-    </div>
-    */}
     </>
   );
 };
