@@ -5,6 +5,7 @@ import { signinUser, userSelector, clearState } from "../store/reducers/login";
 import { socialSigninUser, socialSelector, clearStates } from "../store/reducers/social";
 import { API_URL } from "../helper/api";
 import { useHistory } from "react-router-dom";
+import Footer from '../component/Footer'
 import FacebookLogin from "react-facebook-login"
 import GoogleLogin from "react-google-login";
 // import Image from '../../public/image23.png'
@@ -86,77 +87,130 @@ const Login = () => {
       .catch((err) => console.log(err));
   },[provider])
   return (
+
+    <>
     <div>
-      <div className="container">
-        <h1>
-          Rekisteröidy aloittaaksesi
-          <br /> kokoelman luominen
-        </h1>
-        <div className="mainwrap">
-          <form onSubmit={handleSubmit} className="box">
-            <label htmlFor="email">
-              <b>Salasana</b>
-            </label>
-            <input
-              type="email"
-              name="email"
-              onChange={(e) => handleChange(e)}
-            />
-            <label htmlFor="psw">
-              <b>Salasana uudestaan</b>
-            </label>
-            <input
-              type="password"
-              name="password"
-              onChange={(e) => handleChange(e)}
-            />
-            <input
-              type="checkbox"
-              placeholder=""
-              name="psw"
-              id="psw"
-              required
-              style={{ marginLeft: "20px" }}
-            />
-            <label htmlFor="psw">
-              <b>Hyväksyn käyttöehdot</b>
-            </label>
-            <br />
-            <input
-              type="checkbox"
-              placeholder=""
-              name="psw"
-              id="psw"
-              required
-              style={{ marginLeft: "20px" }}
-            />
-            <label htmlFor="psw">
-              <b>Tilaa uutiskirje</b>
-            </label>
-            <br />
-            <GoogleLogin
-              className="registerbtn"
-              clientId="1081859704336-aalfm16drgu918csp0vlq575ipebnrao.apps.googleusercontent.com"
-              buttonText="Login with Google"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={"single_host_origin"}
-            />
-            <br />
-            <FacebookLogin
-              className="registerbtn"
+      {isError &&
+        <h5>{ errorMessage }</h5>
+      }
+      <div className="registerPageMain">
+      <div class="">
+      <div className="topImg">
+      <img src={process.env.PUBLIC_URL + '/authImages/mukify.png'} />
+      </div>
+      <h6 class="top-font">Rekisteröidy aloittaaksesi<br/> kokoelman luominen
+      </h6>
+
+      </div>
+
+      <form onSubmit={handleSubmit}
+      // style={{ width: "24%", margin: "0 auto", right: "100%", left: "100%", top: "100%", display: "grid"}}
+      >
+      <div class="flexbox-container">
+      <div class="box">
+        <label for="psw"><b>Sähköposti</b></label>
+        <input type="password" name="password"  onChange={(e) => handleChange(e)} /> <br />
+
+          <button type="submit" class="registerbtn">Luo tili</button>
+          <h5 className="boxText">Tai valitse joku seuraavista</h5>
+          <button type="submit" class="registerbtnFb"><FacebookLogin
+
               appId="372164971017671"
               autoLoad={true}
               fields="name,email,picture"
               // onClick={componentClicked}
               callback={responseFacebook}
-            />
-            <button className="registerbtn">Luo tili</button>
-            <h6>Olen jo rekisteröitynyt. Kirjaudu sisään</h6>
-          </form>
+            /></button>
+          <button type="submit" class="registerbtnGoogle">
+          <GoogleLogin
+
+              clientId="1081859704336-aalfm16drgu918csp0vlq575ipebnrao.apps.googleusercontent.com"
+              buttonText="Login with Google"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={"single_host_origin"}
+            /></button>
+          </div>
+
+          </div>
+      </form>
+      <div className="mainimg1">
+      <img src={process.env.PUBLIC_URL + '/authImages/imagelogin1.png'} />
+      </div>
+      <div className="mainimg2">
+      <img src={process.env.PUBLIC_URL + '/authImages/imagelogin2.png'} />
+      </div>
+      <div className="mainimg3">
+      <img src={process.env.PUBLIC_URL + '/authImages/imagelogin3.png'} />
+      </div>
+      <div>
+          <p className="bottomText">Olen jo rekisteröitynyt. Kirjaudu sisään</p>
+          </div>
+    </div>
+    </div>
+    <div className="loginfooter">
+    <Footer/>
+    </div>
+
+
+
+
+    {/*
+    <div className="loginMain">
+    <div className="container">
+     <div className="mainContent">
+     <div className="row">
+        <div className="topImg">
+          <img src={process.env.PUBLIC_URL + '/authImages/mukify.png'} />
         </div>
+     </div>
+     <div className="row">
+        <div>
+          <p className="loginTopTitle">Rekisteröidy aloittaaksesi kokoelman luominen</p>
+        </div>
+     </div>
+
+     <div className="row">
+      <div className="col-12">
+      <div className="w-20">
+      <img src={process.env.PUBLIC_URL + '/authImages/mukify.png'} />
+      </div>
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          width: "24%",
+          margin: "0 auto",
+          right: "100%",
+          left: "100%",
+          top: "100%",
+          display: "grid",
+        }}
+      >
+        <label>Email</label>
+        <input
+                type="email"
+                 name="email"
+                 className="fadeIn second"
+                 onChange={(e) => handleChange(e)} />
+        <label>Password</label>
+        <input
+          type="password"
+          name="password"
+          className="fadeIn third"
+          onChange={(e) => handleChange(e)}
+        />
+        <button className="fadeIn fourth">Login</button>
+      </form>
+      <div>
+      <img src={process.env.PUBLIC_URL + '/authImages/mukify.png'} />
+      </div>
+      </div>
+      </div>
+      </div>
       </div>
     </div>
+    */}
+    </>
   );
 };
 export default Login;

@@ -60,19 +60,22 @@ export default function Topbar() {
             <span> Rekisteröidy tästä</span>
           </p>
         </div>
-        <Navbar className="navbar-custom pt-5 col-md-12 col-sm-12 col-xs-12" style={{position:"fixed",top:"0",zIndex:"10",backgroundColor:"rgba(255,255,255,1)",}} collapseOnSelect expand="lg">
-            <Navbar.Brand className="custom-width col-md-3 col-sm-3 col-xs-3">
-        <div className="header container-fluid mr-2">
-            <div className="logo">
-            <span className="mr-1 FaChevronLeftDisplayOnLargeScreen">
-                    <FaChevronLeft  color="black"/>
-            </span>
-            <span className="mr-1 FaChevronLeftDisplaySmallScreen">
-                    <FaChevronLeft size="14px" color="black"/>
-            </span>
-
-                <img className="applyOnXsScreen" src={logo} alt="mukify"></img>
-            </div>
+        <Navbar
+          className="navbar-custom pt-5 col-md-12 col-sm-12 col-xs-12"
+          style={{
+            position: "fixed",
+            top: "0",
+            zIndex: "10",
+            backgroundColor: "rgba(255,255,255,1)",
+          }}
+          collapseOnSelect
+          expand="lg"
+        >
+          <Navbar.Brand className="custom-width col-md-3 col-sm-3 col-xs-3">
+            <div className="header container-fluid ">
+              <div className="logo">
+                <img src={logo} alt="mukify"></img>
+              </div>
             </div>
             </Navbar.Brand>
             <Navbar.Toggle className="mr-5" aria-controls="responsive-navbar-nav" />
@@ -107,7 +110,7 @@ export default function Topbar() {
         <button className="tab-btnSmall ml-2"><Link to="/register">Rekisteröidy</Link></button>
         </div>
         {/* mobile topbar */}
-        
+
         </Navbar>
 
         </>

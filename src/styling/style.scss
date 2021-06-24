@@ -472,6 +472,40 @@ background-color:$footerGray ;
 
 // add by Tk
 
+.topImg{
+    text-align: center;
+    img{
+ 
+      
+    }
+}
+
+.registerPageMain {
+    padding-top: 40px;
+}
+
+.registerPageMain .topImg, .registerPageMain h6 {
+    margin: 25px 0;
+}
+
+.bottomText{
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 32px;
+text-align: center;
+    
+padding: 6rem;
+    color: #343434;
+}
+
+.boxText{
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+}
+
 .footer-main .footerLinks p{
     font-size: 18px;
     line-height: 27px;
@@ -529,3 +563,153 @@ background-color:$footerGray ;
  }
 
 }
+
+
+// add by satti
+.box
+{
+    width: 30%;
+    height: 30%;
+
+    margin: 0 auto;
+    background: #FFFFFF;
+    border: 4px solid #F6F6F6;
+    border-radius: 10px;
+}
+
+.flexbox-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+    top: 258px;
+    width: 100%;
+}
+
+.mainheader
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  
+}
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+
+
+  label
+  {
+      margin-left: 20px;
+      padding-top: 20px;
+  }
+
+  .topHeading{
+      text-align: center;
+      margin-top: 20px;
+  }
+  
+  input[type=text], input[type=password] ,input[type=email] {
+    width: 90%;
+    padding: 15px;
+    margin: 5px 0 22px 20px;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+  
+  input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
+
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  .registerbtn {
+    background-color: #A4B96D;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 90%;
+    opacity: 0.9;
+    margin: 5px 0 22px 20px;
+  }
+  .registerbtnFb {
+    background-color:  #507CC0;
+
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 90%;
+    opacity: 0.9;
+    margin: 5px 0 22px 20px;
+  }
+  .registerbtnGoogle {
+    background-color: #DF4930;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 90%;
+    opacity: 0.9;
+    margin: 5px 0 22px 20px;
+  }
+.mainimg1{
+    position: absolute;
+    right: 0px;
+    top: 500px;
+}
+  .mainimg2{
+    position: absolute;
+    right: 200px;
+    top: 220px;
+  }
+
+  .mainimg3{
+    position: absolute;
+    left: 0px;
+    top: 100px;
+  }
+  
+  .registerbtn:hover {
+    opacity: 1;
+  }
+  
+.top-font
+{
+
+    /* width: 666px; */
+    height: 110px;
+    top: 129px;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 38px;
+    line-height: 55px;
+    text-align: center;
+    color: #343434;
+    left: 38%;
+}
+
+.registerPageMain{
+ 
+}
+
+@media screen and (min-width: 320px) {
+    .top-font {
+      font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+    }
+  }
+  @media screen and (min-width: 1000px) {
+    .top-font {
+      font-size: 38px;
+    }
+  }
