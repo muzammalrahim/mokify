@@ -109,9 +109,13 @@ const Login = () => {
       <div class="flexbox-container">
       <div class="box">
         <label for="psw"><b>Sähköposti</b></label>
+        <input type="email" name="email"  onChange={(e) => handleChange(e)} /> <br />
+        <label for="psw"><b>Salasana</b></label>
         <input type="password" name="password"  onChange={(e) => handleChange(e)} /> <br />
 
           <button type="submit" class="registerbtn">Luo tili</button>
+
+          <p className="boxText1"> Unohdin salasanani</p>
           <h5 className="boxText">Tai valitse joku seuraavista</h5>
           <button type="submit" class="registerbtnFb"><FacebookLogin
 
