@@ -5,6 +5,7 @@ import { Row, Col, Image, Spinner } from "react-bootstrap";
 import loading from "../assets/loading.png";
 import CustomizedAccordions from '../pages/products/Sidebar'
 import SimpleDialog from '../pages/products/MobileSidebar'
+import {Link }  from 'react-router-dom'
 
 export default class Header extends Component {
   state = {
@@ -12,7 +13,7 @@ export default class Header extends Component {
     offset: 0,
     moreData: [],
     apiLength: 0,
-    start:8,
+    start:9,
   };
 
   componentWillMount() {
@@ -54,7 +55,7 @@ export default class Header extends Component {
           data: res.data.data.localizedFlatItem.edges,
           offset: this.state.offset + 20,
           start : 20,
-          apiLength: res.data.data.localizedFlatItem.totalCount - 8,
+          apiLength: res.data.data.localizedFlatItem.totalCount - 9,
         });
       })
       .catch((err) => {
@@ -113,17 +114,21 @@ export default class Header extends Component {
               {data.map((nod) => {
                 return (
                   <Col xs={12} lg={4} md={4} sm={6} key={nod.node.id}>
-                    <Image
-                      className="product-image"
-                      src={nod?.node?.itemImagesSet[0]?.mediumThumbUrl}
-                    />
-                    <p className="product-text">
-                      {nod?.node?.basicInfo?.shortDescription}
-                    </p>
-                    <p className="product-subtext ">{nod?.node?.basicInfo?.name}</p>
-                    <p className="product-price">
-                      {nod.node.additionalInfo[0].rows[0].columns[0]}
-                    </p>
+                    <Link to={`/product/${nod.node.id}`}>
+                      <Image
+                        className="product-image"
+                        src={nod?.node?.itemImagesSet[0]?.mediumThumbUrl}
+                      />
+                      <p className="product-text">
+                        {nod?.node?.basicInfo?.shortDescription}
+                      </p>
+                      <p className="product-subtext ">
+                        {nod?.node?.basicInfo?.name}
+                      </p>
+                      <p className="product-price">
+                        {nod.node.additionalInfo[0].rows[0].columns[0]}
+                      </p>
+                    </Link>
                   </Col>
                 );
               })}
