@@ -161,7 +161,7 @@ const Register = () => {
                   <button type="submit" class="registerbtnFb">
                     <FacebookLogin
                       appId="372164971017671"
-                      autoLoad={true}
+                      autoLoad={false}
                       fields="name,email,picture"
                       // onClick={componentClicked}
                       callback={responseFacebook}
