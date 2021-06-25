@@ -151,7 +151,7 @@ const Login = () => {
       <img src={process.env.PUBLIC_URL + '/authImages/imagelogin3.png'} />
       </div>
       <div>
-          <p className="bottomText">Olen jo rekisteröitynyt. Kirjaudu sisään</p>
+    
           </div>
     </div>
     </div>

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useSelector, useDispatch } from "react-redux";
 import { signupUser, userSelector, clearState } from "../store/reducers/auth"
 import { API_URL } from '../helper/api'
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Footer from '../component/Footer'
 import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
@@ -121,14 +121,15 @@ const Register = () => {
                     onChange={(e) => handleChange(e)}
                   />{" "}
                   <br />
-                  <label for="name">
-                    <b>Nimi</b>
+                  <label for="email">
+                  <b>Nimi</b>
                   </label>
                   <input
-                    type="text"
-                    name="name"
+                    type="email"
+                    name="email"
                     onChange={(e) => handleChange(e)}
                   />{" "}
+               
                   <br />
                   <label for="psw">
                     <b>Salasana</b>
@@ -158,24 +159,32 @@ const Register = () => {
                     Luo tili
                   </button>{" "}
                   <h5 className="boxText">Tai valitse joku seuraavista</h5>
+                  <div style={{position:"relative"}}>
                   <button type="submit" class="registerbtnFb">
                     <FacebookLogin
                       appId="372164971017671"
                       autoLoad={false}
                       fields="name,email,picture"
+                      textButton="Facebook connect"
                       // onClick={componentClicked}
                       callback={responseFacebook}
                     />
                   </button>
+                  <img className="facebookIcon" src={process.env.PUBLIC_URL + '/svg/facebook.svg'} />
+                  </div>
+                  <div style={{position:"relative"}}>
                   <button type="submit" class="registerbtnGoogle">
                     <GoogleLogin
                       clientId="1081859704336-aalfm16drgu918csp0vlq575ipebnrao.apps.googleusercontent.com"
-                      buttonText="Login with Google"
+                      buttonText="Google Sign in"
                       onSuccess={responseGoogle}
                       onFailure={responseGoogle}
                       cookiePolicy={"single_host_origin"}
                     />
+
                   </button>
+                  <img className="facebookIcon" src={process.env.PUBLIC_URL + '/svg/google.svg'} />
+                  </div>
                 </div>
               </div>
             </form>
@@ -195,10 +204,10 @@ const Register = () => {
               />
             </div>
 
-            <div>
-              <p className="bottomText">
-                Olen jo rekisteröitynyt. Kirjaudu sisään
-              </p>
+            <div className="FormLink">
+              <Link to="/login" className="bottomText">
+                Olen jo rekisteröitynyt Kirjaudu sisään
+              </Link>
             </div>
           </div>
         </div>

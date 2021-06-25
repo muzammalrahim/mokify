@@ -492,12 +492,15 @@ background-color:$footerGray ;
     font-family: Open Sans;
     font-style: normal;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 32px;
-text-align: center;
-    
+    text-align: center;    
 padding: 6rem;
-    color: #343434;
+    color: #161616;
+    &:hover {
+        color: #161616;
+        text-decoration: none;
+      }
 }
 
 .boxText{
@@ -570,11 +573,12 @@ padding: 6rem;
 {
     width: 30%;
     height: 30%;
-
     margin: 0 auto;
     background: #FFFFFF;
     border: 4px solid #F6F6F6;
     border-radius: 10px;
+    padding-right: 38px;
+
 }
 
 .flexbox-container {
@@ -606,6 +610,7 @@ padding: 6rem;
   {
       margin-left: 20px;
       padding-top: 20px;
+      display: block !important;
   }
 
   .topHeading{
@@ -614,7 +619,7 @@ padding: 6rem;
   }
   
   input[type=text], input[type=password] ,input[type=email] {
-    width: 90%;
+    width: 100%;
     padding: 15px;
     margin: 5px 0 22px 20px;
     display: inline-block;
@@ -635,7 +640,7 @@ padding: 6rem;
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 90%;
+    width: 100%;
     opacity: 0.9;
     margin: 5px 0 22px 20px;
   }
@@ -647,18 +652,19 @@ padding: 6rem;
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 90%;
+    width: 100%;
     opacity: 0.9;
     margin: 5px 0 22px 20px;
   }
   .registerbtnGoogle {
     background-color: #DF4930;
+    padding: 0px 20px !important;
     color: white;
     padding: 16px 20px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 90%;
+    width:100%;
     opacity: 0.9;
     margin: 5px 0 22px 20px;
   }
@@ -703,21 +709,38 @@ padding: 6rem;
     border-radius: 0;
     background-color: #507CC0;
     color: white;
-    padding: 4px 20px 0px 20px;
+    padding: 0px 20px 0px 20px;
     /* margin: 8px 0; */
     border: none;
     cursor: pointer;
     width: 89%;
     opacity: 0.9;
-    margin: 5px 0 7px 20px;
+    margin: 5px 0 0px 20px;
     font-size: 14px!important;
+}
+.facebookIcon{
+    height: 35px;
+    width: 35px;
+    position: absolute;
+    top: 1rem;
+    left: 3rem;
 }
 .registerbtnGoogle{
 
     .botton{
           background-color: #DF4930;
+     
     }
 }
+button.registerbtnGoogle div {
+    display: none;
+}
+.FormLink{
+    text-align: center;
+    padding: 20px 0px;
+    margin: 20px 0px;
+}
+
 .boxText1{
     font-weight: 600;
     padding-left: 23px;
@@ -730,6 +753,7 @@ padding: 6rem;
     border: none!important;
     box-shadow: none!important;
     font-size: 14px!important;
+    padding: 8px 20px !important;
 }
 
 
