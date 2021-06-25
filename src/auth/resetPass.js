@@ -127,9 +127,7 @@ const ResetPassword = (props) => {
           </div>
 
           <div>
-            <p className="bottomText">
-              Olen jo rekisteröitynyt. Kirjaudu sisään
-            </p>
+            
           </div>
         </div>
       </div>
