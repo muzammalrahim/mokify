@@ -90,74 +90,105 @@ const Login = () => {
       .catch((err) => console.log(err));
   },[provider])
   return (
-
     <>
-    <div>
-      {isError &&
-        <h5>{ errorMessage }</h5>
-      }
-      <div className="registerPageMain">
-      <div class="">
-      <div className="topImg">
-      <img src={process.env.PUBLIC_URL + '/authImages/mukify.png'} />
-      </div>
-      <h6 class="top-font">Rekisteröidy aloittaaksesi<br/> kokoelman luominen
-      </h6>
-
-      </div>
-
-      <form onSubmit={handleSubmit}
-      // style={{ width: "24%", margin: "0 auto", right: "100%", left: "100%", top: "100%", display: "grid"}}
-      >
-      <div class="flexbox-container">
-      <div class="box">
-        <label for="psw"><b>Sähköposti</b></label>
-        <input type="email" name="email"  onChange={(e) => handleChange(e)} /> <br />
-        <label for="psw"><b>Salasana</b></label>
-        <input type="password" name="password"  onChange={(e) => handleChange(e)} /> <br />
-
-          <button type="submit" class="registerbtn">Luo tili</button>
-
-          <Link to='/forgetpsw' className="boxText1" style={{color:"black"}}> Unohdin salasanani</Link>
-          <h5 className="boxText">Tai valitse joku seuraavista</h5>
-          <button type="submit" class="registerbtnFb"><FacebookLogin
-
-              appId="372164971017671"
-              autoLoad={false}
-              fields="name,email,picture"
-              // onClick={componentClicked}
-              callback={responseFacebook}
-            /></button>
-          <button type="submit" class="registerbtnGoogle">
-          <GoogleLogin
-
-              clientId="1081859704336-aalfm16drgu918csp0vlq575ipebnrao.apps.googleusercontent.com"
-              buttonText="Login with Google"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={"single_host_origin"}
-            /></button>
-          </div>
-
-          </div>
-      </form>
-      <div className="mainimg1">
-      <img src={process.env.PUBLIC_URL + '/authImages/imagelogin1.png'} />
-      </div>
-      <div className="mainimg2">
-      <img src={process.env.PUBLIC_URL + '/authImages/imagelogin2.png'} />
-      </div>
-      <div className="mainimg3">
-      <img src={process.env.PUBLIC_URL + '/authImages/imagelogin3.png'} />
-      </div>
       <div>
-    
+        {isError && <h5>{errorMessage}</h5>}
+        <div className="registerPageMain">
+          <div class="">
+            <div className="topImg">
+              <img src={process.env.PUBLIC_URL + "/authImages/mukify.png"} />
+            </div>
+            <h6 class="top-font">
+              Rekisteröidy aloittaaksesi
+              <br /> kokoelman luominen
+            </h6>
           </div>
-    </div>
-    </div>
-    <div className="loginfooter">
-    <Footer/>
-    </div>
+
+          <form
+            onSubmit={handleSubmit}
+            // style={{ width: "24%", margin: "0 auto", right: "100%", left: "100%", top: "100%", display: "grid"}}
+          >
+            <div class="flexbox-container">
+              <div class="box">
+                <label for="psw">
+                  <b>Sähköposti</b>
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  onChange={(e) => handleChange(e)}
+                />{" "}
+                <br />
+                <label for="psw">
+                  <b>Salasana</b>
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  onChange={(e) => handleChange(e)}
+                />{" "}
+                <br />
+                <button type="submit" class="registerbtn">
+                  Luo tili
+                </button>
+                <Link
+                  to="/forgetpsw"
+                  className="boxText1"
+                  style={{ color: "black" }}
+                >
+                  {" "}
+                  Unohdin salasanani
+                </Link>
+                <h5 className="boxText">Tai valitse joku seuraavista</h5>
+                <div style={{ position: "relative" }}>
+                  <button type="submit" class="registerbtnFb">
+                    <FacebookLogin
+                      appId="372164971017671"
+                      autoLoad={false}
+                      fields="name,email,picture"
+                      textButton="Facebook connect"
+                      // onClick={componentClicked}
+                      callback={responseFacebook}
+                    />
+                  </button>
+                  <img
+                    className="facebookIcon"
+                    src={process.env.PUBLIC_URL + "/svg/facebook.svg"}
+                  />
+                </div>
+                <div style={{ position: "relative" }}>
+                  <button type="submit" class="registerbtnGoogle">
+                    <GoogleLogin
+                      clientId="1081859704336-aalfm16drgu918csp0vlq575ipebnrao.apps.googleusercontent.com"
+                      buttonText="Google Sign in"
+                      onSuccess={responseGoogle}
+                      onFailure={responseGoogle}
+                      cookiePolicy={"single_host_origin"}
+                    />
+                  </button>
+                  <img
+                    className="facebookIcon"
+                    src={process.env.PUBLIC_URL + "/svg/google.svg"}
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+          <div className="mainimg1">
+            <img src={process.env.PUBLIC_URL + "/authImages/imagelogin1.png"} />
+          </div>
+          <div className="mainimg2">
+            <img src={process.env.PUBLIC_URL + "/authImages/imagelogin2.png"} />
+          </div>
+          <div className="mainimg3">
+            <img src={process.env.PUBLIC_URL + "/authImages/imagelogin3.png"} />
+          </div>
+          <div></div>
+        </div>
+      </div>
+      <div className="loginfooter">
+        <Footer />
+      </div>
     </>
   );
 };
