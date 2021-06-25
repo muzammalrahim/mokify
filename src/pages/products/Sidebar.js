@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { withStyles, makeStyles} from '@material-ui/core/styles';
 import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
@@ -9,6 +9,8 @@ import RangeSlider from '../products/RangeSlider';
 // import Arrow from '../../assets/down.png';
 import Line from '../../assets/line.png';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import axios from 'axios';
+import { API_URL } from '../../helper/api';
 
 
 
@@ -68,7 +70,63 @@ export default function CustomizedAccordions() {
     };
     const changeRange = (event, newValue) => {
         setPrice(newValue)
+  }
+    const changeYear = (event, newValue) => {
+        setYear(newValue)
+  }
+  
+  useEffect(() => {
+    axios.get(`${API_URL}?query=query
+{
+  localizedFlatItem(priceLte: ${price[1]}, priceGte: ${price[0]}) {
+    totalCount
+    edgeCount
+    characterFilters {
+      id
+      name
+      count
     }
+    
+    edges {
+      node {
+        basicInfo {
+          shortDescription
+          name
+        }
+      }
+    }
+  }  
+}`).then(res => {
+  console.log("pice query response ", res.data.data.localizedFlatItem.edges.map(nod=>nod.node.basicInfo.name));
+}).catch(err=>console.log(err));
+  }, [price])
+  
+  useEffect(() => {
+    axios.get(`${API_URL}?query=query
+{
+  localizedFlatItem(manufacturingYearGte: ${year[0]}, manufacturingYearLte: ${year[1]}) {
+    totalCount
+    edgeCount
+    characterFilters
+    {
+      id
+      name
+      count
+    }
+    edges {
+      node {
+        basicInfo {
+          shortDescription
+          name
+        } 
+      }
+    }
+  }
+}
+`).then(res => {
+  console.log("year query response ", res);
+}).catch(err=>console.log(err));
+  },[year])
 
   return (
     <div className="sidebar-main">
@@ -214,7 +272,7 @@ export default function CustomizedAccordions() {
                   <span className="down">{price[1]}</span>
                 </li>
                 <li className="mt-4">
-                  <RangeSlider value={price} handleChange={changeRange} />
+                  <RangeSlider value={price} handleChange={changeRange} max="2000" min={0} />
                 </li>
               </ul>
             </Typography>
@@ -247,7 +305,7 @@ export default function CustomizedAccordions() {
                   <span className="down">{year[1]}</span>
                 </li>
                 <li className="mt-4">
-                  <RangeSlider value={year} handleChange={changeRange} />
+                  <RangeSlider value={year} handleChange={changeYear} max={(new Date().getFullYear())} min={1800}/>
                 </li>
               </ul>
             </Typography>
