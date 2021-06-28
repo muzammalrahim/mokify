@@ -74,60 +74,50 @@ export default function CustomizedAccordions() {
     const changeYear = (event, newValue) => {
         setYear(newValue)
   }
-  
+const [colorFilter, setColorFilter] = useState([])
+  const [characterFilter, setCharacterFilter] = useState([])
+  const [color, setColor] = useState([])
+  const [colorCount, setColorCount] = useState(0)
+  const [character, setCharacter] = useState([])
   useEffect(() => {
-    axios.get(`${API_URL}?query=query
+    axios.get(`${API_URL}?query=query{
+localizedFlatItem(id: "")
 {
-  localizedFlatItem(priceLte: ${price[1]}, priceGte: ${price[0]}) {
-    totalCount
-    edgeCount
+  colorFilters{
+    id
+      name
+      count
+  }
     characterFilters {
       id
       name
       count
     }
-    
-    edges {
-      node {
-        basicInfo {
-          shortDescription
-          name
-        }
-      }
-    }
-  }  
+}
 }`).then(res => {
-  console.log("pice query response ", res.data.data.localizedFlatItem.edges.map(nod=>nod.node.basicInfo.name));
-}).catch(err=>console.log(err));
-  }, [price])
+  setCharacterFilter(res.data.data.localizedFlatItem.characterFilters);
+  setColorFilter(res.data.data.localizedFlatItem.colorFilters);
+}).catch(err => {
+  console.log('error', err)
+});
+  },[])
   
-  useEffect(() => {
-    axios.get(`${API_URL}?query=query
-{
-  localizedFlatItem(manufacturingYearGte: ${year[0]}, manufacturingYearLte: ${year[1]}) {
-    totalCount
-    edgeCount
-    characterFilters
-    {
-      id
-      name
-      count
-    }
-    edges {
-      node {
-        basicInfo {
-          shortDescription
-          name
-        } 
-      }
+  const handleChangeColor = (e) => {
+    if (color.find(el => el === e.target.id)) {
+      setColor(color.filter(ele=>ele !== e.target.id))
+      setColorCount(colorCount -1)
+    } else {
+      setColor([...color, e.target.id])
+      setColorCount(colorCount +1)
     }
   }
-}
-`).then(res => {
-  console.log("year query response ", res);
-}).catch(err=>console.log(err));
-  },[year])
-
+  const handleChangeCharacter = (e) => {
+    if (character.find(el => el === e.target.id)) {
+      setCharacter(character.filter(ele=>ele !== e.target.id))
+    } else {
+      setCharacter([...character, e.target.id])
+    }
+  }
   return (
     <div className="sidebar-main">
       <div className="web border-bottom">
@@ -146,43 +136,29 @@ export default function CustomizedAccordions() {
           <AccordionDetails>
             <Typography className={"sidebar-inner"}>
               <ul className="side-bar">
-                <li>
-                  <span className="check">
-                    <Checkbox
-                      value="checkedA"
-                      inputProps={{ "aria-label": "Checkbox A" }}
-                    />
-                  </span>
-                  <span className="name">Muumipeikko</span>
-                  <span className="options">7</span>
-                </li>
-                <li>
-                  <span className="check">
-                    <Checkbox
-                      value="checkedA"
-                      inputProps={{ "aria-label": "Checkbox A" }}
-                    />
-                  </span>
-                  <span className="name">Niiskuneiti</span>
-                  <span className="options">7</span>
-                </li>
-                <li>
-                  <span className="check">
-                    <Checkbox
-                      value="checkedA"
-                      inputProps={{ "aria-label": "Checkbox A" }}
-                    />
-                  </span>
-                  <span className="name">Muumipappa</span>
-                  <span className="options">7</span>
-                </li>
-                <li>
-                  <span className="check">
-                    {/* <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/> */}
-                  </span>
-                  <span className="name2">Näytä kaikki</span>
-                  {/* <span className="options">7</span> */}
-                </li>
+                {characterFilter.map((character) => {
+                  return (
+                    <li key={character.id}>
+                      <span className="check">
+                        <Checkbox
+                          inputProps={{ "aria-label": "checkbox A" }}
+                          onChange={handleChangeCharacter}
+                          id={character.id}
+                        />{" "}
+                        <span className="name">{character.name}</span>
+                        <span className="options">{character.count}</span>
+                      </span>
+                    </li>
+                  );
+                })}
+
+                {/* <li> */}
+                {/* <span className="check"> */}
+                {/* <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/> */}
+                {/* </span> */}
+                {/* <span className="name2">Näytä kaikki</span> */}
+                {/* <span className="options">7</span> */}
+                {/* </li> */}
               </ul>
             </Typography>
           </AccordionDetails>
@@ -198,49 +174,35 @@ export default function CustomizedAccordions() {
             id="panel2d-header"
           >
             <Typography>
-              Vari <span className="notify">13</span>
+              Vari <span className="notify">{colorCount}</span>
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography className={"sidebar-inner"}>
               <ul className="side-bar">
-                <li>
-                  <span className="check">
-                    <Checkbox
-                      value="checkedA"
-                      inputProps={{ "aria-label": "Checkbox A" }}
-                    />
-                  </span>
-                  <span className="name">Muumipeikko</span>
-                  <span className="options">7</span>
-                </li>
-                <li>
-                  <span className="check">
-                    <Checkbox
-                      value="checkedA"
-                      inputProps={{ "aria-label": "Checkbox A" }}
-                    />
-                  </span>
-                  <span className="name">Niiskuneiti</span>
-                  <span className="options">7</span>
-                </li>
-                <li>
-                  <span className="check">
-                    <Checkbox
-                      value="checkedA"
-                      inputProps={{ "aria-label": "Checkbox A" }}
-                    />
-                  </span>
-                  <span className="name">Muumipappa</span>
-                  <span className="options">7</span>
-                </li>
-                <li>
-                  <span className="check">
-                    {/* <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/> */}
-                  </span>
-                  <span className="name2">Näytä kaikki</span>
-                  {/* <span className="options">7</span> */}
-                </li>
+                {colorFilter.map((color) => {
+                  return (
+                    <li key={color.id}>
+                      <span className="check">
+                        <Checkbox
+                          value="checkedA"
+                          inputProps={{ "aria-label": "Checkbox A" }}
+                          onChange={handleChangeColor}
+                          id={color.id}
+                        />
+                      </span>
+                      <span className="name">{color.name}</span>
+                      <span className="options">{color.count}</span>
+                    </li>
+                  );
+                })}
+                {/* <li>
+                  <span className="check"> */}
+                {/* <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/> */}
+                {/* </span>
+                  <span className="name2">Näytä kaikki</span> */}
+                {/* <span className="options">7</span> */}
+                {/* </li> */}
               </ul>
             </Typography>
           </AccordionDetails>
@@ -272,7 +234,12 @@ export default function CustomizedAccordions() {
                   <span className="down">{price[1]}</span>
                 </li>
                 <li className="mt-4">
-                  <RangeSlider value={price} handleChange={changeRange} max="2000" min={0} />
+                  <RangeSlider
+                    value={price}
+                    handleChange={changeRange}
+                    max="2000"
+                    min={0}
+                  />
                 </li>
               </ul>
             </Typography>
@@ -305,7 +272,12 @@ export default function CustomizedAccordions() {
                   <span className="down">{year[1]}</span>
                 </li>
                 <li className="mt-4">
-                  <RangeSlider value={year} handleChange={changeYear} max={(new Date().getFullYear())} min={1800}/>
+                  <RangeSlider
+                    value={year}
+                    handleChange={changeYear}
+                    max={new Date().getFullYear()}
+                    min={1800}
+                  />
                 </li>
               </ul>
             </Typography>

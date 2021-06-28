@@ -143,7 +143,7 @@ const Login = () => {
                 <div style={{ position: "relative" }}>
                   <button type="submit" class="registerbtnFb">
                     <FacebookLogin
-                      appId="372164971017671"
+                      appId="543336356644737"
                       autoLoad={false}
                       fields="name,email,picture"
                       textButton="Facebook connect"
@@ -159,7 +159,7 @@ const Login = () => {
                 <div style={{ position: "relative" }}>
                   <button type="submit" class="registerbtnGoogle">
                     <GoogleLogin
-                      clientId="1081859704336-aalfm16drgu918csp0vlq575ipebnrao.apps.googleusercontent.com"
+                      clientId="1056331593053-9gt32r970ecp40u610fkhveeaklulbp0.apps.googleusercontent.com"
                       buttonText="Google Sign in"
                       onSuccess={responseGoogle}
                       onFailure={responseGoogle}

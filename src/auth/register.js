@@ -122,14 +122,13 @@ const Register = () => {
                   />{" "}
                   <br />
                   <label for="email">
-                  <b>Nimi</b>
+                    <b>Nimi</b>
                   </label>
                   <input
                     type="email"
                     name="email"
                     onChange={(e) => handleChange(e)}
                   />{" "}
-               
                   <br />
                   <label for="psw">
                     <b>Salasana</b>
@@ -159,31 +158,36 @@ const Register = () => {
                     Luo tili
                   </button>{" "}
                   <h5 className="boxText">Tai valitse joku seuraavista</h5>
-                  <div style={{position:"relative"}}>
-                  <button type="submit" class="registerbtnFb">
-                    <FacebookLogin
-                      appId="372164971017671"
-                      autoLoad={false}
-                      fields="name,email,picture"
-                      textButton="Facebook connect"
-                      // onClick={componentClicked}
-                      callback={responseFacebook}
+                  <div style={{ position: "relative" }}>
+                    <button type="submit" class="registerbtnFb">
+                      <FacebookLogin
+                        appId="543336356644737"
+                        autoLoad={false}
+                        fields="name,email,picture"
+                        textButton="Facebook connect"
+                        // onClick={componentClicked}
+                        callback={responseFacebook}
+                      />
+                    </button>
+                    <img
+                      className="facebookIcon"
+                      src={process.env.PUBLIC_URL + "/svg/facebook.svg"}
                     />
-                  </button>
-                  <img className="facebookIcon" src={process.env.PUBLIC_URL + '/svg/facebook.svg'} />
                   </div>
-                  <div style={{position:"relative"}}>
-                  <button type="submit" class="registerbtnGoogle">
-                    <GoogleLogin
-                      clientId="1081859704336-aalfm16drgu918csp0vlq575ipebnrao.apps.googleusercontent.com"
-                      buttonText="Google Sign in"
-                      onSuccess={responseGoogle}
-                      onFailure={responseGoogle}
-                      cookiePolicy={"single_host_origin"}
+                  <div style={{ position: "relative" }}>
+                    <button type="submit" class="registerbtnGoogle">
+                      <GoogleLogin
+                        clientId="1056331593053-9gt32r970ecp40u610fkhveeaklulbp0.apps.googleusercontent.com"
+                        buttonText="Google Sign in"
+                        onSuccess={responseGoogle}
+                        onFailure={responseGoogle}
+                        cookiePolicy={"single_host_origin"}
+                      />
+                    </button>
+                    <img
+                      className="facebookIcon"
+                      src={process.env.PUBLIC_URL + "/svg/google.svg"}
                     />
-
-                  </button>
-                  <img className="facebookIcon" src={process.env.PUBLIC_URL + '/svg/google.svg'} />
                   </div>
                 </div>
               </div>
