@@ -13,34 +13,6 @@ export default class Home extends Component {
             <div className="header=section">
               <Topbar />
             </div>
-            <div className="heading-home headingHomeDisplay text-center mb-5">
-              <h1>Mikä on</h1>
-              <h1>muumikokoelmani arvo?</h1>
-              <button className="heading-home-btn mt-3">
-                Tee oma kokoelma
-              </button>
-            </div>
-            <div className="filters container filtersContainerDisplay col-sm-12 pl-5 pr-5">
-              <div className="row">
-                <div className="custom-width filters-left col-sm-6 col-xs-6">
-                  <p>
-                    Rajaa mukeja
-                    <span>
-                      <img src={settings}></img>
-                    </span>
-                  </p>
-                </div>
-                <div className="custom-width filters-right col-sm-6 col-xs-6">
-                  <p className="text-right">
-                    Uusin ensin{" "}
-                    <span>
-                      <img src={down}></img>
-                    </span>
-                  </p>
-                </div>
-              </div>
-              <hr></hr>
-            </div>
             <div className="products container mt-5 pt-2 col-sm-12">
               {/* <Products /> */}
               <Homes />

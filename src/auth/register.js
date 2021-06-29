@@ -98,7 +98,7 @@ const Register = () => {
           <div className="registerPageMain">
             <div class="">
               <div className="topImg">
-                <img src={process.env.PUBLIC_URL + "/authImages/mukify.png"} />
+                <Link to="/"><img src={process.env.PUBLIC_URL + "/authImages/mukify.png"} /></Link>
               </div>
               <h6 class="top-font">
                 Rekisteröidy aloittaaksesi

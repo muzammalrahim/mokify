@@ -60,64 +60,26 @@ const AccordionDetails = withStyles((theme) => ({
 
 
 
-export default function CustomizedAccordions() {
+export default function CustomizedAccordions(props) {
+
+  const {changeYear, changeRange, colorFilter, year, price, characterFilter, priceMin, priceMax, yearMin, yearMax, changeColor, colorCount, changeCharacter, characterCount } = props;
+
   const [expanded, setExpanded] = useState('panel1');
-  const [price, setPrice] = useState([10,100]);
-  const [year, setYear] = useState([1900,2021]);
+  // const [price, setPrice] = useState([10,100]);
+  // const [year, setYear] = useState([1900,2021]);
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
     };
-    const changeRange = (event, newValue) => {
-        setPrice(newValue)
-  }
-    const changeYear = (event, newValue) => {
-        setYear(newValue)
-  }
-const [colorFilter, setColorFilter] = useState([])
-  const [characterFilter, setCharacterFilter] = useState([])
-  const [color, setColor] = useState([])
-  const [colorCount, setColorCount] = useState(0)
-  const [character, setCharacter] = useState([])
-  useEffect(() => {
-    axios.get(`${API_URL}?query=query{
-localizedFlatItem(id: "")
-{
-  colorFilters{
-    id
-      name
-      count
-  }
-    characterFilters {
-      id
-      name
-      count
-    }
-}
-}`).then(res => {
-  setCharacterFilter(res.data.data.localizedFlatItem.characterFilters);
-  setColorFilter(res.data.data.localizedFlatItem.colorFilters);
-}).catch(err => {
-  console.log('error', err)
-});
-  },[])
+  //   const changeRange = (event, newValue) => {
+  //       // setPrice(newValue)
+  // }
+  //   const changeYear = (event, newValue) => {
+  //       // setYear(newValue)
+  // }
   
-  const handleChangeColor = (e) => {
-    if (color.find(el => el === e.target.id)) {
-      setColor(color.filter(ele=>ele !== e.target.id))
-      setColorCount(colorCount -1)
-    } else {
-      setColor([...color, e.target.id])
-      setColorCount(colorCount +1)
-    }
-  }
-  const handleChangeCharacter = (e) => {
-    if (character.find(el => el === e.target.id)) {
-      setCharacter(character.filter(ele=>ele !== e.target.id))
-    } else {
-      setCharacter([...character, e.target.id])
-    }
-  }
+ 
+
   return (
     <div className="sidebar-main">
       <div className="web border-bottom">
@@ -131,7 +93,7 @@ localizedFlatItem(id: "")
             aria-controls="panel1d-content"
             id="panel1d-header"
           >
-            <Typography>Hahmot</Typography>
+            <Typography>Hahmot <span className="notify">{ characterCount}</span> </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography className={"sidebar-inner"}>
@@ -142,7 +104,7 @@ localizedFlatItem(id: "")
                       <span className="check">
                         <Checkbox
                           inputProps={{ "aria-label": "checkbox A" }}
-                          onChange={handleChangeCharacter}
+                          onChange={changeCharacter}
                           id={character.id}
                         />{" "}
                         <span className="name">{character.name}</span>
@@ -187,7 +149,7 @@ localizedFlatItem(id: "")
                         <Checkbox
                           value="checkedA"
                           inputProps={{ "aria-label": "Checkbox A" }}
-                          onChange={handleChangeColor}
+                          onChange={changeColor}
                           id={color.id}
                         />
                       </span>
@@ -237,8 +199,8 @@ localizedFlatItem(id: "")
                   <RangeSlider
                     value={price}
                     handleChange={changeRange}
-                    max="2000"
-                    min={0}
+                    max={priceMax}
+                    min={priceMin}
                   />
                 </li>
               </ul>
@@ -275,27 +237,27 @@ localizedFlatItem(id: "")
                   <RangeSlider
                     value={year}
                     handleChange={changeYear}
-                    max={new Date().getFullYear()}
-                    min={1800}
+                    max={yearMax}
+                    min={yearMin}
                   />
                 </li>
               </ul>
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion
+        {/* <Accordion
           square
           expanded={expanded === "panel5"}
           onChange={handleChange("panel5")}
-        >
-          <AccordionSummary
+        > */}
+          {/* <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1d-content"
             id="panel1d-header"
           >
             <Typography>Teema</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
+          </AccordionSummary> */}
+          {/* <AccordionDetails>
             <Typography className={"sidebar-inner"}>
               <ul className="side-bar">
                 <li>
@@ -306,7 +268,7 @@ localizedFlatItem(id: "")
                     />
                   </span>
                   <span className="name">Muumipeikko</span>
-                  {/* <span className="options">7</span> */}
+                  {/* <span className="options">7</span> 
                 </li>
                 <li>
                   <span className="check">
@@ -316,7 +278,7 @@ localizedFlatItem(id: "")
                     />
                   </span>
                   <span className="name">Niiskuneiti</span>
-                  {/* <span className="options">7</span> */}
+                   <span className="options">7</span> 
                 </li>
                 <li>
                   <span className="check">
@@ -326,19 +288,19 @@ localizedFlatItem(id: "")
                     />
                   </span>
                   <span className="name">Muumipappa</span>
-                  {/* <span className="options">7</span> */}
+                   <span className="options">7</span> 
                 </li>
                 <li>
                   <span className="check">
-                    {/* <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/> */}
+                     <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/> 
                   </span>
                   <span className="name2">Näytä kaikki</span>
-                  {/* <span className="options">7</span> */}
+                   <span className="options">7</span> 
                 </li>
               </ul>
             </Typography>
-          </AccordionDetails>
-        </Accordion>
+          </AccordionDetails> */}
+        {/* </Accordion> */}
       </div>
 
       {/* mobile */}

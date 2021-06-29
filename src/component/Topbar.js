@@ -74,7 +74,7 @@ export default function Topbar() {
           <Navbar.Brand className="custom-width col-md-3 col-sm-3 col-xs-3">
             <div className="header container-fluid ">
               <div className="logo">
-                <img src={logo} alt="mukify"></img>
+                <Link to='/'><img src={logo} alt="mukify"></img></Link>
               </div>
             </div>
             </Navbar.Brand>

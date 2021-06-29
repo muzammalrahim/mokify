@@ -9,6 +9,7 @@ import ProductDetail from './pages/products/productDetail';
 import ForgotPassword from './auth/forgotPassword'
 import ResetPassword from './auth/resetPass';
 import ChangePassword from './auth/changePassword'
+import Homes from './component/Home'
 
 
 
@@ -16,7 +17,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Homes} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/products" component={Products} />

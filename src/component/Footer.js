@@ -6,6 +6,7 @@ import { Row, Col} from "react-bootstrap";
 import Insta from "../assets/ins.png";
 import Facebook from "../assets/fb.png";
 import RightArrow from '../assets/right.png'
+import {Link} from 'react-router-dom' 
 
 
 
@@ -15,7 +16,7 @@ export default function Footer() {
         <div className="footer-main mt-5 pl-5 pr-5">
             <div className="logo container ml-0">
                 <Col>
-                  <img className="mt-5 mb-5" src={footerLogo} alt="footer-logo"></img>
+                 <Link to="/"> <img className="mt-5 mb-5" src={footerLogo} alt="footer-logo"></img></Link>
                 </Col>
             </div>
             <div className="links container col-sm-12">

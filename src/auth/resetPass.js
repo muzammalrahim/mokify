@@ -3,7 +3,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { signupUser, userSelector, clearState } from "../store/reducers/auth";
 import { API_URL } from "../helper/api";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Footer from "../component/Footer";
 
 const ResetPassword = (props) => {
@@ -82,7 +82,7 @@ const ResetPassword = (props) => {
         <div className="registerPageMain">
           <div class="">
             <div className="topImg">
-              <img src={process.env.PUBLIC_URL + "/authImages/mukify.png"} />
+             <Link to='/'> <img src={process.env.PUBLIC_URL + "/authImages/mukify.png"} /></Link>
             </div>
             <h6 class="top-font">
               Rekisteröidy aloittaaksesi
