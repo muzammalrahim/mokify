@@ -86,7 +86,7 @@ export default function Topbar() {
             <a className="search" href=""><FaSearch color="black" /></a>
             <a className="" style={{border:"none"}} href=""><img className="" src={Camera} alt="loading"></img></a>
             </span>
-           {status === true ? <><span><AiOutlineUser />Username</span></> :<><Link className="pl-4" to="/login">Kirjaudu sisään</Link>
+           {status === true ? <><span className = "usernameSpan"><AiOutlineUser />Username</span></> :<><Link className="pl-4" to="/login">Kirjaudu sisään</Link>
 
 
         <button className="tab-btn ml-2"><Link to="/register">Rekisteröidy</Link></button></>}
