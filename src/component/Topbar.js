@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import '../styling/style.scss'
 import { Nav, Navbar, NavDropdown, Row } from "react-bootstrap";
 import logo from '../assets/logo.svg'
-import {FaSearch,FaUser, FaChevronLeft} from "react-icons/fa";
+import { FaSearch, FaUser, FaChevronLeft,  } from "react-icons/fa";
+import { AiOutlineUser } from "react-icons/ai";
 import Camera from '../assets/camera.png'
 import { Link } from 'react-router-dom';
 
@@ -85,7 +86,7 @@ export default function Topbar() {
             <a className="search" href=""><FaSearch color="black" /></a>
             <a className="" style={{border:"none"}} href=""><img className="" src={Camera} alt="loading"></img></a>
             </span>
-           {status === true ? <button className="tab-btnSmall ml-2" onClick={handleLogout}>logout</button> :<><Link className="pl-4" to="/login">Kirjaudu sisään</Link>
+           {status === true ? <><span><AiOutlineUser />Username</span></> :<><Link className="pl-4" to="/login">Kirjaudu sisään</Link>
 
 
         <button className="tab-btn ml-2"><Link to="/register">Rekisteröidy</Link></button></>}

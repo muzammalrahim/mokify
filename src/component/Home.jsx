@@ -11,30 +11,36 @@ import down from "../assets/down.svg";
 import Topbar from './Topbar';
 import Footer from './Footer';
 import { API_URL } from '../helper/api';
+import { debounce } from 'lodash';
 
 export default class Header extends Component {
-  state = {
-    data: [],
-    offset: 0,
-    moreData: [],
-    apiLength: 0,
-    start: 9,
-    minYear:0,
-    maxYear:0,
-    minPrice:0,
-    maxPrice: 2000,
-    colorFilter: [],
-    characterFilter: [],
-    year: [],
-    price: [],
-    color: [],
-    colorCount: 0,
-    character: [],
-    characterCount: 0,
-    totalCount: 0,
-    totalFilter:2,
-  };
-
+  constructor() {
+    super()
+    this.state = {
+      data: [],
+      offset: 0,
+      moreData: [],
+      apiLength: 0,
+      start: 9,
+      minYear: 0,
+      maxYear: 0,
+      minPrice: 0,
+      maxPrice: 2000,
+      colorFilter: [],
+      characterFilter: [],
+      year: [],
+      price: [],
+      color: [],
+      colorCount: 0,
+      character: [],
+      characterCount: 0,
+      totalCount: 0,
+      totalFilter: 0,
+      filterCall: false,
+      status: false,
+    };
+    this.changeFilters= debounce(this.changeFilters, 2000)
+  }
   componentWillMount() {
     window.addEventListener("scroll", this.loadMore);
   }
@@ -136,7 +142,7 @@ export default class Header extends Component {
     if (color.find(el => el === '"'+e.target.id+'"')) {
       this.setState({ color: color.filter(ele => ele !== '"'+e.target.id+'"'), colorCount: colorCount -1, totalFilter:totalFilter -1 })
     } else {
-      this.setState({ color: [...color, '"' + e.target.id + '"'], colorCount: colorCount + 1, apiLength:0,totalFilter:totalFilter +1 })
+      this.setState({ color: [...color, '"' + e.target.id + '"'], colorCount: colorCount + 1, apiLength:0,totalFilter:totalFilter +1, filterCall:true })
       this.changeFilters();
       
     }
@@ -146,8 +152,8 @@ export default class Header extends Component {
     if (character.find(el => el === '"'+e.target.id+'"')) {
       this.setState({ character: character.filter(ele => ele !== '"'+e.target.id+'"'), characterCount: characterCount -1, totalFilter:totalFilter -1  })
     } else {
-    this.changeFilters();
-      this.setState({ character: [...character, '"' + e.target.id + '"'], characterCount: characterCount + 1, apiLength:0,totalFilter:totalFilter +1  })
+    // this.changeFilters();
+      this.setState({ character: [...character, '"' + e.target.id + '"'], characterCount: characterCount + 1, apiLength:0,totalFilter:totalFilter +1, filterCall:true  })
     this.changeFilters();
       
     }
@@ -155,15 +161,21 @@ export default class Header extends Component {
 
   componentDidMount() {
     this.getData();
+    if (localStorage.getItem("token") === true) {
+      this.setState({ status:true});
+    } else {
+      this.setState({status:false})
+    }
   }
   changeRange = (event, newValue) => {
-     const price = newValue
-      this.setState({price, apiLength:0}) 
+    const {totalFilter} = this.state
+    const price = newValue
+    this.setState({price, apiLength:0, filterCall:true}) 
     this.changeFilters();
   }
   changeYear = (event, newValue) => {
-       const year = newValue
-    this.setState({ year, apiLength: 0 });
+    const year = newValue
+    this.setState({ year, apiLength: 0, filterCall: true });
     this.changeFilters()
   }
 
@@ -207,7 +219,7 @@ export default class Header extends Component {
       .then((res) => {
         const {data} = this.state
         
-        this.setState({data:res.data.data.localizedFlatItem.edges});
+        this.setState({data:res.data.data.localizedFlatItem.edges, filterCall:false});
       })
       .catch((err) => {
         console.log(err);
@@ -215,78 +227,104 @@ export default class Header extends Component {
   }
 
   render() {
-    const { data, price, year, totalFilter, apiLength, minPrice, maxPrice, minYear, maxYear, characterFilter, colorFilter, color, colorCount, characterCount } = this.state;
-    return (<><Topbar />
-      <div className="products product-inner container mt-2 col-sm-12 pl-5 pr-5">
-        <div className="heading-home headingHomeDisplay text-center mb-5">
-          <h1>Mikä on</h1>
-          <h1>muumikokoelmani arvo?</h1>
-          <button className="heading-home-btn mt-3">Tee oma kokoelma</button>
-        </div>
-        <div className="filters container filtersContainerDisplay col-sm-12 ">
-          <hr />
-          <div className="row">
-            <div className="custom-width filters-left col-sm-6 col-xs-6">
-              <p>
-                Rajaukset
-                <span>
-                  <img src={settings}></img>
-                </span>
-                <i
-                  className="notify"
-                  style={{ color: "#fff", backgroundColor: "#A4B96D" }}
-                >
-                  {totalFilter}
-                </i>
-                <span className="ml-3">{data.length} tuotetta</span>
-              </p>
+    const { data, price, year,filterCall,status, totalFilter, apiLength, minPrice, maxPrice, minYear, maxYear, characterFilter, colorFilter, color, colorCount, characterCount } = this.state;
+    return (
+      <>
+        <Topbar />
+        <div className="heading-home products product-inner container mt-2 col-sm-12 pl-5 pr-5">
+          {status &&
+            <div className="heading-home headingHomeDisplay text-center mb-5">
+              <h1>Mikä on</h1>
+              <h1>muumikokoelmani arvo?</h1>
+              <button className="heading-home-btn mt-3">
+                Tee oma kokoelma
+              </button>
             </div>
-            <div className="custom-width filters-right col-sm-6 col-xs-6">
-              <p className="text-right">
-                Uusin ensin{" "}
-                <span>
-                  <img src={down}></img>
-                </span>
-              </p>
-            </div>
-          </div>
-          <hr></hr>
-        </div>
-        <Row>
-          <Col xs="12" md="3">
-            <div className="">
-              <div className="mobile-filter">
-                <SimpleDialog />
+          }
+          <div className="heading-home filters container filtersContainerDisplay col-sm-12 ">
+            <hr />
+            <div className="row">
+              <div className="custom-width filters-left col-sm-6 col-xs-6">
+                <div>
+                  Rajaukset
+                  <span className="filter-count">
+                    <img src={settings}></img>
+                  </span>
+                  <span className="notify-fill">{totalFilter}</span>
+                  <span className="ml-3">{data.length} tuotetta</span>
+                </div>
               </div>
-              <CustomizedAccordions changeRange={this.changeRange} changeYear={this.changeYear} changeCharacter={this.handleChangeCharacter} characterCount={characterCount} changeColor={this.handleChangeColor} color={color} colorCount={colorCount} year={year} price={price} priceMin={minPrice} priceMax={maxPrice} yearMin={minYear} yearMax={maxYear} colorFilter={ colorFilter} characterFilter={characterFilter} />
+              <div className="custom-width filters-right col-sm-6 col-xs-6">
+                <p className="text-right">
+                  Uusin ensin{" "}
+                  <span>
+                    <img src={down}></img>
+                  </span>
+                </p>
+              </div>
             </div>
-          </Col>
+            <hr></hr>
+          </div>
+          <Row>
+            <Col xs="12" md="3">
+              <div className="">
+                <div className="mobile-filter">
+                  <SimpleDialog />
+                </div>
+                <CustomizedAccordions
+                  changeRange={this.changeRange}
+                  changeYear={this.changeYear}
+                  changeCharacter={this.handleChangeCharacter}
+                  characterCount={characterCount}
+                  changeColor={this.handleChangeColor}
+                  color={color}
+                  colorCount={colorCount}
+                  year={year}
+                  price={price}
+                  priceMin={minPrice}
+                  priceMax={maxPrice}
+                  yearMin={minYear}
+                  yearMax={maxYear}
+                  colorFilter={colorFilter}
+                  characterFilter={characterFilter}
+                />
+              </div>
+            </Col>
 
-          <Col xs="12" md="12" lg="9">
-            <Row>
-              {data.map((nod) => {
-                return (
-                  <Col xs={12} lg={4} md={4} sm={6} key={nod.node.id}>
-                    <Link to={`/product/${nod.node.id}`}>
-                      <Image
-                        className="product-image"
-                        src={nod?.node?.itemImagesSet[0]?.mediumThumbUrl}
-                      />
-                      <p className="product-text">
-                        {nod?.node?.basicInfo?.shortDescription}
-                      </p>
-                      <p className="product-subtext ">
-                        {nod?.node?.basicInfo?.name}
-                      </p>
-                      <p className="product-price">
-                        {nod.node.additionalInfo[0].rows[0].columns[0]}
-                      </p>
-                    </Link>
-                  </Col>
-                );
-              })}
-            </Row>
-            {/* <div className="products-offers container mt-5 mb-5 col-sm-12 col-lg-12">
+            <Col xs="12" md="12" lg="9">
+              {filterCall && (
+                <div className="loaderContainer">
+                  <div class="text-center">
+                    <div class="spinner-border" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+              <Row>
+                {data.map((nod) => {
+                  return (
+                    <Col xs={12} lg={4} md={4} sm={6} key={nod.node.id}>
+                      <Link to={`/product/${nod.node.id}`}>
+                        <Image
+                          className="product-image"
+                          src={nod?.node?.itemImagesSet[0]?.mediumThumbUrl}
+                        />
+                        <p className="product-text">
+                          {nod?.node?.basicInfo?.shortDescription}
+                        </p>
+                        <p className="product-subtext ">
+                          {nod?.node?.basicInfo?.name}
+                        </p>
+                        <p className="product-price">
+                          {nod.node.additionalInfo[0].rows[0].columns[0]}
+                        </p>
+                      </Link>
+                    </Col>
+                  );
+                })}
+              </Row>
+              {/* <div className="products-offers container mt-5 mb-5 col-sm-12 col-lg-12">
             <div className="row">
               <div className="left-offer mt-5 mb-5 pt-5 pb-5 pl-5 col-sm-12 col-xs-12 col-md-12 col-lg-6">
                 <h5 style={{ fontWeight: "800" }}>Tulossa!</h5>
@@ -305,7 +343,7 @@ export default class Header extends Component {
                 </div>
             </div>
           </div> */}
-            {/* <Row>
+              {/* <Row>
               {moreData.map((nod) => {
                 return (
                   <Col xs={12} lg={4} md={4} sm={6} key={nod.node.id}>
@@ -326,26 +364,26 @@ export default class Header extends Component {
                 );
               })}
             </Row> */}
-            {apiLength > 0 && (
-              <div className="loading mt-5 mb-5 container">
-                {/* <Spinner animation="grow" role="status">
+              {apiLength > 0 && (
+                <div className="loading mt-5 mb-5 container">
+                  {/* <Spinner animation="grow" role="status">
               <span className="sr-only">Loading...</span>
               <img className="mt-5 mb-4" src={loading} alt="loading"></img>
             </Spinner> */}
-                <img
-                  className="mt-5 mb-4 spinner-loader"
-                  src={loading}
-                  alt="loading"
-                ></img>
-                <p>Scrollaa ladataksesi lisää</p>
-                <p>mukeja ({apiLength})</p>
-              </div>
-            )}
-          </Col>
-        </Row>
-      </div>
-      <Footer />
-    </>
+                  <img
+                    className="mt-5 mb-4 spinner-loader"
+                    src={loading}
+                    alt="loading"
+                  ></img>
+                  <p>Scrollaa ladataksesi lisää</p>
+                  <p>mukeja ({apiLength})</p>
+                </div>
+              )}
+            </Col>
+          </Row>
+        </div>
+        <Footer />
+      </>
     );
   }
 }

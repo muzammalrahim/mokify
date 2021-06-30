@@ -188,12 +188,12 @@ export default function CustomizedAccordions(props) {
           <AccordionDetails>
             <Typography className={"sidebar-inner"}>
               <ul className="side-bar rang-slide">
-                <li className="mt-5">
-                  <span className="up">{price[0]}</span>
-                  <span className="mid">
+                <li className="mt-5 d-flex"><span className="col-1"></span>
+                  <span className="up col-3 text-center">{price[0]}</span>
+                  <span className="mid col-2">
                     <img src={Line} alt="line" />
                   </span>
-                  <span className="down">{price[1]}</span>
+                  <span className="down col-md-3 col-sm-3 text-center">{price[1]}</span>
                 </li>
                 <li className="mt-4">
                   <RangeSlider
@@ -226,12 +226,12 @@ export default function CustomizedAccordions(props) {
           <AccordionDetails>
             <Typography className={"sidebar-inner"}>
               <ul className="side-bar rang-slide">
-                <li className="mt-5">
-                  <span className="up">{year[0]}</span>
-                  <span className="mid">
+                <li className="mt-5 d-flex"><span className="col-2"></span>
+                  <span className="up col-2 text-center">{year[0]}</span>
+                  <span className="mid col-2">
                     <img src={Line} alt="line" />
                   </span>
-                  <span className="down">{year[1]}</span>
+                  <span className="down col-md-3 col-sm-3 text-center">{year[1]}</span>
                 </li>
                 <li className="mt-4">
                   <RangeSlider
