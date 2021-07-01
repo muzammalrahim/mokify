@@ -44,6 +44,7 @@ body{
     font-family: $font-primary;
 }
 
+
 //Top Bar
 .top-bar{
     color: $white;
@@ -535,6 +536,15 @@ background-color:$footerGray ;
     border-radius: 6px;
     height: 100%;
 }
+// product Detail
+
+.productDetail__price{
+    color:$green;
+    margin-left: 50px;
+}
+// .productDetail__button{
+//     background-color: red;
+// }
 
 // add by Tk
 
