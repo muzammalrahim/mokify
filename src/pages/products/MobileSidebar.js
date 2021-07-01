@@ -84,6 +84,7 @@ const Accordion = withStyles({
   }))(MuiAccordionDetails);
   
 function SimpleDialog(props) {
+
     const [expanded, setExpanded] = React.useState('panel1');
 
     const handleChange = (panel) => (event, newExpanded) => {
@@ -91,7 +92,7 @@ function SimpleDialog(props) {
     };
 
   const classes = useStyles();
-  const { onClose, selectedValue, open } = props;
+  const { onClose, selectedValue, open, values } = props;
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -104,168 +105,176 @@ function SimpleDialog(props) {
 
   
 
-  
+  console.log("mobile simple next props", props)
 
   return (
-    <Dialog className="test" 
-    PaperProps={{
+    <Dialog
+      className="heading-home test"
+      PaperProps={{
         style: {
-        //   backgroundColor: 'transparent',
-        //   boxShadow: 'none',
-        marginTop:'32',
-        marginLeft:'0',
-        paddingTop:'10px',
+          //   backgroundColor: 'transparent',
+          //   boxShadow: 'none',
+          marginTop: "32",
+          marginLeft: "0",
+          paddingTop: "10px",
         },
       }}
-    onClose={handleClose} 
-    aria-labelledby="simple-dialog-title" 
-    open={open} style={{width: 400,}}>
-        
-        
-        <div className='mobile'>
-
-            
-        <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1d-content" id="panel1d-header">
-            <Typography>Hahmot</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-            <Typography className={'sidebar-inner'}>
-            <ul className="side-bar">
-                    <li>
-                        <span className="check">
-                            <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
-                        </span>
-                        <span className="name">Muumipeikko</span>
-                        <span className="options">7</span>
-                        
-                    </li>
-                    <li>
-                        <span className="check">
-                            <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
-                        </span>
-                        <span className="name">Niiskuneiti</span>
-                        <span className="options">7</span>
-                        
-                    </li>
-                    <li>
-                        <span className="check">
-                            <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
-                        </span>
-                        <span className="name">Muumipappa</span>
-                        <span className="options">7</span>
-                        
-                    </li>
-                    <li>
-                        <span className="check">
-                            {/* <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/> */}
-                        </span>
-                        <span className="name2">Näytä kaikki</span>
-                        {/* <span className="options">7</span> */}
-                        
-                    </li>
-                </ul>
+      onClose={handleClose}
+      aria-labelledby="simple-dialog-title"
+      open={open}
+      style={{ width: 400 }}
+    >
+      <div className="mobile">
+        <Accordion
+          square
+          expanded={expanded === "panel1"}
+          onChange={handleChange("panel1")}
+        >
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1d-content"
+            id="panel1d-header"
+          >
+            <Typography>
+              Hahmot<span className="notify">{values.characterCount}</span>
             </Typography>
-            </AccordionDetails>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography className={"sidebar-inner"}>
+              <ul className="side-bar">
+                {values.characterFilter.map((character) => {
+                  return (
+                    <li key={character.id}>
+                      <span className="check">
+                        <Checkbox
+                          inputProps={{ "aria-label": "checkbox A" }}
+                          onChange={values.changeCharacter}
+                          id={character.id}
+                        />{" "}
+                        <span className="name">{character.name}</span>
+                        <span className="options">{character.count}</span>
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Typography>
+          </AccordionDetails>
         </Accordion>
-        <Accordion square expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel2d-content" id="panel2d-header">
-            <Typography>Vari <span className="notify">13</span></Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-            <Typography className={'sidebar-inner'}>
-                <ul className="side-bar">
-                    <li>
-                        <span className="check">
-                            <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
-                        </span>
-                        <span className="name">Muumipeikko</span>
-                        <span className="options">7</span>
-                        
-                    </li>
-                    <li>
-                        <span className="check">
-                            <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
-                        </span>
-                        <span className="name">Niiskuneiti</span>
-                        <span className="options">7</span>
-                        
-                    </li>
-                    <li>
-                        <span className="check">
-                            <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
-                        </span>
-                        <span className="name">Muumipappa</span>
-                        <span className="options">7</span>
-                        
-                    </li>
-                    <li>
-                        <span className="check">
-                            {/* <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/> */}
-                        </span>
-                        <span className="name2">Näytä kaikki</span>
-                        {/* <span className="options">7</span> */}
-                        
-                    </li>
-                </ul>
+        <Accordion
+          square
+          expanded={expanded === "panel2"}
+          onChange={handleChange("panel2")}
+        >
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel2d-content"
+            id="panel2d-header"
+          >
+            <Typography>
+              Vari <span className="notify">{values.colorCount}</span>
             </Typography>
-            </AccordionDetails>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography className={"sidebar-inner"}>
+              <ul className="side-bar">
+                {values.colorFilter.map((color) => {
+                  return (
+                    <li key={color.id}>
+                      <span className="check">
+                        <Checkbox
+                          value="checkedA"
+                          inputProps={{ "aria-label": "Checkbox A" }}
+                          onChange={values.changeColor}
+                          id={color.id}
+                        />
+                      </span>
+                      <span className="name">{color.name}</span>
+                      <span className="options">{color.count}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Typography>
+          </AccordionDetails>
         </Accordion>
-        <Accordion square expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel3d-content" id="panel3d-header">
-            <Typography>Hintaluokka 
-                <span className="notify">01</span>
-                {/* <img src={Arrow} alt="arrow"></img> */}
-            
+        <Accordion
+          square
+          expanded={expanded === "panel3"}
+          onChange={handleChange("panel3")}
+        >
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel3d-content"
+            id="panel3d-header"
+          >
+            <Typography>
+              Hintaluokka
+              <span className="notify">0</span>
+              {/* <img src={Arrow} alt="arrow"></img> */}
             </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-            <Typography className={'sidebar-inner'}>
-                <ul className="side-bar rang-slide">
-                    <li className="mt-5">
-                        <span className="up">27</span>
-                        <span className="mid">
-                            <img src={Line} alt="line"/>
-                        </span>
-                        <span className="down">39</span>
-                    </li>
-                    <li className="mt-4">
-                        <RangeSlider/>
-                        
-                    </li>
-                    
-                </ul>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography className={"sidebar-inner"}>
+              <ul className="side-bar rang-slide">
+                <li className="mt-5">
+                  <span className="up">{values.price[0]}</span>
+                  <span className="mid">
+                    <img src={Line} alt="line" />
+                  </span>
+                  <span className="down">{values.price[1]}</span>
+                </li>
+                <li className="mt-4">
+                  <RangeSlider
+                    value={values.price}
+                    handleChange={values.changeRange}
+                    max={values.priceMax}
+                    min={values.priceMin}
+                  />
+                </li>
+              </ul>
             </Typography>
-            </AccordionDetails>
+          </AccordionDetails>
         </Accordion>
-        <Accordion square expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel3d-content" id="panel3d-header">
-            <Typography>Valmistusvuosi
-                <span className="notify">01</span>
-                {/* <img src={Arrow} alt="arrow"></img> */}
-            
+        <Accordion
+          square
+          expanded={expanded === "panel4"}
+          onChange={handleChange("panel4")}
+        >
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel3d-content"
+            id="panel3d-header"
+          >
+            <Typography>
+              Valmistusvuosi
+              <span className="notify">0</span>
+              {/* <img src={Arrow} alt="arrow"></img> */}
             </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-            <Typography className={'sidebar-inner'}>
-                <ul className="side-bar rang-slide">
-                    <li className="mt-5">
-                        <span className="up">27</span>
-                        <span className="mid">
-                            <img src={Line} alt="line"/>
-                        </span>
-                        <span className="down">39</span>
-                    </li>
-                    <li className="mt-4">
-                        <RangeSlider/>
-                        
-                    </li>
-                    
-                </ul>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography className={"sidebar-inner"}>
+              <ul className="side-bar rang-slide">
+                <li className="mt-5">
+                  <span className="up">{values.year[0]}</span>
+                  <span className="mid">
+                    <img src={Line} alt="line" />
+                  </span>
+                  <span className="down">{values.year[1]}</span>
+                </li>
+                <li className="mt-4">
+                  <RangeSlider
+                    value={values.year}
+                    handleChange={values.changeYear}
+                    max={values.yearMax}
+                    min={values.yearMin}
+                  />
+                </li>
+              </ul>
             </Typography>
-            </AccordionDetails>
+          </AccordionDetails>
         </Accordion>
-        </div>
+      </div>
     </Dialog>
   );
 }
@@ -276,10 +285,10 @@ SimpleDialog.propTypes = {
   selectedValue: PropTypes.string.isRequired,
 };
 
-export default function SimpleDialogDemo() {
+export default function SimpleDialogDemo(props) {
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
-
+ const values = props
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -288,14 +297,14 @@ export default function SimpleDialogDemo() {
     setOpen(false);
     setSelectedValue(value);
   };
-
+console.log("mobile view values", values)
   return (
-    <div className="mobile-mod">
+    <div className="mobile-mod heading-home">
         
       <Button className="bttn" variant="outlined" color="primary" onClick={handleClickOpen}>
             <img className="" src={Filter} alt="loading"></img>
       </Button>
-      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+      <SimpleDialog selectedValue={selectedValue} values={values} open={open} onClose={handleClose} />
       
     </div>
   );

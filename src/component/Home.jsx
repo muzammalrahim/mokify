@@ -141,6 +141,7 @@ export default class Header extends Component {
      let {color, colorCount, totalFilter} = this.state
     if (color.find(el => el === '"'+e.target.id+'"')) {
       this.setState({ color: color.filter(ele => ele !== '"'+e.target.id+'"'), colorCount: colorCount -1, totalFilter:totalFilter -1 })
+      this.changeFilters()
     } else {
       this.setState({ color: [...color, '"' + e.target.id + '"'], colorCount: colorCount + 1, apiLength:0,totalFilter:totalFilter +1, filterCall:true })
       this.changeFilters();
@@ -151,6 +152,7 @@ export default class Header extends Component {
      let {character, characterCount, totalFilter} = this.state
     if (character.find(el => el === '"'+e.target.id+'"')) {
       this.setState({ character: character.filter(ele => ele !== '"'+e.target.id+'"'), characterCount: characterCount -1, totalFilter:totalFilter -1  })
+       this.changeFilters()
     } else {
     // this.changeFilters();
       this.setState({ character: [...character, '"' + e.target.id + '"'], characterCount: characterCount + 1, apiLength:0,totalFilter:totalFilter +1, filterCall:true  })
@@ -232,7 +234,7 @@ export default class Header extends Component {
       <>
         <Topbar />
         <div className="heading-home products product-inner container mt-2 col-sm-12 pl-5 pr-5">
-          {status &&
+          {status && (
             <div className="heading-home headingHomeDisplay text-center mb-5">
               <h1>Mikä on</h1>
               <h1>muumikokoelmani arvo?</h1>
@@ -240,7 +242,7 @@ export default class Header extends Component {
                 Tee oma kokoelma
               </button>
             </div>
-          }
+          )}
           <div className="heading-home filters container filtersContainerDisplay col-sm-12 ">
             <hr />
             <div className="row">
@@ -269,7 +271,23 @@ export default class Header extends Component {
             <Col xs="12" md="3">
               <div className="">
                 <div className="mobile-filter">
-                  <SimpleDialog />
+                  <SimpleDialog
+                    changeRange={this.changeRange}
+                    changeYear={this.changeYear}
+                    changeCharacter={this.handleChangeCharacter}
+                    characterCount={characterCount}
+                    changeColor={this.handleChangeColor}
+                    color={color}
+                    colorCount={colorCount}
+                    year={year}
+                    price={price}
+                    priceMin={minPrice}
+                    priceMax={maxPrice}
+                    yearMin={minYear}
+                    yearMax={maxYear}
+                    colorFilter={colorFilter}
+                    characterFilter={characterFilter}
+                  />
                 </div>
                 <CustomizedAccordions
                   changeRange={this.changeRange}
