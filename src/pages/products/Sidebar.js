@@ -1,33 +1,30 @@
-import React, {useState, useEffect} from 'react';
-import { withStyles, makeStyles} from '@material-ui/core/styles';
-import MuiAccordion from '@material-ui/core/Accordion';
-import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
-import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
-import Typography from '@material-ui/core/Typography';
-import Checkbox from '@material-ui/core/Checkbox';
-import RangeSlider from '../products/RangeSlider';
+import React, { useState, useEffect } from "react";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
+import MuiAccordion from "@material-ui/core/Accordion";
+import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
+import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
+import Typography from "@material-ui/core/Typography";
+import Checkbox from "@material-ui/core/Checkbox";
+import RangeSlider from "../products/RangeSlider";
 // import Arrow from '../../assets/down.png';
-import Line from '../../assets/line.png';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import axios from 'axios';
-import { API_URL } from '../../helper/api';
-
-
-
+import Line from "../../assets/line.png";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import axios from "axios";
+import { API_URL } from "../../helper/api";
 
 const Accordion = withStyles({
   root: {
     // border: '1px solid rgba(0, 0, 0, .125)',
-    marginTop: '20px',
-    boxShadow: 'none',
-    '&:not(:last-child)': {
+    marginTop: "20px",
+    boxShadow: "none",
+    "&:not(:last-child)": {
       borderBottom: 0,
     },
-    '&:before': {
-      display: 'none',
+    "&:before": {
+      display: "none",
     },
-    '&$expanded': {
-      margin: 'auto',
+    "&$expanded": {
+      margin: "auto",
     },
   },
   expanded: {},
@@ -35,18 +32,18 @@ const Accordion = withStyles({
 
 const AccordionSummary = withStyles({
   root: {
-    backgroundColor: 'rgba(0, 0, 0, .03)',
-    borderTop: '1px solid rgba(0, 0, 0, .125)',
+    backgroundColor: "rgba(0, 0, 0, .03)",
+    borderTop: "1px solid rgba(0, 0, 0, .125)",
     marginBottom: -1,
     minHeight: 56,
     marginTop: 8,
-    '&$expanded': {
+    "&$expanded": {
       minHeight: 56,
     },
   },
   content: {
-    '&$expanded': {
-      margin: '12px 0',
+    "&$expanded": {
+      margin: "12px 0",
     },
   },
   expanded: {},
@@ -58,9 +55,23 @@ const AccordionDetails = withStyles((theme) => ({
   },
 }))(MuiAccordionDetails);
 
-
-
 export default function CustomizedAccordions(props) {
+  const {
+    changeYear,
+    changeRange,
+    colorFilter,
+    year,
+    price,
+    characterFilter,
+    priceMin,
+    priceMax,
+    yearMin,
+    yearMax,
+    changeColor,
+    colorCount,
+    changeCharacter,
+    characterCount,
+  } = props;
 
   const {changeYear, changeRange, colorFilter, year, price, characterFilter, priceMin, priceMax, yearMin, yearMax, changeColor, colorCount, changeCharacter, characterCount } = props;
 
@@ -83,7 +94,9 @@ export default function CustomizedAccordions(props) {
             aria-controls="panel1d-content"
             id="panel1d-header"
           >
-            <Typography>Hahmot <span className="notify">{ characterCount}</span> </Typography>
+            <Typography>
+              Hahmot <span className="notify">{characterCount}</span>{" "}
+            </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography className={"sidebar-inner"}>
@@ -170,12 +183,15 @@ export default function CustomizedAccordions(props) {
           <AccordionDetails>
             <Typography className={"sidebar-inner"}>
               <ul className="side-bar rang-slide">
-                <li className="mt-5 d-flex"><span className="col-1"></span>
+                <li className="mt-5 d-flex">
+                  <span className="col-1"></span>
                   <span className="up col-3 text-center">{price[0]}</span>
                   <span className="mid col-2">
                     <img src={Line} alt="line" />
                   </span>
-                  <span className="down col-md-3 col-sm-3 text-center">{price[1]}</span>
+                  <span className="down col-md-3 col-sm-3 text-center">
+                    {price[1]}
+                  </span>
                 </li>
                 <li className="mt-4">
                   <RangeSlider
@@ -208,12 +224,15 @@ export default function CustomizedAccordions(props) {
           <AccordionDetails>
             <Typography className={"sidebar-inner"}>
               <ul className="side-bar rang-slide">
-                <li className="mt-5 d-flex"><span className="col-2"></span>
+                <li className="mt-5 d-flex">
+                  <span className="col-2"></span>
                   <span className="up col-2 text-center">{year[0]}</span>
                   <span className="mid col-2">
                     <img src={Line} alt="line" />
                   </span>
-                  <span className="down col-md-3 col-sm-3 text-center">{year[1]}</span>
+                  <span className="down col-md-3 col-sm-3 text-center">
+                    {year[1]}
+                  </span>
                 </li>
                 <li className="mt-4">
                   <RangeSlider
