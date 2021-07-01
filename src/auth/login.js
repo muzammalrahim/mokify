@@ -2,28 +2,39 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { signinUser, userSelector, clearState } from "../store/reducers/login";
-import { socialSigninUser, socialSelector, clearStates } from "../store/reducers/social";
+import {
+  socialSigninUser,
+  socialSelector,
+  clearStates,
+} from "../store/reducers/social";
 import { API_URL } from "../helper/api";
 import { useHistory } from "react-router-dom";
-import Footer from '../component/Footer'
-import FacebookLogin from "react-facebook-login"
+import Footer from "../component/Footer";
+import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
-import { Link } from 'react-router-dom'
-import msg from '../helper/notification'
+import { Link } from "react-router-dom";
+import msg from "../helper/notification";
 // import Image from '../../public/image23.png'
 
 const Login = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-   const history = useHistory();
-   const dispatch = useDispatch();
-
-   const { isFetching, isLoggedIn, isError, errorMessage } =
-     useSelector(userSelector, socialSelector);
+  const { isFetching, isLoggedIn, isError, errorMessage } = useSelector(
+    userSelector,
+    socialSelector
+  );
   //  const { isFetching, isLoggedIn, isError, errorMessage } =
   //    useSelector(socialSelector);
   const [user, setUser] = useState({});
+  const [passText, setPassText] = useState("");
 
   const handleChange = (e) => {
+    if (e.target.value.length < 8) {
+      setPassText("Password must be greater than 7 characters");
+    } else {
+      setPassText("");
+    }
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
@@ -33,16 +44,16 @@ const Login = () => {
   };
 
   useEffect(() => {
-     console.log("isLoggedIn",isLoggedIn)
-     if (isLoggedIn) {
-       dispatch(clearState());
-       history.push("/");
-     }
+    console.log("isLoggedIn", isLoggedIn);
+    if (isLoggedIn) {
+      dispatch(clearState());
+      history.push("/");
+    }
 
-     if (isError) {
-       // toast.error(errorMessage);
-       dispatch(clearState());
-     }
+    if (isError) {
+      // toast.error(errorMessage);
+      dispatch(clearState());
+    }
   }, [isLoggedIn, isError]);
 
   const [accessToken, setAccessToken] = useState("");
@@ -50,7 +61,7 @@ const Login = () => {
   const responseFacebook = (response) => {
     //  dispatch(socialSigninUser(response.accessToken, facebook));
     setAccessToken(response.accessToken);
-    setProvider('facebook')
+    setProvider("facebook");
   };
   const responseGoogle = (response) => {
     // dispatch(socialSigninUser(response.accessToken, {google}));
@@ -83,12 +94,12 @@ const Login = () => {
             }`
       )
       .then((res) => {
-        localStorage.setItem("token", res.data.data.socialAuthJwt.token)
-        msg.success('you are logged in')
-        history.push('/')
+        localStorage.setItem("token", res.data.data.socialAuthJwt.token);
+        msg.success("you are logged in");
+        history.push("/");
       })
       .catch((err) => console.log(err));
-  },[provider])
+  }, [provider]);
   return (
     <>
       <div>
@@ -96,7 +107,10 @@ const Login = () => {
         <div className="registerPageMain">
           <div class="">
             <div className="topImg">
-             <Link to="/"> <img src={process.env.PUBLIC_URL + "/authImages/mukify.png"} /></Link>
+              <Link to="/">
+                {" "}
+                <img src={process.env.PUBLIC_URL + "/authImages/mukify.png"} />
+              </Link>
             </div>
             <h6 class="top-font">
               Rekisteröidy aloittaaksesi
@@ -115,6 +129,7 @@ const Login = () => {
                 </label>
                 <input
                   type="email"
+                  required
                   name="email"
                   onChange={(e) => handleChange(e)}
                 />{" "}
@@ -125,8 +140,10 @@ const Login = () => {
                 <input
                   type="password"
                   name="password"
+                  required
                   onChange={(e) => handleChange(e)}
                 />{" "}
+                <p style={{ color: "red", marginLeft: "20px" }}>{passText}</p>
                 <br />
                 <button type="submit" class="registerbtn">
                   Luo tili
