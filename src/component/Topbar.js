@@ -53,15 +53,15 @@ export default function Topbar() {
         </Navbar.Collapse>
         
         </Navbar> */}
-
+      {/* 
       <div className="top-bar pt-1">
         <p>
           Luo oma kokoelmasi ja olet aina ajan tasalla sen arvosta!
           <span> Rekisteröidy tästä</span>
         </p>
-      </div>
+      </div> */}
       <Navbar
-        className="navbar-custom mb-5 pt-5 col-md-12 col-sm-12 col-xs-12"
+        className="d-flex navbar-custom mb-5 pt-5 col-md-12 col-sm-12 col-xs-12"
         style={{
           position: "sticky",
           top: "0",
@@ -84,13 +84,20 @@ export default function Topbar() {
         <Navbar.Collapse className="justify" id="responsive-navbar-nav">
           <div className="tabs">
             <span className="search-area">
-              <a className="search" href="">
+              <div className="searchBar">
+                <FaSearch className="search" color="black" size={35} />
+                <input type="text" className="inputBar" />
+
+                <a className="" style={{ border: "none" }} href="">
+                  <img className="camera" src={Camera} alt="loading"></img>
+                </a>
+              </div>
+
+              {/* <a className="search" href="">
                 <FaSearch color="black" />
-              </a>
-              <a className="" style={{ border: "none" }} href="">
-                <img className="" src={Camera} alt="loading"></img>
-              </a>
+              </a> */}
             </span>
+
             {status === true ? (
               <>
                 <span className="usernameSpan">
