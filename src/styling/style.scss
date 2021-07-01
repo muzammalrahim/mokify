@@ -55,12 +55,35 @@ body{
     }
     
 }
+.searchBar{
+    display: flex;
+     align-items: center;
+
+    
+    // padding: 0;
+}
+.camera{
+    margin-bottom: 10px;
+    margin-left: 10px;
+    border-left: 1px solid $loadingColor;
+}
+
+
 .search-area{
-    background: $lightGray;
+    background: #F1F1F1;
     border-radius: 7px;
-    padding: 8px 0 8px 17px;
+    height: 50px;
+    // display: flex;
+    // align-items: center;
+    // padding: 8px 0 8px 17px;
+    
+
     .search{
-        padding-right: 0px;
+    //    padding: -5px 5px 5px 5px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    
+    
     }
     .userIcon{
         margin-left: 20px;
@@ -85,7 +108,10 @@ body{
 }
 
 .tabs{
-    text-align: right;
+    // text-align: right;
+    display: flex;
+    align-items: center;
+    
     a{
         padding-right: 17px;
         text-decoration: none;
@@ -735,8 +761,8 @@ padding: 6rem;
   
   input[type=text], input[type=password] ,input[type=email] {
     width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 20px;
+    padding: 10px;
+    margin: 5px 0 10px 20px;
     display: inline-block;
     border: none;
     background: #f1f1f1;
@@ -744,7 +770,7 @@ padding: 6rem;
   
   input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
 
-    background-color: #ddd;
+    // background-color: #ddd;
     outline: none;
   }
   
