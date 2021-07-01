@@ -71,6 +71,8 @@ export default function CustomizedAccordions(props) {
     colorCount,
     changeCharacter,
     characterCount,
+    priceCount,
+    yearCount,
   } = props;
 
   const [expanded, setExpanded] = useState("panel1");
@@ -190,7 +192,7 @@ export default function CustomizedAccordions(props) {
           >
             <Typography>
               Hintaluokka
-              <span className="notify">01</span>
+              <span className="notify">{priceCount}</span>
               {/* <img src={Arrow} alt="arrow"></img> */}
             </Typography>
           </AccordionSummary>
@@ -231,7 +233,7 @@ export default function CustomizedAccordions(props) {
           >
             <Typography>
               Valmistusvuosi
-              <span className="notify">01</span>
+              <span className="notify">{yearCount}</span>
               {/* <img src={Arrow} alt="arrow"></img> */}
             </Typography>
           </AccordionSummary>

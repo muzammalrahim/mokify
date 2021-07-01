@@ -85,7 +85,7 @@ function SimpleDialog(props) {
   };
 
   const classes = useStyles();
-  const { onClose, selectedValue, open } = props;
+  const { onClose, selectedValue, open, values } = props;
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -304,14 +304,14 @@ SimpleDialog.propTypes = {
   selectedValue: PropTypes.string.isRequired,
 };
 
-export default function SimpleDialogDemo() {
+export default function SimpleDialogDemo(props) {
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
-
+ const values = props
   const handleClose = (value) => {
     setOpen(false);
     setSelectedValue(value);
@@ -331,6 +331,7 @@ export default function SimpleDialogDemo() {
         selectedValue={selectedValue}
         open={open}
         onClose={handleClose}
+        values={values}
       />
     </div>
   );
