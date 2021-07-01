@@ -233,7 +233,6 @@ export default class Header extends Component {
 
   render() {
     const { data, price, year,filterCall,status,priceCount, yearCount, totalFilter, apiLength, minPrice, maxPrice, minYear, maxYear, characterFilter, colorFilter, color, colorCount, characterCount } = this.state;
-    console.log("status value of local storage", status)
     return (
       <>
         <Topbar />

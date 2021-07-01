@@ -13,7 +13,7 @@ import { API_URL } from '../../helper/api'
      
 
      const getData = () => {
-         axios.get(`${API_URL}?query=query{localizedFlatItem(id:"${props.match.params}}"){totalCount         
+         axios.get(`${API_URL}?query=query{localizedFlatItem(id:"${props.match.params.id}}"){totalCount         
       edges{node{id
         basicInfo {
           name

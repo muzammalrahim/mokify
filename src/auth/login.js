@@ -98,7 +98,10 @@ const Login = () => {
         msg.success("you are logged in");
         history.push("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err)
+        msg.error("email or password wrong")
+      });
   }, [provider]);
   return (
     <>
