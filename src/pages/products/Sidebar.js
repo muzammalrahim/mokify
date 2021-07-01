@@ -71,6 +71,8 @@ export default function CustomizedAccordions(props) {
     colorCount,
     changeCharacter,
     characterCount,
+    yearCount,
+    priceCount
   } = props;
 
   // const {changeYear, changeRange, colorFilter, year, price, characterFilter, priceMin, priceMax, yearMin, yearMax, changeColor, colorCount, changeCharacter, characterCount } = props;
@@ -176,7 +178,7 @@ export default function CustomizedAccordions(props) {
           >
             <Typography>
               Hintaluokka
-              <span className="notify">0</span>
+              <span className="notify">{priceCount}</span>
               {/* <img src={Arrow} alt="arrow"></img> */}
             </Typography>
           </AccordionSummary>
@@ -217,7 +219,7 @@ export default function CustomizedAccordions(props) {
           >
             <Typography>
               Valmistusvuosi
-              <span className="notify">0</span>
+              <span className="notify">{yearCount}</span>
               {/* <img src={Arrow} alt="arrow"></img> */}
             </Typography>
           </AccordionSummary>

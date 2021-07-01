@@ -25,11 +25,13 @@ export default class Header extends Component {
       minYear: 0,
       maxYear: 0,
       minPrice: 0,
-      maxPrice: 2000,
+      maxPrice: 1000,
       colorFilter: [],
       characterFilter: [],
       year: [1800, new Date().getFullYear()],
-      price: [0, 0],
+      yearCount:0,
+      price: [0, 5],
+      priceCount:0,
       color: [],
       colorCount: 0,
       character: [],
@@ -140,7 +142,7 @@ export default class Header extends Component {
   handleChangeColor = (e) => {
      let {color, colorCount, totalFilter} = this.state
     if (color.find(el => el === '"'+e.target.id+'"')) {
-      this.setState({ color: color.filter(ele => ele !== '"'+e.target.id+'"'), colorCount: colorCount -1, totalFilter:totalFilter -1 })
+      this.setState({ color: color.filter(ele => ele !== '"'+e.target.id+'"'), colorCount: colorCount -1, totalFilter:totalFilter -1, filterCall:true })
       this.changeFilters()
     } else {
       this.setState({ color: [...color, '"' + e.target.id + '"'], colorCount: colorCount + 1, apiLength:0,totalFilter:totalFilter +1, filterCall:true })
@@ -151,7 +153,7 @@ export default class Header extends Component {
    handleChangeCharacter = (e) => {
      let {character, characterCount, totalFilter} = this.state
     if (character.find(el => el === '"'+e.target.id+'"')) {
-      this.setState({ character: character.filter(ele => ele !== '"'+e.target.id+'"'), characterCount: characterCount -1, totalFilter:totalFilter -1  })
+      this.setState({ character: character.filter(ele => ele !== '"'+e.target.id+'"'), characterCount: characterCount -1, totalFilter:totalFilter -1, filterCall:true  })
        this.changeFilters()
     } else {
     // this.changeFilters();
@@ -163,7 +165,7 @@ export default class Header extends Component {
 
   componentDidMount() {
     this.getData();
-    if (localStorage.getItem("token") === true) {
+    if (localStorage.getItem("token")) {
       this.setState({ status:true});
     } else {
       this.setState({status:false})
@@ -172,12 +174,12 @@ export default class Header extends Component {
   changeRange = (event, newValue) => {
     const {totalFilter} = this.state
     const price = newValue
-    this.setState({price, apiLength:0, filterCall:true}) 
+    this.setState({price, apiLength:0,priceCount:1, filterCall:true}) 
     this.changeFilters();
   }
   changeYear = (event, newValue) => {
     const year = newValue
-    this.setState({ year, apiLength: 0, filterCall: true });
+    this.setState({ year, apiLength: 0, yearCount:1, filterCall: true });
     this.changeFilters()
   }
 
@@ -185,7 +187,7 @@ export default class Header extends Component {
     const { year, price, character, color } = this.state
     axios
       .get(
-        `${API_URL}?query=query{localizedFlatItem(manufacturingYearGte:${year[0]},manufacturingYearLte:${year[1]},${price[1] == 0 ? '' : 'priceLte:'+ price[1]}, ${character.length > 0 ? 'characterId:['+character+']' : ''} ${color.length > 0 ? 'colorId:['+ color+']' : ''})
+        `${API_URL}?query=query{localizedFlatItem(manufacturingYearGte:${year[0]},manufacturingYearLte:${year[1]},${price[1] == 5 ? '' : 'priceLte:'+ price[1]}, ${character.length > 0 ? 'characterId:['+character+']' : ''} ${color.length > 0 ? 'colorId:['+ color+']' : ''})
   {
     totalCount
       edges{
@@ -230,21 +232,22 @@ export default class Header extends Component {
   }
 
   render() {
-    const { data, price, year,filterCall,status, totalFilter, apiLength, minPrice, maxPrice, minYear, maxYear, characterFilter, colorFilter, color, colorCount, characterCount } = this.state;
+    const { data, price, year,filterCall,status,priceCount, yearCount, totalFilter, apiLength, minPrice, maxPrice, minYear, maxYear, characterFilter, colorFilter, color, colorCount, characterCount } = this.state;
+    console.log("status value of local storage", status)
     return (
       <>
         <Topbar />
-        <div className="heading-home products product-inner container mt-2 col-sm-12 pl-5 pr-5">
-          {status && (
-            <div className="heading-home headingHomeDisplay text-center mb-5">
+        <div className="products product-inner container mt-2 col-sm-12 pl-5 pr-5">
+          {status? '':
+            <div className="headingHomeDisplay text-center mb-5">
               <h1>Mikä on</h1>
               <h1>muumikokoelmani arvo?</h1>
               <button className="heading-home-btn mt-3">
                 Tee oma kokoelma
               </button>
             </div>
-          )}
-          <div className="heading-home filters container filtersContainerDisplay col-sm-12 ">
+          }
+          <div className="filters container filtersContainerDisplay col-sm-12 ">
             <hr />
             <div className="row">
               <div className="custom-width filters-left col-sm-6 col-xs-6">
@@ -288,6 +291,8 @@ export default class Header extends Component {
                     yearMax={maxYear}
                     colorFilter={colorFilter}
                     characterFilter={characterFilter}
+                    priceCount={priceCount}
+                    yearCount={yearCount}
                   />
                 </div>
                 <CustomizedAccordions
@@ -306,6 +311,8 @@ export default class Header extends Component {
                   yearMax={maxYear}
                   colorFilter={colorFilter}
                   characterFilter={characterFilter}
+                  priceCount={priceCount}
+                  yearCount={yearCount}
                 />
               </div>
             </Col>
@@ -343,52 +350,8 @@ export default class Header extends Component {
                   );
                 })}
               </Row>
-              {/* <div className="products-offers container mt-5 mb-5 col-sm-12 col-lg-12">
-            <div className="row">
-              <div className="left-offer mt-5 mb-5 pt-5 pb-5 pl-5 col-sm-12 col-xs-12 col-md-12 col-lg-6">
-                <h5 style={{ fontWeight: "800" }}>Tulossa!</h5>
-                <h2 style={{ fontWeight: "400" }}>
-                  Tunnista muumimukit suoraan valokuvasta!
-                </h2>
-                <h5 className="pb-3" style={{ fontWeight: "600" }}>
-                  Aloita kokoelmasi kerääminen valokuvaamalla olemassa olevat
-                  aarteesi.
-                </h5>
-                <button>Kokeile</button>
-              </div>
-              <div
-                className="right-offer mt-5 mb-5 col-md-12 col-sm-12 col-xs-12 col-lg-6">
-                  <img className="right-offer-img" src={rightOffer} alt="right-offer"></img>
-                </div>
-            </div>
-          </div> */}
-              {/* <Row>
-              {moreData.map((nod) => {
-                return (
-                  <Col xs={12} lg={4} md={4} sm={6} key={nod.node.id}>
-                    <Image
-                      className="product-image"
-                      src={nod?.node?.itemImagesSet[0]?.mediumThumbUrl}
-                    />
-                    <p className="product-text">
-                      {nod?.node?.basicInfo?.shortDescription}
-                    </p>
-                    <p className="product-subtext ">
-                      {nod?.node?.basicInfo?.name}
-                    </p>
-                    <p className="product-price">
-                      {nod.node.additionalInfo[0].rows[0].columns[0]}
-                    </p>
-                  </Col>
-                );
-              })}
-            </Row> */}
               {apiLength > 0 && (
                 <div className="loading mt-5 mb-5 container">
-                  {/* <Spinner animation="grow" role="status">
-              <span className="sr-only">Loading...</span>
-              <img className="mt-5 mb-4" src={loading} alt="loading"></img>
-            </Spinner> */}
                   <img
                     className="mt-5 mb-4 spinner-loader"
                     src={loading}

@@ -198,7 +198,7 @@ function SimpleDialog(props) {
           >
             <Typography>
               Hintaluokka
-              <span className="notify">0</span>
+              <span className="notify">{values.priceCount}</span>
               {/* <img src={Arrow} alt="arrow"></img> */}
             </Typography>
           </AccordionSummary>
@@ -236,7 +236,7 @@ function SimpleDialog(props) {
           >
             <Typography>
               Valmistusvuosi
-              <span className="notify">0</span>
+              <span className="notify">{values.yearCount}</span>
               {/* <img src={Arrow} alt="arrow"></img> */}
             </Typography>
           </AccordionSummary>
@@ -285,7 +285,6 @@ export default function SimpleDialogDemo(props) {
     setOpen(false);
     setSelectedValue(value);
   };
-console.log("mobile view values", values)
   return (
     <div className="mobile-mod heading-home">
         
