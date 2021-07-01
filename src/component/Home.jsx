@@ -28,8 +28,8 @@ export default class Header extends Component {
       maxPrice: 2000,
       colorFilter: [],
       characterFilter: [],
-      year: [],
-      price: [],
+      year: [1800, new Date().getFullYear()],
+      price: [0, 0],
       color: [],
       colorCount: 0,
       character: [],
@@ -102,8 +102,8 @@ export default class Header extends Component {
           maxYear: res.data.data.localizedFlatItem.manufacturingYearMax,
           colorFilter: res.data.data.localizedFlatItem.colorFilters,
           characterFilter: res.data.data.localizedFlatItem.characterFilters,
-          price: [res.data.data.localizedFlatItem.priceMin, res.data.data.localizedFlatItem.priceMax],
-          year: [res.data.data.localizedFlatItem.manufacturingYearMin, res.data.data.localizedFlatItem.manufacturingYearMax]
+          // price: [res.data.data.localizedFlatItem.priceMin, res.data.data.localizedFlatItem.priceMax],
+          // year: [res.data.data.localizedFlatItem.manufacturingYearMin, res.data.data.localizedFlatItem.manufacturingYearMax]
         });
       })
       .catch((err) => {
@@ -185,7 +185,7 @@ export default class Header extends Component {
     const { year, price, character, color } = this.state
     axios
       .get(
-        `${API_URL}?query=query{localizedFlatItem(manufacturingYearGte:${year[0]},manufacturingYearLte:${year[1]},priceLte:${price[1]}, ${character.length > 0 ? 'characterId:['+character+']' : ''} ${color.length > 0 ? 'colorId:['+ color+']' : ''})
+        `${API_URL}?query=query{localizedFlatItem(manufacturingYearGte:${year[0]},manufacturingYearLte:${year[1]},${price[1] == 0 ? '' : 'priceLte:'+ price[1]}, ${character.length > 0 ? 'characterId:['+character+']' : ''} ${color.length > 0 ? 'colorId:['+ color+']' : ''})
   {
     totalCount
       edges{
@@ -224,6 +224,7 @@ export default class Header extends Component {
         this.setState({data:res.data.data.localizedFlatItem.edges, filterCall:false});
       })
       .catch((err) => {
+        this.setState({filterCall:false,})
         console.log(err);
       });
   }

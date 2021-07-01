@@ -73,7 +73,7 @@ export default function CustomizedAccordions(props) {
     characterCount,
   } = props;
 
-  const {changeYear, changeRange, colorFilter, year, price, characterFilter, priceMin, priceMax, yearMin, yearMax, changeColor, colorCount, changeCharacter, characterCount } = props;
+  // const {changeYear, changeRange, colorFilter, year, price, characterFilter, priceMin, priceMax, yearMin, yearMax, changeColor, colorCount, changeCharacter, characterCount } = props;
 
   const [expanded, setExpanded] = useState('panel1');
 
