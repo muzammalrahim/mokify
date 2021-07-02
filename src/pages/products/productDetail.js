@@ -45,20 +45,20 @@ const ProductDetail = (props) => {
       });
   };
 
-  console.log(props.match.params);
+  console.log(data);
   return (
     <div>
       <Topbar />
       <div className="container productDetail">
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-lg-6">
             <img
               className="productDetail__image"
               src={data?.itemImagesSet[0]?.mediumThumbUrl}
               alt=""
             />
           </div>
-          <div className="col-md-6 mt-5">
+          <div className="col-lg-6 mt-5">
             <h5 className="ml-5 mt-5 font-weight-bold d-inline ">
               {data?.basicInfo?.shortDescription}
             </h5>
