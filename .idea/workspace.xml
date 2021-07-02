@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2604dac8-1f96-4676-89ff-bf39d8cb5916" name="Default Changelist" comment="build files">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_06_2021_1_58_PM_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_06_2021_1_58_PM__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/MobileSidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/MobileSidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/Sidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/productDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/productDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styling/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styling/style.scss" afterDir="false" />
-    </list>
+    <list default="true" id="2604dac8-1f96-4676-89ff-bf39d8cb5916" name="Default Changelist" comment="build files" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

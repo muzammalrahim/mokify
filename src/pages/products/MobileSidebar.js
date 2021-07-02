@@ -123,48 +123,26 @@ function SimpleDialog(props) {
             aria-controls="panel1d-content"
             id="panel1d-header"
           >
-            <Typography>Hahmot</Typography>
+            <Typography>Hahmot<span className="notify">{ values?.characterCount}</span></Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography className={"sidebar-inner"}>
               <ul className="side-bar">
-                <li>
-                  <span className="check">
-                    <Checkbox
-                      value="checkedA"
-                      inputProps={{ "aria-label": "Checkbox A" }}
-                    />
-                  </span>
-                  <span className="name">Muumipeikko</span>
-                  <span className="options">7</span>
-                </li>
-                <li>
-                  <span className="check">
-                    <Checkbox
-                      value="checkedA"
-                      inputProps={{ "aria-label": "Checkbox A" }}
-                    />
-                  </span>
-                  <span className="name">Niiskuneiti</span>
-                  <span className="options">7</span>
-                </li>
-                <li>
-                  <span className="check">
-                    <Checkbox
-                      value="checkedA"
-                      inputProps={{ "aria-label": "Checkbox A" }}
-                    />
-                  </span>
-                  <span className="name">Muumipappa</span>
-                  <span className="options">7</span>
-                </li>
-                <li>
-                  <span className="check">
-                    {/* <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/> */}
-                  </span>
-                  <span className="name2">Näytä kaikki</span>
-                  {/* <span className="options">7</span> */}
-                </li>
+                {values?.characterFilter.map((character) => {
+                  return (
+                    <li key={character.id}>
+                      <span className="check">
+                        <Checkbox
+                          inputProps={{ "aria-label": "checkbox A" }}
+                          onChange={values.changeCharacter}
+                          id={character.id}
+                        />{" "}
+                        <span className="name">{character.name}</span>
+                        <span className="options">{character.count}</span>
+                      </span>
+                    </li>
+                  );
+                })}
               </ul>
             </Typography>
           </AccordionDetails>
@@ -180,49 +158,28 @@ function SimpleDialog(props) {
             id="panel2d-header"
           >
             <Typography>
-              Vari <span className="notify">13</span>
+              Vari <span className="notify">{values?.colorCount}</span>
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography className={"sidebar-inner"}>
               <ul className="side-bar">
-                <li>
-                  <span className="check">
-                    <Checkbox
-                      value="checkedA"
-                      inputProps={{ "aria-label": "Checkbox A" }}
-                    />
-                  </span>
-                  <span className="name">Muumipeikko</span>
-                  <span className="options">7</span>
-                </li>
-                <li>
-                  <span className="check">
-                    <Checkbox
-                      value="checkedA"
-                      inputProps={{ "aria-label": "Checkbox A" }}
-                    />
-                  </span>
-                  <span className="name">Niiskuneiti</span>
-                  <span className="options">7</span>
-                </li>
-                <li>
-                  <span className="check">
-                    <Checkbox
-                      value="checkedA"
-                      inputProps={{ "aria-label": "Checkbox A" }}
-                    />
-                  </span>
-                  <span className="name">Muumipappa</span>
-                  <span className="options">7</span>
-                </li>
-                <li>
-                  <span className="check">
-                    {/* <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/> */}
-                  </span>
-                  <span className="name2">Näytä kaikki</span>
-                  {/* <span className="options">7</span> */}
-                </li>
+                {values?.colorFilter.map((color) => {
+                  return (
+                    <li key={color.id}>
+                      <span className="check">
+                        <Checkbox
+                          value="checkedA"
+                          inputProps={{ "aria-label": "Checkbox A" }}
+                          onChange={values.changeColor}
+                          id={color.id}
+                        />
+                      </span>
+                      <span className="name">{color.name}</span>
+                      <span className="options">{color.count}</span>
+                    </li>
+                  );
+                })}
               </ul>
             </Typography>
           </AccordionDetails>
@@ -239,7 +196,7 @@ function SimpleDialog(props) {
           >
             <Typography>
               Hintaluokka
-              <span className="notify">01</span>
+              <span className="notify">{values?.priceCount}</span>
               {/* <img src={Arrow} alt="arrow"></img> */}
             </Typography>
           </AccordionSummary>
@@ -247,14 +204,19 @@ function SimpleDialog(props) {
             <Typography className={"sidebar-inner"}>
               <ul className="side-bar rang-slide">
                 <li className="mt-5">
-                  <span className="up">27</span>
+                  <span className="up">{values?.price[0]}</span>
                   <span className="mid">
                     <img src={Line} alt="line" />
                   </span>
-                  <span className="down">39</span>
+                  <span className="down">{values?.price[1]}</span>
                 </li>
                 <li className="mt-4">
-                  <RangeSlider />
+                  <RangeSlider
+                    value={values?.price}
+                    handleChange={values?.changeRange}
+                    max={values?.priceMax}
+                    min={values?.priceMin}
+                  />
                 </li>
               </ul>
             </Typography>
@@ -272,7 +234,7 @@ function SimpleDialog(props) {
           >
             <Typography>
               Valmistusvuosi
-              <span className="notify">01</span>
+              <span className="notify">{values?.yearCount}</span>
               {/* <img src={Arrow} alt="arrow"></img> */}
             </Typography>
           </AccordionSummary>
@@ -280,14 +242,19 @@ function SimpleDialog(props) {
             <Typography className={"sidebar-inner"}>
               <ul className="side-bar rang-slide">
                 <li className="mt-5">
-                  <span className="up">27</span>
+                  <span className="up">{values?.year[0]}</span>
                   <span className="mid">
                     <img src={Line} alt="line" />
                   </span>
-                  <span className="down">39</span>
+                  <span className="down">{values?.year[1]}</span>
                 </li>
                 <li className="mt-4">
-                  <RangeSlider />
+                  <RangeSlider
+                    value={values?.year}
+                    handleChange={values?.changeYear}
+                    max={values?.yearMax}
+                    min={values?.yearMin}
+                  />
                 </li>
               </ul>
             </Typography>

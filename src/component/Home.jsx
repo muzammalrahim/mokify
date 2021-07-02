@@ -172,14 +172,21 @@ export default class Header extends Component {
     }
   }
   changeRange = (event, newValue) => {
-    const {totalFilter} = this.state
+    const {totalFilter, priceCount} = this.state
     const price = newValue
-    this.setState({price, apiLength:0,priceCount:1, filterCall:true}) 
+    this.setState({ price, apiLength: 0, priceCount: 1, filterCall: true })
+    if (priceCount === 0) {
+      this.setState({ totalFilter: totalFilter + 1 });
+    }
     this.changeFilters();
   }
   changeYear = (event, newValue) => {
+    const {yearCount, totalFilter} = this.state
     const year = newValue
-    this.setState({ year, apiLength: 0, yearCount:1, filterCall: true });
+    this.setState({ year, apiLength: 0, yearCount: 1, filterCall: true });
+    if (yearCount === 0) {
+      this.setState({totalFilter: totalFilter +1})
+    }
     this.changeFilters()
   }
 
