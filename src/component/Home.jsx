@@ -40,6 +40,7 @@ export default class Header extends Component {
       totalFilter: 0,
       filterCall: false,
       status: false,
+      filterCountApi : 0,
     };
     this.changeFilters= debounce(this.changeFilters, 2000)
   }
@@ -98,6 +99,7 @@ export default class Header extends Component {
           offset: this.state.offset + 20,
           start: 20,
           apiLength: res.data.data.localizedFlatItem.totalCount - 9,
+          filterCountApi:res.data.data.localizedFlatItem.totalCount,
           minPrice: res.data.data.localizedFlatItem.priceMin,
           maxPrice: res.data.data.localizedFlatItem.priceMax,
           minYear: res.data.data.localizedFlatItem.manufacturingYearMin,
@@ -230,7 +232,7 @@ export default class Header extends Component {
       .then((res) => {
         const {data} = this.state
         
-        this.setState({data:res.data.data.localizedFlatItem.edges, filterCall:false});
+        this.setState({data:res.data.data.localizedFlatItem.edges, filterCall:false, filterCountApi: res.data.data.localizedFlatItem.totalCount});
       })
       .catch((err) => {
         this.setState({filterCall:false,})
@@ -239,7 +241,7 @@ export default class Header extends Component {
   }
 
   render() {
-    const { data, price, year,filterCall,status,priceCount, yearCount, totalFilter, apiLength, minPrice, maxPrice, minYear, maxYear, characterFilter, colorFilter, color, colorCount, characterCount } = this.state;
+    const { data, price, filterCountApi,  year, filterCall, status, priceCount, yearCount, totalFilter, apiLength, minPrice, maxPrice, minYear, maxYear, characterFilter, colorFilter, color, colorCount, characterCount } = this.state;
     return (
       <>
         <Topbar />
@@ -263,7 +265,7 @@ export default class Header extends Component {
                     <img src={settings}></img>
                   </span>
                   <span className="notify-fill">{totalFilter}</span>
-                  <span className="ml-3">{data.length} tuotetta</span>
+                  <span className="ml-3">{filterCountApi} tuotetta</span>
                 </div>
               </div>
               <div className="custom-width filters-right col-sm-6 col-xs-6">
