@@ -62,6 +62,7 @@ import { API_URL } from '../../helper/api'
                 <div className="row ">
                   <div className="col-4 ">
                     <img
+                      className="productDetail__nextImage"
                       src="https://storage.googleapis.com/public_item_images/item_images/b35e983f-2723-4075-aecc-50cd1b4914ae_medium.jpg"
                       width="100px"
                       height="100px"
@@ -71,6 +72,7 @@ import { API_URL } from '../../helper/api'
                   <div className="col-4">
                     {" "}
                     <img
+                      className="productDetail__nextImage"
                       src="https://storage.googleapis.com/public_item_images/item_images/b35e983f-2723-4075-aecc-50cd1b4914ae_medium.jpg"
                       width="100px"
                       height="100px"
@@ -80,6 +82,7 @@ import { API_URL } from '../../helper/api'
                   <div className="col-4">
                     {" "}
                     <img
+                      className="productDetail__nextImage"
                       src="https://storage.googleapis.com/public_item_images/item_images/b35e983f-2723-4075-aecc-50cd1b4914ae_medium.jpg"
                       width="100px"
                       height="100px"

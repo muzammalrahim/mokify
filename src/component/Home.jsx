@@ -8,10 +8,12 @@ import SimpleDialog from '../pages/products/MobileSidebar'
 import {Link }  from 'react-router-dom'
 import settings from "../assets/settings.svg";
 import down from "../assets/down.svg";
-import Topbar from './Topbar';
-import Footer from './Footer';
-import { API_URL } from '../helper/api';
-import { debounce } from 'lodash';
+import Topbar from "./Topbar";
+import Footer from "./Footer";
+import { API_URL } from "../helper/api";
+import { debounce } from "lodash";
+
+import NotificationBar from "./NotificationBar";
 
 export default class Header extends Component {
   constructor() {
@@ -193,10 +195,16 @@ export default class Header extends Component {
   }
 
   changeFilters = () => {
-    const { year, price, character, color } = this.state
+    const { year, price, character, color } = this.state;
     axios
       .get(
-        `${API_URL}?query=query{localizedFlatItem(manufacturingYearGte:${year[0]},manufacturingYearLte:${year[1]},${price[1] == 5 ? '' : 'priceLte:'+ price[1]}, ${character.length > 0 ? 'characterId:['+character+']' : ''} ${color.length > 0 ? 'colorId:['+ color+']' : ''})
+        `${API_URL}?query=query{localizedFlatItem(manufacturingYearGte:${
+          year[0]
+        },manufacturingYearLte:${year[1]},${
+          price[1] == 5 ? "" : "priceLte:" + price[1]
+        }, ${character.length > 0 ? "characterId:[" + character + "]" : ""} ${
+          color.length > 0 ? "colorId:[" + color + "]" : ""
+        })
   {
     totalCount
       edges{
@@ -235,18 +243,21 @@ export default class Header extends Component {
         this.setState({data:res.data.data.localizedFlatItem.edges, filterCall:false, filterCountApi: res.data.data.localizedFlatItem.totalCount});
       })
       .catch((err) => {
-        this.setState({filterCall:false,})
+        this.setState({ filterCall: false });
         console.log(err);
       });
-  }
+  };
 
   render() {
     const { data, price, filterCountApi,  year, filterCall, status, priceCount, yearCount, totalFilter, apiLength, minPrice, maxPrice, minYear, maxYear, characterFilter, colorFilter, color, colorCount, characterCount } = this.state;
     return (
       <>
+        <NotificationBar />
         <Topbar />
         <div className="products product-inner container mt-2 col-sm-12 pl-5 pr-5">
-          {status? '':
+          {status ? (
+            ""
+          ) : (
             <div className="headingHomeDisplay text-center mb-5">
               <h1>Mikä on</h1>
               <h1>muumikokoelmani arvo?</h1>
@@ -254,7 +265,7 @@ export default class Header extends Component {
                 Tee oma kokoelma
               </button>
             </div>
-          }
+          )}
           <div className="filters container filtersContainerDisplay col-sm-12 ">
             <hr />
             <div className="row">

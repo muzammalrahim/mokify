@@ -5,6 +5,7 @@ import { signupUser, userSelector, clearState } from "../store/reducers/auth";
 import { API_URL } from "../helper/api";
 import { useHistory, Link } from "react-router-dom";
 import Footer from "../component/Footer";
+import logo from "../assets/logo.svg";
 
 const ForgotPassword = () => {
   const history = useHistory();
@@ -16,13 +17,13 @@ const ForgotPassword = () => {
   const [user, setUser] = useState({});
 
   const handleChange = (e) => {
-      setUser({ ...user, [e.target.name]: e.target.value });
-      console.log(user)
+    setUser({ ...user, [e.target.name]: e.target.value });
+    console.log(user);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   axios
+    axios
       .post(
         API_URL,
         `query=mutation
@@ -38,13 +39,11 @@ const ForgotPassword = () => {
 
             }`
       )
-       .then((res) => {
-          console.log(res)
+      .then((res) => {
+        console.log(res);
         // localStorage.setItem("token", res.data.data.socialAuthJwt.token);
       })
       .catch((err) => console.log(err));
-  
-    
   };
 
   useEffect(() => {
@@ -102,7 +101,10 @@ const ForgotPassword = () => {
         <div className="registerPageMain">
           <div class="">
             <div className="topImg">
-              <Link to="/"><img src={process.env.PUBLIC_URL + "/authImages/mukify.png"} /></Link>
+              <Link to="/">
+                {" "}
+                <img src={logo} alt="mukify"></img>
+              </Link>
             </div>
             <h6 class="top-font">
               Rekisteröidy aloittaaksesi
@@ -110,9 +112,7 @@ const ForgotPassword = () => {
             </h6>
           </div>
 
-          <form
-            onSubmit={handleSubmit}
-          >
+          <form onSubmit={handleSubmit}>
             <div class="flexbox-container">
               <div class="box">
                 <label for="email">
@@ -123,12 +123,9 @@ const ForgotPassword = () => {
                   name="email"
                   onChange={(e) => handleChange(e)}
                 />{" "}
-               
-                
                 <button type="submit" class="registerbtn">
                   Luo tili
                 </button>{" "}
-                
               </div>
             </div>
           </form>
@@ -142,15 +139,12 @@ const ForgotPassword = () => {
             <img src={process.env.PUBLIC_URL + "/authImages/imagelogin3.png"} />
           </div>
 
-          <div>
-           
-          </div>
+          <div></div>
         </div>
       </div>
       <div className="loginfooter">
         <Footer />
       </div>
-
     </>
   );
 };

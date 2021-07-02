@@ -44,6 +44,29 @@ body{
     font-family: $font-primary;
 }
 
+// Notification Bar
+
+.notificationBar{
+    height: 35px;
+    
+    display: flex;
+    justify-content: center;
+    color: $white;
+
+   
+}
+.notificationBar a{
+    color:$white;
+    text-decoration: underline;}
+.bar__colorSuccess{
+    background-color: $green;
+}
+.bar__colorFail{
+    background-color: red;
+}
+.notificationBar__text{
+  margin-top: 5px;
+}
 
 //Top Bar
 .top-bar{
@@ -546,6 +569,52 @@ background-color:$footerGray ;
 //     background-color: red;
 // }
 
+@media screen and (max-width: 580px) {
+    .productDetail__image{
+           width: 500px;
+           height: 400px; 
+           object-fit: contain;
+    }
+    .productDetail__nextImage{
+        margin-left:20px
+     }
+}
+@media screen and (max-width:532px){
+    .productDetail__image{
+        width: 400px;
+        height: 300px;
+        object-fit: contain;
+    }
+}
+@media screen and (max-width:432px){
+    .productDetail__image{
+        width: 300px;
+        height: 300px;
+        object-fit: contain;
+        margin-left: 40px;
+    }
+}
+@media screen and (max-width:375px){
+    .productDetail__image{
+        width: 250px;
+        height: 250px;
+        object-fit: contain;
+        // margin-left: 40px;
+    }
+}
+@media screen and (max-width:490px){
+ .productDetail__nextImage{
+    width: 80px;
+    height: 80px;
+ }
+}
+@media screen and (max-width:350px){
+    .productDetail__nextImage{
+       margin-left:30px;
+       width:60px;
+       height:60px;
+    }
+   }
 // add by Tk
 
 .topImg{
