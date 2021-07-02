@@ -5,7 +5,8 @@ import { signupUser, userSelector, clearState } from "../store/reducers/auth";
 import { API_URL } from "../helper/api";
 import { useHistory, Link } from "react-router-dom";
 import Footer from "../component/Footer";
-import msg from '../helper/notification'
+import msg from "../helper/notification";
+import logo from "../assets/logo.svg";
 
 const ResetPassword = (props) => {
   const history = useHistory();
@@ -42,18 +43,21 @@ const ResetPassword = (props) => {
             }`
       )
       .then((res) => {
-          if (res.data.data.passwordChange.success == true) {
-            localStorage.removeItem()
+        if (res.data.data.passwordChange.success == true) {
+          localStorage.removeItem();
           history.push("/login");
         } else {
-            msg.error("you are " + res.data.data.passwordChange.errors.nonFieldErrors[0].message)
-          }
+          msg.error(
+            "you are " +
+              res.data.data.passwordChange.errors.nonFieldErrors[0].message
+          );
+        }
       })
       .catch((err) => console.log(err));
   };
 
-    useEffect(() => {
-      console.log(msg)
+  useEffect(() => {
+    console.log(msg);
     if (isLoggedIn) {
       dispatch(clearState());
       history.push("/");
@@ -88,7 +92,10 @@ const ResetPassword = (props) => {
         <div className="registerPageMain">
           <div class="">
             <div className="topImg">
-              <Link to='/'><img src={process.env.PUBLIC_URL + "/authImages/mukify.png"} /></Link>
+              <Link to="/">
+                {" "}
+                <img src={logo} alt="mukify"></img>
+              </Link>
             </div>
             <h6 class="top-font">
               Rekisteröidy aloittaaksesi

@@ -5,6 +5,7 @@ import { signupUser, userSelector, clearState } from "../store/reducers/auth";
 import { API_URL } from "../helper/api";
 import { useHistory, Link } from "react-router-dom";
 import Footer from "../component/Footer";
+import logo from "../assets/logo.svg";
 
 const ResetPassword = (props) => {
   const history = useHistory();
@@ -13,11 +14,11 @@ const ResetPassword = (props) => {
   const { isFetching, isLoggedIn, isError, errorMessage } =
     useSelector(userSelector);
 
-    const [user, setUser] = useState({});
-    const [token, setToken] = useState('')
+  const [user, setUser] = useState({});
+  const [token, setToken] = useState("");
 
   const handleChange = (e) => {
-      console.log(user);
+    console.log(user);
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
@@ -38,13 +39,12 @@ const ResetPassword = (props) => {
             }
             }`
       )
-        .then((res) => {
-          if(res.data.data.passwordReset.success == true){
-            history.push("/login");
-          }
+      .then((res) => {
+        if (res.data.data.passwordReset.success == true) {
+          history.push("/login");
+        }
       })
       .catch((err) => console.log(err));
-  
   };
 
   useEffect(() => {
@@ -73,7 +73,7 @@ const ResetPassword = (props) => {
   };
 
   useEffect(() => {
-   setToken(props.match.params.id)
+    setToken(props.match.params.id);
   }, []);
 
   return (
@@ -82,7 +82,10 @@ const ResetPassword = (props) => {
         <div className="registerPageMain">
           <div class="">
             <div className="topImg">
-             <Link to='/'> <img src={process.env.PUBLIC_URL + "/authImages/mukify.png"} /></Link>
+              <Link to="/">
+                {" "}
+                <img src={logo} alt="mukify"></img>
+              </Link>
             </div>
             <h6 class="top-font">
               Rekisteröidy aloittaaksesi
@@ -126,9 +129,7 @@ const ResetPassword = (props) => {
             <img src={process.env.PUBLIC_URL + "/authImages/imagelogin3.png"} />
           </div>
 
-          <div>
-            
-          </div>
+          <div></div>
         </div>
       </div>
       <div className="loginfooter">
