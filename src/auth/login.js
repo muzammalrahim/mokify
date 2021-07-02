@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import logo from "../assets/logo.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { signinUser, userSelector, clearState } from "../store/reducers/login";
 import {
@@ -53,11 +54,12 @@ const Login = () => {
     if (isError) {
       // toast.error(errorMessage);
       dispatch(clearState());
+      console.log(isError);
     }
   }, [isLoggedIn, isError]);
 
   const [accessToken, setAccessToken] = useState("");
-  const [provider, setProvider] = useState("");
+  const [provider, setProvider] = useState();
   const responseFacebook = (response) => {
     //  dispatch(socialSigninUser(response.accessToken, facebook));
     setAccessToken(response.accessToken);
@@ -98,7 +100,10 @@ const Login = () => {
         msg.success("you are logged in");
         history.push("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        // history.push("/login");
+      });
   }, [provider]);
   return (
     <>
@@ -109,7 +114,7 @@ const Login = () => {
             <div className="topImg">
               <Link to="/">
                 {" "}
-                <img src={process.env.PUBLIC_URL + "/authImages/mukify.png"} />
+                <img src={logo} alt="mukify"></img>
               </Link>
             </div>
             <h6 class="top-font">

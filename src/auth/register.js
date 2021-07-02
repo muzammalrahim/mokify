@@ -6,6 +6,8 @@ import { API_URL } from "../helper/api";
 import { useHistory, Link } from "react-router-dom";
 import Footer from "../component/Footer";
 import FacebookLogin from "react-facebook-login";
+
+import logo from "../assets/logo.svg";
 import GoogleLogin from "react-google-login";
 
 const Register = () => {
@@ -124,7 +126,7 @@ const Register = () => {
           <div class="">
             <div className="topImg">
               <Link to="/">
-                <img src={process.env.PUBLIC_URL + "/authImages/mukify.png"} />
+                <img src={logo} alt="mukify"></img>
               </Link>
             </div>
             <h6 class="top-font">
