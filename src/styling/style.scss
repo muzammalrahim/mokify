@@ -44,6 +44,29 @@ body{
     font-family: $font-primary;
 }
 
+// Notification Bar
+
+.notificationBar{
+    height: 35px;
+    
+    display: flex;
+    justify-content: center;
+    color: $white;
+
+   
+}
+.notificationBar a{
+    color:$white;
+    text-decoration: underline;}
+.bar__colorSuccess{
+    background-color: $green;
+}
+.bar__colorFail{
+    background-color: red;
+}
+.notificationBar__text{
+  margin-top: 5px;
+}
 
 //Top Bar
 .top-bar{

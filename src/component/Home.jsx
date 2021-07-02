@@ -1,21 +1,22 @@
-import React, { Component } from 'react'
-import axios from 'axios'
+import React, { Component } from "react";
+import axios from "axios";
 import rightOffer from "../assets/rightOffer.svg";
 import { Row, Col, Image, Spinner } from "react-bootstrap";
 import loading from "../assets/loading.png";
-import CustomizedAccordions from '../pages/products/Sidebar'
-import SimpleDialog from '../pages/products/MobileSidebar'
-import {Link }  from 'react-router-dom'
+import CustomizedAccordions from "../pages/products/Sidebar";
+import SimpleDialog from "../pages/products/MobileSidebar";
+import { Link } from "react-router-dom";
 import settings from "../assets/settings.svg";
 import down from "../assets/down.svg";
-import Topbar from './Topbar';
-import Footer from './Footer';
-import { API_URL } from '../helper/api';
-import { debounce } from 'lodash';
+import Topbar from "./Topbar";
+import Footer from "./Footer";
+import { API_URL } from "../helper/api";
+import { debounce } from "lodash";
+import NotificationBar from "./NotificationBar";
 
 export default class Header extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       data: [],
       offset: 0,
@@ -29,9 +30,9 @@ export default class Header extends Component {
       colorFilter: [],
       characterFilter: [],
       year: [1800, new Date().getFullYear()],
-      yearCount:0,
+      yearCount: 0,
       price: [0, 5],
-      priceCount:0,
+      priceCount: 0,
       color: [],
       colorCount: 0,
       character: [],
@@ -41,7 +42,7 @@ export default class Header extends Component {
       filterCall: false,
       status: false,
     };
-    this.changeFilters= debounce(this.changeFilters, 2000)
+    this.changeFilters = debounce(this.changeFilters, 2000);
   }
   componentWillMount() {
     window.addEventListener("scroll", this.loadMore);
@@ -51,7 +52,15 @@ export default class Header extends Component {
     window.removeEventListener("scroll", this.loadMore);
   }
   url = () =>
-    `${process.env.REACT_APP_BACKEND_URL}?query=query{localizedFlatItem(id:%20%22%22searchString: "", offset: ${this.state.offset}, first:${this.state.apiLength <= 20 && this.state.apiLength >= 1 ? this.state.apiLength : this.state.start}){totalCount
+    `${
+      process.env.REACT_APP_BACKEND_URL
+    }?query=query{localizedFlatItem(id:%20%22%22searchString: "", offset: ${
+      this.state.offset
+    }, first:${
+      this.state.apiLength <= 20 && this.state.apiLength >= 1
+        ? this.state.apiLength
+        : this.state.start
+    }){totalCount
       priceMin
       priceMax
       manufacturingYearMin
@@ -89,7 +98,7 @@ export default class Header extends Component {
           fullsizeUrl
         }}}}}`;
   getData = () => {
-    let url = this.url()
+    let url = this.url();
     axios
       .get(url)
       .then((res) => {
@@ -114,13 +123,13 @@ export default class Header extends Component {
   };
 
   loadMore = () => {
-    const { offset, start } = this.state
+    const { offset, start } = this.state;
     let url = this.url();
     if (
       Math.ceil(window.innerHeight + document.documentElement.scrollTop) ===
-      document.scrollingElement.scrollHeight && this.state.apiLength > 0
+        document.scrollingElement.scrollHeight &&
+      this.state.apiLength > 0
     ) {
-      
       axios
         .get(url)
         .then((res) => {
@@ -140,54 +149,80 @@ export default class Header extends Component {
   };
 
   handleChangeColor = (e) => {
-     let {color, colorCount, totalFilter} = this.state
-    if (color.find(el => el === '"'+e.target.id+'"')) {
-      this.setState({ color: color.filter(ele => ele !== '"'+e.target.id+'"'), colorCount: colorCount -1, totalFilter:totalFilter -1, filterCall:true })
-      this.changeFilters()
-    } else {
-      this.setState({ color: [...color, '"' + e.target.id + '"'], colorCount: colorCount + 1, apiLength:0,totalFilter:totalFilter +1, filterCall:true })
+    let { color, colorCount, totalFilter } = this.state;
+    if (color.find((el) => el === '"' + e.target.id + '"')) {
+      this.setState({
+        color: color.filter((ele) => ele !== '"' + e.target.id + '"'),
+        colorCount: colorCount - 1,
+        totalFilter: totalFilter - 1,
+        filterCall: true,
+      });
       this.changeFilters();
-      
-    }
-  }
-   handleChangeCharacter = (e) => {
-     let {character, characterCount, totalFilter} = this.state
-    if (character.find(el => el === '"'+e.target.id+'"')) {
-      this.setState({ character: character.filter(ele => ele !== '"'+e.target.id+'"'), characterCount: characterCount -1, totalFilter:totalFilter -1, filterCall:true  })
-       this.changeFilters()
     } else {
-    // this.changeFilters();
-      this.setState({ character: [...character, '"' + e.target.id + '"'], characterCount: characterCount + 1, apiLength:0,totalFilter:totalFilter +1, filterCall:true  })
-    this.changeFilters();
-      
+      this.setState({
+        color: [...color, '"' + e.target.id + '"'],
+        colorCount: colorCount + 1,
+        apiLength: 0,
+        totalFilter: totalFilter + 1,
+        filterCall: true,
+      });
+      this.changeFilters();
     }
-  }
+  };
+  handleChangeCharacter = (e) => {
+    let { character, characterCount, totalFilter } = this.state;
+    if (character.find((el) => el === '"' + e.target.id + '"')) {
+      this.setState({
+        character: character.filter((ele) => ele !== '"' + e.target.id + '"'),
+        characterCount: characterCount - 1,
+        totalFilter: totalFilter - 1,
+        filterCall: true,
+      });
+      this.changeFilters();
+    } else {
+      // this.changeFilters();
+      this.setState({
+        character: [...character, '"' + e.target.id + '"'],
+        characterCount: characterCount + 1,
+        apiLength: 0,
+        totalFilter: totalFilter + 1,
+        filterCall: true,
+      });
+      this.changeFilters();
+    }
+  };
 
   componentDidMount() {
     this.getData();
     if (localStorage.getItem("token")) {
-      this.setState({ status:true});
+      this.setState({ status: true });
     } else {
-      this.setState({status:false})
+      this.setState({ status: false });
     }
   }
   changeRange = (event, newValue) => {
-    const {totalFilter} = this.state
-    const price = newValue
-    this.setState({price, apiLength:0,priceCount:1, filterCall:true}) 
+    const { totalFilter } = this.state;
+    const price = newValue;
+    this.setState({ price, apiLength: 0, priceCount: 1, filterCall: true });
     this.changeFilters();
-  }
+  };
   changeYear = (event, newValue) => {
-    const year = newValue
-    this.setState({ year, apiLength: 0, yearCount:1, filterCall: true });
-    this.changeFilters()
-  }
+    const year = newValue;
+    this.setState({ year, apiLength: 0, yearCount: 1, filterCall: true });
+    this.changeFilters();
+  };
 
   changeFilters = () => {
-    const { year, price, character, color } = this.state
+    const { year, price, character, color } = this.state;
     axios
       .get(
-        `${API_URL}?query=query{localizedFlatItem(manufacturingYearGte:${year[0]},manufacturingYearLte:${year[1]},${price[1] == 5 ? '' : 'priceLte:'+ price[1]}, ${character.length > 0 ? 'characterId:['+character+']' : ''} ${color.length > 0 ? 'colorId:['+ color+']' : ''})
+        `${API_URL}?query=query{localizedFlatItem(manufacturingYearGte:${
+          year[0]
+        },manufacturingYearLte:${year[1]},${
+          price[1] == 5 ? "" : "priceLte:" + price[1]
+        }, ${character.length > 0 ? "characterId:[" + character + "]" : ""} ${
+          color.length > 0 ? "colorId:[" + color + "]" : ""
+        })
   {
     totalCount
       edges{
@@ -221,24 +256,49 @@ export default class Header extends Component {
       `
       )
       .then((res) => {
-        const {data} = this.state
-        
-        this.setState({data:res.data.data.localizedFlatItem.edges, filterCall:false});
+        const { data } = this.state;
+
+        this.setState({
+          data: res.data.data.localizedFlatItem.edges,
+          filterCall: false,
+        });
       })
       .catch((err) => {
-        this.setState({filterCall:false,})
+        this.setState({ filterCall: false });
         console.log(err);
       });
-  }
+  };
 
   render() {
-    const { data, price, year,filterCall,status,priceCount, yearCount, totalFilter, apiLength, minPrice, maxPrice, minYear, maxYear, characterFilter, colorFilter, color, colorCount, characterCount } = this.state;
-    console.log("status value of local storage", status)
+    const {
+      data,
+      price,
+      year,
+      filterCall,
+      status,
+      priceCount,
+      yearCount,
+      totalFilter,
+      apiLength,
+      minPrice,
+      maxPrice,
+      minYear,
+      maxYear,
+      characterFilter,
+      colorFilter,
+      color,
+      colorCount,
+      characterCount,
+    } = this.state;
+    console.log("status value of local storage", status);
     return (
       <>
+        <NotificationBar />
         <Topbar />
         <div className="products product-inner container mt-2 col-sm-12 pl-5 pr-5">
-          {status? '':
+          {status ? (
+            ""
+          ) : (
             <div className="headingHomeDisplay text-center mb-5">
               <h1>Mikä on</h1>
               <h1>muumikokoelmani arvo?</h1>
@@ -246,7 +306,7 @@ export default class Header extends Component {
                 Tee oma kokoelma
               </button>
             </div>
-          }
+          )}
           <div className="filters container filtersContainerDisplay col-sm-12 ">
             <hr />
             <div className="row">
