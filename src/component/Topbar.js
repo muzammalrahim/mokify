@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styling/style.scss";
 import { Nav, Navbar, NavDropdown, Row } from "react-bootstrap";
 import logo from "../assets/logo.svg";
-import { FaSearch, FaUser, FaChevronLeft } from "react-icons/fa";
+import { FaSearch, FaUser, FaChevronLeft, FaCamera } from "react-icons/fa";
 import { AiOutlineUser } from "react-icons/ai";
 import Camera from "../assets/camera.png";
 import { Link } from "react-router-dom";
@@ -88,8 +88,12 @@ export default function Topbar() {
                 <FaSearch className="search" color="black" size={35} />
                 <input type="text" className="inputBar" />
 
-                <a className="" style={{ border: "none" }} href="">
-                  <img className="camera" src={Camera} alt="loading"></img>
+                <a
+                  className="mb-3"
+                  style={{ borderLeft: "1px solid grey", paddingLeft: "10px" }}
+                  href=""
+                >
+                  <FaCamera color="black" size={20} />
                 </a>
               </div>
 
@@ -125,13 +129,14 @@ export default function Topbar() {
               <a className="search" href="">
                 <FaSearch color="black" />
               </a>
-              <a className="border-left" href="">
-                <img
+              <a className="border-left ml-3" href="">
+                {/* <img
                   style={{ border: "none" }}
                   className=""
                   src={Camera}
                   alt="loading"
-                ></img>
+                ></img> */}
+                <FaCamera color="black" />
               </a>
               <a className="userIcon" href="" onClick={dropDownmenu}>
                 <FaUser color="black" />

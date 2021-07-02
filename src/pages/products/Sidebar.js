@@ -81,13 +81,7 @@ export default function CustomizedAccordions(props) {
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
-  };
-  // const changeRange = (event, newValue) => {
-  //   setPrice(newValue);
-  // };
-  // const changeYear = (event, newValue) => {
-  //   setYear(newValue);
-  // };
+    };
 
   return (
     <div className="sidebar-main">
@@ -124,14 +118,6 @@ export default function CustomizedAccordions(props) {
                     </li>
                   );
                 })}
-
-                {/* <li> */}
-                {/* <span className="check"> */}
-                {/* <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/> */}
-                {/* </span> */}
-                {/* <span className="name2">Näytä kaikki</span> */}
-                {/* <span className="options">7</span> */}
-                {/* </li> */}
               </ul>
             </Typography>
           </AccordionDetails>
@@ -262,151 +248,7 @@ export default function CustomizedAccordions(props) {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        {/* <Accordion
-          square
-          expanded={expanded === "panel5"}
-          onChange={handleChange("panel5")}
-        > */}
-        {/* <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1d-content"
-            id="panel1d-header"
-          >
-            <Typography>Teema</Typography>
-          </AccordionSummary> */}
-        {/* <AccordionDetails>
-            <Typography className={"sidebar-inner"}>
-              <ul className="side-bar">
-                <li>
-                  <span className="check">
-                    <Checkbox
-                      value="checkedA"
-                      inputProps={{ "aria-label": "Checkbox A" }}
-                    />
-                  </span>
-                  <span className="name">Muumipeikko</span>
-                  {/* <span className="options">7</span> 
-                </li>
-                <li>
-                  <span className="check">
-                    <Checkbox
-                      value="checkedA"
-                      inputProps={{ "aria-label": "Checkbox A" }}
-                    />
-                  </span>
-                  <span className="name">Niiskuneiti</span>
-                   <span className="options">7</span> 
-                </li>
-                <li>
-                  <span className="check">
-                    <Checkbox
-                      value="checkedA"
-                      inputProps={{ "aria-label": "Checkbox A" }}
-                    />
-                  </span>
-                  <span className="name">Muumipappa</span>
-                   <span className="options">7</span> 
-                </li>
-                <li>
-                  <span className="check">
-                     <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/> 
-                  </span>
-                  <span className="name2">Näytä kaikki</span>
-                   <span className="options">7</span> 
-                </li>
-              </ul>
-            </Typography>
-          </AccordionDetails> */}
-        {/* </Accordion> */}
       </div>
-
-      {/* mobile */}
-
-      {/* <div className='mobile'>
-            
-        <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-            <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-            <Typography>Hahmot</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-            <Typography className={'sidebar-inner'}>
-                <ul className="side-bar">
-                    <li>
-                        <span className="check">
-                            <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
-                        </span>
-                        <span className="name">Muumipeikko</span>
-                        <span className="options">7</span>
-                        
-                    </li>
-                    <li>
-                        <span className="check">
-                            <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
-                        </span>
-                        <span className="name">Muumipeikko</span>
-                        <span className="options">7</span>
-                        
-                    </li>
-                </ul>
-            </Typography>
-            </AccordionDetails>
-        </Accordion>
-        <Accordion square expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-            <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-            <Typography>Vari</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-            <Typography className={'sidebar-inner'}>
-                <ul className="side-bar">
-                    <li>
-                        <span className="check">
-                            <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
-                        </span>
-                        <span className="name">Muumipeikko</span>
-                        <span className="options">7</span>
-                        
-                    </li>
-                    <li>
-                        <span className="check">
-                            <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
-                        </span>
-                        <span className="name">Muumipeikko</span>
-                        <span className="options">7</span>
-                        
-                    </li>
-                </ul>
-            </Typography>
-            </AccordionDetails>
-        </Accordion>
-        <Accordion square expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-            <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-            <Typography>Hintaluokka</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-            <Typography className={'sidebar-inner'}>
-                <ul className="side-bar">
-                    <li>
-                        <span className="check">
-                            <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
-                        </span>
-                        <span className="name">Muumipeikko</span>
-                        <span className="options">7</span>
-                        
-                    </li>
-                    <li>
-                        <span className="check">
-                            <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/>
-                        </span>
-                        <span className="name">Muumipeikko</span>
-                        <span className="options">7</span>
-                        
-                    </li>
-                </ul>
-            </Typography>
-            </AccordionDetails>
-        </Accordion>
-        </div> */}
-      {/* Mobile */}
     </div>
   );
 }

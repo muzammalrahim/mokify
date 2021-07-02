@@ -25,6 +25,7 @@ import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
 import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
 
 import Checkbox from "@material-ui/core/Checkbox";
+import { FaFilter } from "react-icons/fa";
 
 const emails = ["username@gmail.com", "user02@gmail.com"];
 const useStyles = makeStyles({
@@ -97,7 +98,7 @@ function SimpleDialog(props) {
 
   return (
     <Dialog
-      className="test"
+      className="heading-home test"
       PaperProps={{
         style: {
           //   backgroundColor: 'transparent',
@@ -283,16 +284,16 @@ export default function SimpleDialogDemo(props) {
     setOpen(false);
     setSelectedValue(value);
   };
-
   return (
-    <div className="mobile-mod ml-3">
+    <div className="mobile-mod heading-home">
       <Button
-        className="bttn ml-5 mb-3"
+        className="bttn"
         variant="outlined"
         color="primary"
         onClick={handleClickOpen}
       >
-        <img className="" src={Filter} alt="loading"></img>
+        {/* <img className="" src={Filter} alt="loading"></img> */}
+        <FaFilter size={30} color="#8A888A" />
       </Button>
       <SimpleDialog
         selectedValue={selectedValue}

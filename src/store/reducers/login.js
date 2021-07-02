@@ -13,17 +13,20 @@ export const signinUser = createAsyncThunk(
       )
       .then((response) => {
         console.log("response: ", response);
-
-        localStorage.setItem("token", response.data.data.tokenAuth.token);
-        localStorage.setItem(
-          "refreshToken",
-          response.data.data.tokenAuth.refreshToken
-        );
-        return { ...response, username: email };
+        if (response.data.data.tokenAuth !== null) {
+          localStorage.setItem("token", response.data.data.tokenAuth.token);
+          localStorage.setItem(
+            "refreshToken",
+            response.data.data.tokenAuth.refreshToken
+          );
+          return { ...response, username: email };
+        } else {
+          return thunkAPI.rejectWithValue(response.data.data.errors);
+        }
       })
-      .catch((e) => {
-        console.log("Error2", e);
-        return thunkAPI.rejectWithValue(e.response);
+      .catch((errors) => {
+        console.log("Error2", errors);
+        return thunkAPI.rejectWithValue(errors);
       });
   }
 );
@@ -96,9 +99,11 @@ export const userSigninSlice = createSlice({
       state,
       { payload }
     ) => {
-      console.log("payload", payload);
-      state.isFetching = false;
-      state.isLoggedIn = true;
+      if (payload !== undefined) {
+        console.log("payload", payload);
+        state.isFetching = false;
+        state.isLoggedIn = true;
+      }
     },
     [signinUser.pending || socialSigninUser.pending]: (state) => {
       state.isFetching = true;
@@ -118,5 +123,5 @@ export const userSigninSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const { clearState } = userSigninSlice.actions;
 
-export const userSelector = (state) => state.login ;
+export const userSelector = (state) => state.login;
 // export const userSelector = (state) => state.social;
