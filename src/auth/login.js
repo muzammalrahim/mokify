@@ -54,6 +54,7 @@ const Login = () => {
     if (isError) {
       // toast.error(errorMessage);
       dispatch(clearState());
+      msg.error("password or email incorrect");
       console.log(isError);
     }
   }, [isLoggedIn, isError]);
@@ -103,6 +104,7 @@ const Login = () => {
       .catch((err) => {
         console.log(err);
         // history.push("/login");
+        // msg.error("password or email incorrect")
       });
   }, [provider]);
   return (

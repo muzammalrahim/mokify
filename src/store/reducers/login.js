@@ -103,6 +103,8 @@ export const userSigninSlice = createSlice({
         console.log("payload", payload);
         state.isFetching = false;
         state.isLoggedIn = true;
+      } else {
+        state.isError= true
       }
     },
     [signinUser.pending || socialSigninUser.pending]: (state) => {

@@ -6,6 +6,7 @@ import { API_URL } from "../helper/api";
 import { useHistory, Link } from "react-router-dom";
 import Footer from "../component/Footer";
 import logo from "../assets/logo.svg";
+import msg from "../helper/notification"
 
 const ResetPassword = (props) => {
   const history = useHistory();
@@ -41,6 +42,7 @@ const ResetPassword = (props) => {
       )
       .then((res) => {
         if (res.data.data.passwordReset.success == true) {
+          msg.success("password successfully reset")
           history.push("/login");
         }
       })
