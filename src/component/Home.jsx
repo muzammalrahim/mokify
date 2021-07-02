@@ -12,11 +12,13 @@ import Topbar from "./Topbar";
 import Footer from "./Footer";
 import { API_URL } from "../helper/api";
 import { debounce } from "lodash";
+
 import NotificationBar from "./NotificationBar";
 
 export default class Header extends Component {
   constructor() {
     super();
+
     this.state = {
       data: [],
       offset: 0,
