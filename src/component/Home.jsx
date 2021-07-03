@@ -12,10 +12,10 @@ import Topbar from "./Topbar";
 import Footer from "./Footer";
 import { API_URL } from "../helper/api";
 import { debounce } from "lodash";
-
+import { connect } from "react-redux";
 import NotificationBar from "./NotificationBar";
 
-export default class Header extends Component {
+class Header extends Component {
   constructor() {
     super();
 
@@ -43,6 +43,7 @@ export default class Header extends Component {
       totalFilter: 0,
       filterCall: false,
       status: false,
+      // isLogedin: false,
     };
     this.changeFilters = debounce(this.changeFilters, 2000);
   }
@@ -295,7 +296,7 @@ export default class Header extends Component {
     console.log("status value of local storage", status);
     return (
       <>
-        <NotificationBar />
+        {this.props.isLogedin && <NotificationBar />}
         <Topbar />
         <div className="products product-inner container mt-2 col-sm-12 pl-5 pr-5">
           {status ? (
@@ -431,3 +432,9 @@ export default class Header extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return { isLogedin: state.login.isLoggedIn };
+};
+
+export default connect(mapStateToProps)(Header);

@@ -55,7 +55,7 @@ body{
 
    
 }
-.notificationBar a{
+.notificationBar span{
     color:$white;
     text-decoration: underline;}
 .bar__colorSuccess{
@@ -725,6 +725,7 @@ padding: 6rem;
     padding-right: 38px;
 
 }
+// add by basit
 @media screen and (max-width:1300px) {
     .box {
         width: 35%;
