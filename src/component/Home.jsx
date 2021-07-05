@@ -42,7 +42,9 @@ export default class Header extends Component {
       totalFilter: 0,
       filterCall: false,
       status: false,
-      filterCountApi : 0,
+      filterCountApi: 0,
+      showCharacter : 5,
+      showColor : 5,
     };
     this.changeFilters= debounce(this.changeFilters, 2000)
   }
@@ -50,25 +52,18 @@ export default class Header extends Component {
     window.addEventListener("scroll", this.loadMore);
   }
 
+  handleChangeCharater = () => {
+   this.setState({showCharacter: this.state.character.length})
+}
+  handleChangeColor = () => {
+  this.setState({ showColor: this.state.color.length });
+}
+
   componentWillUnmount() {
     window.removeEventListener("scroll", this.loadMore);
   }
   url = () =>
     `${process.env.REACT_APP_BACKEND_URL}?query=query{localizedFlatItem(id:%20%22%22searchString: "", offset: ${this.state.offset}, first:${this.state.apiLength <= 20 && this.state.apiLength >= 1 ? this.state.apiLength : this.state.start}){totalCount
-      priceMin
-      priceMax
-      manufacturingYearMin
-      manufacturingYearMax
-        colorFilters{
-          id
-            name
-            count
-        }
-          characterFilters {
-            id
-            name
-            count
-          }
       edges{node{id
         basicInfo {
           name
@@ -102,14 +97,6 @@ export default class Header extends Component {
           start: 20,
           apiLength: res.data.data.localizedFlatItem.totalCount - 9,
           filterCountApi:res.data.data.localizedFlatItem.totalCount,
-          minPrice: res.data.data.localizedFlatItem.priceMin,
-          maxPrice: res.data.data.localizedFlatItem.priceMax,
-          minYear: res.data.data.localizedFlatItem.manufacturingYearMin,
-          maxYear: res.data.data.localizedFlatItem.manufacturingYearMax,
-          colorFilter: res.data.data.localizedFlatItem.colorFilters,
-          characterFilter: res.data.data.localizedFlatItem.characterFilters,
-          // price: [res.data.data.localizedFlatItem.priceMin, res.data.data.localizedFlatItem.priceMax],
-          // year: [res.data.data.localizedFlatItem.manufacturingYearMin, res.data.data.localizedFlatItem.manufacturingYearMax]
         });
       })
       .catch((err) => {
@@ -174,6 +161,37 @@ export default class Header extends Component {
     } else {
       this.setState({status:false})
     }
+    axios.get(`${API_URL}?query=query {
+  localizedFlatItem(id:"") {
+     priceMin
+      priceMax
+      manufacturingYearMin
+      manufacturingYearMax
+        colorFilters{
+          id
+            name
+            count
+        }
+          characterFilters {
+            id
+            name
+            count
+          }
+    
+  }
+}`).then(res => {
+  this.setState({
+    minPrice: res.data.data.localizedFlatItem.priceMin,
+    maxPrice: res.data.data.localizedFlatItem.priceMax,
+    minYear: res.data.data.localizedFlatItem.manufacturingYearMin,
+    maxYear: res.data.data.localizedFlatItem.manufacturingYearMax,
+    colorFilter: res.data.data.localizedFlatItem.colorFilters,
+    characterFilter: res.data.data.localizedFlatItem.characterFilters,
+  });
+  console.log(res)
+}).catch(err => {
+  console.log(err)
+});
   }
   changeRange = (event, newValue) => {
     const {totalFilter, priceCount} = this.state
@@ -249,7 +267,7 @@ export default class Header extends Component {
   };
 
   render() {
-    const { data, price, filterCountApi,  year, filterCall, status, priceCount, yearCount, totalFilter, apiLength, minPrice, maxPrice, minYear, maxYear, characterFilter, colorFilter, color, colorCount, characterCount } = this.state;
+    const { data, price, filterCountApi, showCharacter, showColor, year, filterCall, status, priceCount, yearCount, totalFilter, apiLength, minPrice, maxPrice, minYear, maxYear, characterFilter, colorFilter, color, colorCount, characterCount } = this.state;
     return (
       <>
         <NotificationBar />
@@ -332,6 +350,10 @@ export default class Header extends Component {
                   characterFilter={characterFilter}
                   priceCount={priceCount}
                   yearCount={yearCount}
+                  showCharacter={showCharacter}
+                  showColor={showColor}
+                  changeCharacterLength={this.handleChangeCharacter}
+                  changeColorLength = {this.handleChangeColor}
                 />
               </div>
             </Col>

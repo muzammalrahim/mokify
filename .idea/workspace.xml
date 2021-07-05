@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2604dac8-1f96-4676-89ff-bf39d8cb5916" name="Default Changelist" comment="build files" />
+    <list default="true" id="2604dac8-1f96-4676-89ff-bf39d8cb5916" name="Default Changelist" comment="build files">
+      <change beforePath="$PROJECT_DIR$/build/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/asset-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/service-worker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/css/main.da660ad2.chunk.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/css/main.da660ad2.chunk.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/2.cac68367.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/2.cac68367.chunk.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/2.cac68367.chunk.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/main.ae8bc2c8.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/main.ae8bc2c8.chunk.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/forgotPassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/forgotPassword.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/resetPass.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/resetPass.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/login.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

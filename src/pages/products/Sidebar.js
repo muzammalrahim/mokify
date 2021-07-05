@@ -73,6 +73,10 @@ export default function CustomizedAccordions(props) {
     characterCount,
     priceCount,
     yearCount,
+    showCharacter,
+    showColor,
+    changeCharacterLength,
+    changeColorLength,
   } = props;
 
   const [expanded, setExpanded] = useState("panel1");
@@ -103,7 +107,7 @@ export default function CustomizedAccordions(props) {
           <AccordionDetails>
             <Typography className={"sidebar-inner"}>
               <ul className="side-bar">
-                {characterFilter.map((character) => {
+                {characterFilter.slice(0, showCharacter).map((character) => {
                   return (
                     <li key={character.id}>
                       <span className="check">
@@ -118,6 +122,9 @@ export default function CustomizedAccordions(props) {
                     </li>
                   );
                 })}
+                <li>
+                  <a className="name2" href="" onClick={changeCharacterLength}>Näytä kaikki</a>
+                </li>
               </ul>
             </Typography>
           </AccordionDetails>
@@ -139,7 +146,7 @@ export default function CustomizedAccordions(props) {
           <AccordionDetails>
             <Typography className={"sidebar-inner"}>
               <ul className="side-bar">
-                {colorFilter.map((color) => {
+                {colorFilter.slice(0, showColor).map((color) => {
                   return (
                     <li key={color.id}>
                       <span className="check">
@@ -155,13 +162,9 @@ export default function CustomizedAccordions(props) {
                     </li>
                   );
                 })}
-                {/* <li>
-                  <span className="check"> */}
-                {/* <Checkbox value="checkedA"inputProps={{ 'aria-label': 'Checkbox A' }}/> */}
-                {/* </span>
-                  <span className="name2">Näytä kaikki</span> */}
-                {/* <span className="options">7</span> */}
-                {/* </li> */}
+                <li>
+                  <a className="name2" onClick={changeColorLength}>Näytä kaikki</a>
+                </li>
               </ul>
             </Typography>
           </AccordionDetails>
