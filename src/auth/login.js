@@ -15,6 +15,7 @@ import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
 import { Link } from "react-router-dom";
 import msg from "../helper/notification";
+import NotificationBar from "../component/NotificationBar";
 // import Image from '../../public/image23.png'
 
 const Login = () => {
@@ -42,6 +43,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(signinUser(user));
+    console.log(isError);
   };
 
   useEffect(() => {
@@ -109,6 +111,7 @@ const Login = () => {
   }, [provider]);
   return (
     <>
+      {isError && <NotificationBar />}
       <div>
         {isError && <h5>{errorMessage}</h5>}
         <div className="registerPageMain">

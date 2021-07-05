@@ -4,22 +4,26 @@ import { useSelector } from "react-redux";
 import { userSelector } from "../store/reducers/login";
 
 function NotificationBar() {
-  const { isLoggedIn } = useSelector(userSelector);
-  const [isVisible, setVisible] = useState(true);
+  const { isLoggedIn, isError } = useSelector(userSelector);
+  const [isVisible, setVisible] = useState(false);
   useEffect(() => {
     setInterval(() => {
-      setVisible(false);
+      if (isLoggedIn || isError) {
+        setVisible(true);
+      }
     }, 3000);
   }, [isLoggedIn]);
   return (
     <div
-      style={{ visibility: isVisible ? "visible" : "hidden" }}
+      style={{
+        visibility: !isVisible ? "visible" : "hidden",
+      }}
       className={` notificationBar  ${
         isLoggedIn ? "bar__colorSuccess" : "bar__colorFail"
       } `}
     >
       <p className="notificationBar__text">
-        Lisatty <a href="">Kokelmaan</a>
+        {isError ? "Email or password incorrect" : " Lissaty kokoelmaan"}
       </p>
     </div>
   );

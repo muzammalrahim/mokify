@@ -12,10 +12,10 @@ import Topbar from "./Topbar";
 import Footer from "./Footer";
 import { API_URL } from "../helper/api";
 import { debounce } from "lodash";
-
+import { connect } from "react-redux";
 import NotificationBar from "./NotificationBar";
 
-export default class Header extends Component {
+class Header extends Component {
   constructor() {
     super()
     this.state = {
@@ -177,7 +177,7 @@ export default class Header extends Component {
             name
             count
           }
-    
+
   }
 }`).then(res => {
   this.setState({
@@ -270,7 +270,7 @@ export default class Header extends Component {
     const { data, price, filterCountApi, showCharacter, showColor, year, filterCall, status, priceCount, yearCount, totalFilter, apiLength, minPrice, maxPrice, minYear, maxYear, characterFilter, colorFilter, color, colorCount, characterCount } = this.state;
     return (
       <>
-        <NotificationBar />
+        {this.props.isLogedin && <NotificationBar />}
         <Topbar />
         <div className="products product-inner container mt-2 col-sm-12 pl-5 pr-5">
           {status ? (
@@ -410,3 +410,9 @@ export default class Header extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return { isLogedin: state.login.isLoggedIn };
+};
+
+export default connect(mapStateToProps)(Header);
