@@ -6,6 +6,7 @@ import { API_URL } from "../helper/api";
 import { useHistory, Link } from "react-router-dom";
 import Footer from "../component/Footer";
 import logo from "../assets/logo.svg";
+import msg from '../helper/notification'
 
 const ForgotPassword = () => {
   const history = useHistory();
@@ -40,6 +41,7 @@ const ForgotPassword = () => {
             }`
       )
       .then((res) => {
+        msg.success("email has been sent. please check your inbox")
         console.log(res);
         // localStorage.setItem("token", res.data.data.socialAuthJwt.token);
       })

@@ -124,14 +124,12 @@ function SimpleDialog(props) {
             aria-controls="panel1d-content"
             id="panel1d-header"
           >
-            <Typography>
-              Hahmot<span className="notify">{values.characterCount}</span>
-            </Typography>
+            <Typography>Hahmot<span className="notify">{ values?.characterCount}</span></Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography className={"sidebar-inner"}>
               <ul className="side-bar">
-                {values.characterFilter.map((character) => {
+                {values?.characterFilter.map((character) => {
                   return (
                     <li key={character.id}>
                       <span className="check">
@@ -161,13 +159,13 @@ function SimpleDialog(props) {
             id="panel2d-header"
           >
             <Typography>
-              Vari <span className="notify">{values.colorCount}</span>
+              Vari <span className="notify">{values?.colorCount}</span>
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography className={"sidebar-inner"}>
               <ul className="side-bar">
-                {values.colorFilter.map((color) => {
+                {values?.colorFilter.map((color) => {
                   return (
                     <li key={color.id}>
                       <span className="check">
@@ -199,7 +197,7 @@ function SimpleDialog(props) {
           >
             <Typography>
               Hintaluokka
-              <span className="notify">{values.priceCount}</span>
+              <span className="notify">{values?.priceCount}</span>
               {/* <img src={Arrow} alt="arrow"></img> */}
             </Typography>
           </AccordionSummary>
@@ -207,18 +205,18 @@ function SimpleDialog(props) {
             <Typography className={"sidebar-inner"}>
               <ul className="side-bar rang-slide">
                 <li className="mt-5">
-                  <span className="up">{values.price[0]}</span>
+                  <span className="up">{values?.price[0]}</span>
                   <span className="mid">
                     <img src={Line} alt="line" />
                   </span>
-                  <span className="down">{values.price[1]}</span>
+                  <span className="down">{values?.price[1]}</span>
                 </li>
                 <li className="mt-4">
                   <RangeSlider
-                    value={values.price}
-                    handleChange={values.changeRange}
-                    max={values.priceMax}
-                    min={values.priceMin}
+                    value={values?.price}
+                    handleChange={values?.changeRange}
+                    max={values?.priceMax}
+                    min={values?.priceMin}
                   />
                 </li>
               </ul>
@@ -237,7 +235,7 @@ function SimpleDialog(props) {
           >
             <Typography>
               Valmistusvuosi
-              <span className="notify">{values.yearCount}</span>
+              <span className="notify">{values?.yearCount}</span>
               {/* <img src={Arrow} alt="arrow"></img> */}
             </Typography>
           </AccordionSummary>
@@ -245,18 +243,18 @@ function SimpleDialog(props) {
             <Typography className={"sidebar-inner"}>
               <ul className="side-bar rang-slide">
                 <li className="mt-5">
-                  <span className="up">{values.year[0]}</span>
+                  <span className="up">{values?.year[0]}</span>
                   <span className="mid">
                     <img src={Line} alt="line" />
                   </span>
-                  <span className="down">{values.year[1]}</span>
+                  <span className="down">{values?.year[1]}</span>
                 </li>
                 <li className="mt-4">
                   <RangeSlider
-                    value={values.year}
-                    handleChange={values.changeYear}
-                    max={values.yearMax}
-                    min={values.yearMin}
+                    value={values?.year}
+                    handleChange={values?.changeYear}
+                    max={values?.yearMax}
+                    min={values?.yearMin}
                   />
                 </li>
               </ul>
@@ -277,11 +275,11 @@ SimpleDialog.propTypes = {
 export default function SimpleDialogDemo(props) {
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
-  const values = props;
+
   const handleClickOpen = () => {
     setOpen(true);
   };
-
+ const values = props
   const handleClose = (value) => {
     setOpen(false);
     setSelectedValue(value);
@@ -299,9 +297,9 @@ export default function SimpleDialogDemo(props) {
       </Button>
       <SimpleDialog
         selectedValue={selectedValue}
-        values={values}
         open={open}
         onClose={handleClose}
+        values={values}
       />
     </div>
   );

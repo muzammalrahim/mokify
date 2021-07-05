@@ -72,12 +72,12 @@ export default function CustomizedAccordions(props) {
     changeCharacter,
     characterCount,
     yearCount,
-    priceCount,
+    priceCount
   } = props;
 
-  // const {changeYear, changeRange, colorFilter, year, price, characterFilter, priceMin, priceMax, yearMin, yearMax, changeColor, colorCount, changeCharacter, characterCount } = props;
-
   const [expanded, setExpanded] = useState("panel1");
+  // const [price, setPrice] = useState([10, 100]);
+  // const [year, setYear] = useState([1900, 2021]);
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);

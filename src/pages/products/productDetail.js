@@ -1,19 +1,19 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
-import Topbar from "../../component/Topbar";
-import { API_URL } from "../../helper/api";
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
+import Topbar from '../../component/Topbar'
+import { API_URL } from '../../helper/api'
 
-const ProductDetail = (props) => {
-  const [data, setData] = useState();
+ const ProductDetail = (props)=> {
+  
+     const [data, setData] = useState()
 
-  useEffect(() => {
-    getData();
-  }, []);
+     useEffect(() => {
+         getData()
+     }, [])
+     
 
-  const getData = () => {
-    axios
-      .get(
-        `${API_URL}?query=query{localizedFlatItem(id:"${props.match.params.id}}"){totalCount         
+     const getData = () => {
+         axios.get(`${API_URL}?query=query{localizedFlatItem(id:"${props.match.params.id}}"){totalCount
       edges{node{id
         basicInfo {
           name

@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from 'react'
+import axios from 'axios'
 import rightOffer from "../assets/rightOffer.svg";
 import { Row, Col, Image, Spinner } from "react-bootstrap";
 import loading from "../assets/loading.png";
-import CustomizedAccordions from "../pages/products/Sidebar";
-import SimpleDialog from "../pages/products/MobileSidebar";
-import { Link } from "react-router-dom";
+import CustomizedAccordions from '../pages/products/Sidebar'
+import SimpleDialog from '../pages/products/MobileSidebar'
+import {Link }  from 'react-router-dom'
 import settings from "../assets/settings.svg";
 import down from "../assets/down.svg";
 import Topbar from "./Topbar";
@@ -17,8 +17,7 @@ import NotificationBar from "./NotificationBar";
 
 class Header extends Component {
   constructor() {
-    super();
-
+    super()
     this.state = {
       data: [],
       offset: 0,
@@ -43,17 +42,11 @@ class Header extends Component {
       totalFilter: 0,
       filterCall: false,
       status: false,
+      filterCountApi : 0,
       // isLogedin: false,
     };
     this.changeFilters = debounce(this.changeFilters, 2000);
   }
-
-  // componentDidUpdate() {
-  //   if (this.state.totalFilter === 0) {
-  //     this.getData();
-  //   }
-  // }
-
   componentWillMount() {
     window.addEventListener("scroll", this.loadMore);
   }
@@ -117,6 +110,7 @@ class Header extends Component {
           offset: this.state.offset + 20,
           start: 20,
           apiLength: res.data.data.localizedFlatItem.totalCount - 9,
+          filterCountApi:res.data.data.localizedFlatItem.totalCount,
           minPrice: res.data.data.localizedFlatItem.priceMin,
           maxPrice: res.data.data.localizedFlatItem.priceMax,
           minYear: res.data.data.localizedFlatItem.manufacturingYearMin,
@@ -133,13 +127,13 @@ class Header extends Component {
   };
 
   loadMore = () => {
-    const { offset, start } = this.state;
+    const { offset, start } = this.state
     let url = this.url();
     if (
       Math.ceil(window.innerHeight + document.documentElement.scrollTop) ===
-        document.scrollingElement.scrollHeight &&
-      this.state.apiLength > 0
+      document.scrollingElement.scrollHeight && this.state.apiLength > 0
     ) {
+
       axios
         .get(url)
         .then((res) => {
@@ -159,48 +153,28 @@ class Header extends Component {
   };
 
   handleChangeColor = (e) => {
-    let { color, colorCount, totalFilter } = this.state;
-    if (color.find((el) => el === '"' + e.target.id + '"')) {
-      this.setState({
-        color: color.filter((ele) => ele !== '"' + e.target.id + '"'),
-        colorCount: colorCount - 1,
-        totalFilter: totalFilter - 1,
-        filterCall: true,
-      });
-      this.changeFilters();
+     let {color, colorCount, totalFilter} = this.state
+    if (color.find(el => el === '"'+e.target.id+'"')) {
+      this.setState({ color: color.filter(ele => ele !== '"'+e.target.id+'"'), colorCount: colorCount -1, totalFilter:totalFilter -1, filterCall:true })
+      this.changeFilters()
     } else {
-      this.setState({
-        color: [...color, '"' + e.target.id + '"'],
-        colorCount: colorCount + 1,
-        apiLength: 0,
-        totalFilter: totalFilter + 1,
-        filterCall: true,
-      });
+      this.setState({ color: [...color, '"' + e.target.id + '"'], colorCount: colorCount + 1, apiLength:0,totalFilter:totalFilter +1, filterCall:true })
       this.changeFilters();
+
     }
-  };
-  handleChangeCharacter = (e) => {
-    let { character, characterCount, totalFilter } = this.state;
-    if (character.find((el) => el === '"' + e.target.id + '"')) {
-      this.setState({
-        character: character.filter((ele) => ele !== '"' + e.target.id + '"'),
-        characterCount: characterCount - 1,
-        totalFilter: totalFilter - 1,
-        filterCall: true,
-      });
-      this.changeFilters();
+  }
+   handleChangeCharacter = (e) => {
+     let {character, characterCount, totalFilter} = this.state
+    if (character.find(el => el === '"'+e.target.id+'"')) {
+      this.setState({ character: character.filter(ele => ele !== '"'+e.target.id+'"'), characterCount: characterCount -1, totalFilter:totalFilter -1, filterCall:true  })
+       this.changeFilters()
     } else {
-      // this.changeFilters();
-      this.setState({
-        character: [...character, '"' + e.target.id + '"'],
-        characterCount: characterCount + 1,
-        apiLength: 0,
-        totalFilter: totalFilter + 1,
-        filterCall: true,
-      });
-      this.changeFilters();
+    // this.changeFilters();
+      this.setState({ character: [...character, '"' + e.target.id + '"'], characterCount: characterCount + 1, apiLength:0,totalFilter:totalFilter +1, filterCall:true  })
+    this.changeFilters();
+
     }
-  };
+  }
 
   componentDidMount() {
     this.getData();
@@ -211,16 +185,23 @@ class Header extends Component {
     }
   }
   changeRange = (event, newValue) => {
-    const { totalFilter } = this.state;
-    const price = newValue;
-    this.setState({ price, apiLength: 0, priceCount: 1, filterCall: true });
+    const {totalFilter, priceCount} = this.state
+    const price = newValue
+    this.setState({ price, apiLength: 0, priceCount: 1, filterCall: true })
+    if (priceCount === 0) {
+      this.setState({ totalFilter: totalFilter + 1 });
+    }
     this.changeFilters();
-  };
+  }
   changeYear = (event, newValue) => {
-    const year = newValue;
+    const {yearCount, totalFilter} = this.state
+    const year = newValue
     this.setState({ year, apiLength: 0, yearCount: 1, filterCall: true });
-    this.changeFilters();
-  };
+    if (yearCount === 0) {
+      this.setState({totalFilter: totalFilter +1})
+    }
+    this.changeFilters()
+  }
 
   changeFilters = () => {
     const { year, price, character, color } = this.state;
@@ -266,12 +247,9 @@ class Header extends Component {
       `
       )
       .then((res) => {
-        const { data } = this.state;
+        const {data} = this.state
 
-        this.setState({
-          data: res.data.data.localizedFlatItem.edges,
-          filterCall: false,
-        });
+        this.setState({data:res.data.data.localizedFlatItem.edges, filterCall:false, filterCountApi: res.data.data.localizedFlatItem.totalCount});
       })
       .catch((err) => {
         this.setState({ filterCall: false });
@@ -280,27 +258,7 @@ class Header extends Component {
   };
 
   render() {
-    const {
-      data,
-      price,
-      year,
-      filterCall,
-      status,
-      priceCount,
-      yearCount,
-      totalFilter,
-      apiLength,
-      minPrice,
-      maxPrice,
-      minYear,
-      maxYear,
-      characterFilter,
-      colorFilter,
-      color,
-      colorCount,
-      characterCount,
-    } = this.state;
-    console.log("status value of local storage", status);
+    const { data, price, filterCountApi,  year, filterCall, status, priceCount, yearCount, totalFilter, apiLength, minPrice, maxPrice, minYear, maxYear, characterFilter, colorFilter, color, colorCount, characterCount } = this.state;
     return (
       <>
         {this.props.isLogedin && <NotificationBar />}
@@ -327,7 +285,7 @@ class Header extends Component {
                     <img src={settings}></img>
                   </span>
                   <span className="notify-fill">{totalFilter}</span>
-                  <span className="ml-3">{data.length} tuotetta</span>
+                  <span className="ml-3">{filterCountApi} tuotetta</span>
                 </div>
               </div>
               <div className="custom-width filters-right col-sm-6 col-xs-6">
