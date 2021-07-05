@@ -47,6 +47,13 @@ class Header extends Component {
     };
     this.changeFilters = debounce(this.changeFilters, 2000);
   }
+
+  // componentDidUpdate() {
+  //   if (this.state.totalFilter === 0) {
+  //     this.getData();
+  //   }
+  // }
+
   componentWillMount() {
     window.addEventListener("scroll", this.loadMore);
   }

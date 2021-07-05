@@ -72,16 +72,16 @@ export default function CustomizedAccordions(props) {
     changeCharacter,
     characterCount,
     yearCount,
-    priceCount
+    priceCount,
   } = props;
 
   // const {changeYear, changeRange, colorFilter, year, price, characterFilter, priceMin, priceMax, yearMin, yearMax, changeColor, colorCount, changeCharacter, characterCount } = props;
 
-  const [expanded, setExpanded] = useState('panel1');
+  const [expanded, setExpanded] = useState("panel1");
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
-    };
+  };
 
   return (
     <div className="sidebar-main">
